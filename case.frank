@@ -1,0 +1,148 @@
+//
+// API 接口文档
+// 认证信息(比如登录接口)会同时返回在cookie里和authtoken字段
+// 客户端请求时可用cookie传递也可以用authtoken参数传递认证信息
+// 通常web前端可以无视这个cookie和authtoken, 因为浏览器会自动处理cookie
+// app 端的如果不方便操作cookie, 则可忽略cookie而选择authtoken参数传递
+//
+// 关于请求参数, 咱直接微信沟通吧
+//
+// 关于响应
+// code = 0, 表示正确
+// code = 1, error为错误提示
+// code = 2, 未登录
+// code = 3, 需要补全个人昵称和性别
+// code = 5, 服务器错误, error为错误信息
+//
+url = "https://dianyin.trancn.com"
+
+GET /api/registerSendCode 注册发送验证码
+phone="13800138003"
+query.phone = phone
+
+Response
+j = JSON.parse(body)
+must(j.code == 0)
+token = j.data.token
+
+GET /api/register 注册, 此步会返回认证cookie, 认证token(前端可忽略)
+query.phone = phone
+query.password = "111111"
+query.code = "111111"
+query.token = token
+
+Response
+j = JSON.parse(body)
+must(j.code == 0)
+authtoken = j.data.authtoken
+
+GET /api/forgotSendCode 找回密码发送验证码
+query.phone = phone
+
+Response
+j = JSON.parse(body)
+must(j.code == 0)
+token = j.data.token
+
+GET /api/resetPwd 找回密码发送验证码
+query.phone = phone
+query.code = "111111"
+query.password = "111111"
+query.token = token
+
+Response
+j = JSON.parse(body)
+must(j.code == 0)
+
+GET /api/login 登录, 此步会返回认证cookie, 认证token(前端可忽略)*/
+query.phone = phone
+query.password = "111111"
+
+Response
+j = JSON.parse(body)
+must(j.code == 0)
+authtoken = j.data.authtoken
+
+GET /api/updateUser 更新个人昵称和性别(1 男 2 女)
+query.authtoken = authtoken
+query.nick_name = phone.slice(1)
+query.sex = 1
+
+Response
+j = JSON.parse(body)
+must(j.code == 0)
+
+GET /api/updatePwd 更新密码
+query.authtoken = authtoken
+query.phone = phone
+query.password = "111111"
+
+Response
+j = JSON.parse(body)
+must(j.code == 0)
+
+GET /api/showPartyKol 显示kol的在某活动的商品
+query.authtoken = authtoken
+query.party_id = 1
+query.kol_id = 3
+
+Response
+j = JSON.parse(body)
+must(j.code == 0)
+
+GET /api/createOrder 创建订单
+query.authtoken = authtoken
+query.party_id = 1
+query.kol_id = 3
+query.remarks = "这是我的订单备注"
+ticket = [{
+    goods_id: 1,
+    quantity: 1,
+}]
+jiudian = [{
+    goods_id: 2,
+    quantity: 1,
+    surname: "Sun",
+    name: "Wukong",
+    birthday: 662688000,
+    identification: "123456789012345678",
+    passport_number: "",
+    contacts: "Sunwukong",
+    contact_phone: "13800138000",
+    remarks: "备注",
+}]
+jieji = [{
+    goods_id: 3,
+    quantity: 1,
+    time: 1515998889,
+    flight_number: "无",
+    surname_and_name: "Sunwukong",
+}]
+songji = [{
+    goods_id: 6,
+    quantity: 1,
+    time: 1515998889,
+    flight_number: "F123467",
+    surname_and_name: "Sunwukong",
+}]
+yongche = []
+data = {
+    ticket: ticket,
+    jiudian: jiudian,
+    jieji: jieji,
+    songji: songji,
+    yongche: yongche,
+}
+query.data = JSON.stringify(data)
+
+Response
+j = JSON.parse(body)
+must(j.code == 0)
+
+GET /api/getOrder 显示订单详情
+query.authtoken = authtoken
+query.order_id = 32
+
+Response
+j = JSON.parse(body)
+must(j.code == 0)
