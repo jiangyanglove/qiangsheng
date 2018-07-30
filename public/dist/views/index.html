@@ -101,14 +101,14 @@
       </div>
       </a>
 
-      <!-- <div class="drawer md-dense">
+      <div class="modal"></div>
+      <div class="drawer drawer_l md-dense">
         <div class="drawer-title">
           <img class="close_btn" src="/static/img/close_icon.png" alt="">
         </div>
-        <div>
-          <div md-expand>
+        <div class="drawer-inside">
+          <div class="drawer_item">
             <span class="md-list-item-text">网站分组规则</span>
-            <div>
               <div class="md-inset">
                 <h4>分组须知</h4>
                 <p>
@@ -121,12 +121,11 @@
                   2.  用户也可在分组页面选择已有小组并点击加入，小组满8人后加入功能将关闭。
                 </p>
               </div>
-            </div>
           </div>
           
-          <div md-expand>
+          <div class="drawer_item">
             <span class="md-list-item-text">网站积分规则</span>
-            <div>
+
               <div class="md-inset">
                 <h4>积分分类:</h4>
                 <p>
@@ -147,12 +146,12 @@
                 <p>［线下互动］</p>
                 <p>参与线下活动，扫描二维码进行签到打卡，每人+2分（可关注活动预览区内容，及时了解活动信息</p>
               </div>
-            </div>
+
           </div>
 
-          <div md-expand>
+          <div class="drawer_item">
             <span class="md-list-item-text">奖品兑换规则</span>
-            <div>
+
               <div class="md-inset">
                 <p>1.小组累积积分前3名的组别每组获的Nespresso胶囊咖啡机一台。</p>
                 <img class="pre1" src="/static/img/pre1.png" alt="">
@@ -174,11 +173,32 @@
                     <p>罗技（Logitech）<br>蓝牙鼠标M336一枚</p>
                   </div>
                 </div>
-              </div>
+
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
+
+      <div class="drawer md-dense dense_r">
+        <div class="panel">
+          <div class="drawer-title">
+            <img class="close_btn" src="/static/img/close_icon.png" alt="">
+          </div>
+          <div class="thumb_l">
+            <img src="/static/img/thumb_l.png" alt="">
+            <p class="username">userName</p>
+            <input class="username_input" type="text" placeholder="userName">
+            <p class="city">城市: 北京</p>
+          </div>
+          <div class="panel_item">
+            <p>消息</p>
+          </div>
+          <div class="panel_item">
+            <p>排行榜</p>
+          </div>
+          <button class="md-dense md-raised md-primary">设置</button>
+        </div>
+      </div>
   </div>
     
     <script src="../static/vendor/jquery-3.1.1.min.js"></script>
@@ -193,6 +213,23 @@
             })
             $('.lang_item').on('click', function() {
                 $(this).addClass('active').siblings('.lang_item').removeClass('active')
+            })
+
+            $('.menu_icon').on('click', function() {
+              $('.drawer_l, .modal').addClass('active')
+              $('.index-container').addClass('hide')
+            })
+            $('.modal, .close_btn').on('click', function() {
+              $('.drawer_l, .dense_r, .modal').removeClass('active')
+              $('.index-container').removeClass('hide')
+            })
+            $('.drawer_item').on('click', function() {
+              $(this).children('.md-inset').toggleClass('active');
+              $(this).siblings('.drawer_item').children('.md-inset').removeClass('active')
+            })
+            $('.thumb').on('click', function() {
+              $('.dense_r, .modal').addClass('active')
+              $('.index-container').addClass('hide')
             })
         })
     </script>
