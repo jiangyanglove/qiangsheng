@@ -166,7 +166,7 @@
                   <div class="item">
                     <p>{{ __('4-10名') }}</p>
                     <img src="/dist/static/img/pre3.png" alt="">
-                    <p>{ __('乐扣') }}<br>{ __('空气炸锅一台') }} </p>
+                    <p>{{ __('乐扣') }}<br>{{ __('空气炸锅一台') }} </p>
                   </div>
                   <div class="item">
                     <p>{{ __('11-100名') }}</p>
