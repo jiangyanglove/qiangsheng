@@ -187,9 +187,9 @@
           </div>
           <div class="thumb_l">
             <img src="/dist/static/img/thumb_l.png" alt="">
-            <p class="username">userName</p>
-            <input class="username_input" type="text" placeholder="userName">
-            <p class="city">{{ __('城市') }}: 北京</p>
+            <p class="username">{{ $user->name }}</p>
+            <input class="username_input" type="text" placeholder="{{ $user->name }}">
+            <p class="city">{{ __('城市') }}: {{ $user->city }}</p>
           </div>
           <div class="panel_item">
             <p>{{ __('消息') }}</p>
