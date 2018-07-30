@@ -17,6 +17,7 @@
                     <thead>
                         <tr>
                             <th style="text-align:center;">ID</th>
+                            <th style="text-align:center;">专属图片</th>
                             <th style="text-align:center;">周</th>
                             <th style="text-align:center;">标题</th>
                             <th style="text-align:center;">介绍</th>
@@ -27,6 +28,7 @@
                     @foreach ($weeknotices as $key=>$weeknotice)
                         <tr>
                             <td style='vertical-align: middle;text-align:center;'>{{ $weeknotice->id }}</td>
+                            <td style='vertical-align: middle;'>@if($weeknotice->icon)<img src="/{{ $weeknotice->icon }}" class="img" height='50'>@endif</td>
                             <td style='vertical-align: middle;text-align:center;'>WEEK{{ $weeknotice->week }}<br>{{ $weeknotice->start_date }}</td>
                             <td style='vertical-align: middle;text-align:center;'>{{ $weeknotice->name }}<br>{{ $weeknotice->name_en }}</td>
                             <td style='vertical-align: middle;text-align:center;'>{!! $weeknotice->content !!}</td>
@@ -60,6 +62,8 @@
 </style>
 @endsection
 
+@include('admin.common.img-pop')
+
 @section('subJsFileBottom')
 
 <script>
@@ -67,6 +71,8 @@
         return confirm("你确定要删除该合同吗？点击确定以继续！");
     });
 </script>
+
+<script src="{{ asset('js/yyz_img.js') }}"></script>
 @endsection
 
 

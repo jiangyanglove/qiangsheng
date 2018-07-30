@@ -16,7 +16,7 @@
         <div class="menu_icon"></div>
         <img class="logo_img" src="/dist/static/img/logo_white.png" alt="">
         <div class="md-toolbar-section-end">
-          <div class="thumb"><img src="/{{ $user->icon}}" alt=""></div>
+          <div class="thumb"><img src="/dist/static/img/thumb.png" alt=""></div>
         </div>
       </div>
     </div>
@@ -27,7 +27,7 @@
         <div class="swiper-slide banner"><img src="/dist/static/img/banner.png" alt=""></div>
       </div>
     </div>
-      <a href="/group">
+      <a href="">
       <div class="active_card">
           <img src="/dist/static/img/Photo.png" alt="">
           <div class="card_r">
@@ -100,6 +100,106 @@
         </div>
       </div>
       </a>
+
+      <div class="modal"></div>
+      <div class="drawer drawer_l md-dense">
+        <div class="drawer-title">
+          <img class="close_btn" src="/dist/static/img/close_icon.png" alt="">
+        </div>
+        <div class="drawer-inside">
+          <div class="drawer_item">
+            <span class="md-list-item-text">{{ __('网站分组规则') }}</span>
+              <div class="md-inset">
+                <h4>{{ __('分组须知') }}</h4>
+                <p>
+                  1.{{ __('请大家组队参与小组积分赛，每组需要8名成员，累计积分排名前三的小组将获得奖品。') }}<br>
+                  2.{{ __('在8月3日前完成小组组建的用户可获得每人+3分的奖励，过此时限其它用户将被随机分组，随机分组没有加分。') }}</p>
+                <h4>{{ __('分组操作') }}</h4>
+                <p>
+                  1.{{ __('用户可登陆分组页面，在所属区域新建小组，建组完成后可发送邀请链接邀请其他用户进组，创建者为组长。') }}
+                </p>
+                <p>
+                  2.{{ __('用户也可在分组页面选择已有小组并点击加入，小组满8人后加入功能将关闭。') }}
+                </p>
+              </div>
+          </div>
+
+          <div class="drawer_item">
+            <span class="md-list-item-text">{{ __('网站积分规则') }}</span>
+
+              <div class="md-inset">
+                <h4>{{ __('积分分类') }}:</h4>
+                <p>
+                  1.{{ __('个人积分：通过参与线上和线下互动获得积分。截止8月31日下午6点，积分停止累积。') }} <br>
+                  2.{{ __('小组积分：通过参与线上和线下互动获得积分，截止8月31日下午6点，积分停止累积。') }}</p>
+                <h4>{{ __('分值参考') }}:</h4>
+                <p>［{{ __('线上互动') }}］</p>
+                <p>
+                  1.  {{ __('持续登录，每人每天＋1分') }}<br>
+                  2.  {{ __('8月3日前完成建组，每人+3分') }}<br>
+                  3.  {{ __('参加性格测试，每人+5分') }}<br>
+                  4.  {{ __('在活动预览区提问，每人+2分') }}<br>
+                  5.  {{ __('上传职业照和生活照，每人+5分') }}<br>
+                  6.  {{ __('推荐书籍，每人+5分') }}<br>
+                  7.  {{ __('在自由讨论区发布话题，每人+3分') }}<br>
+                  8.  {{ __('将未来邮局的内容转发到自由讨论区，+5分') }}
+                </p>
+                <p>［{{ __('线下互动') }}］</p>
+                <p>{{ __('参与线下活动，扫描二维码进行签到打卡，每人+2分（可关注活动预览区内容，及时了解活动信息）') }}</p>
+              </div>
+
+          </div>
+
+          <div class="drawer_item">
+            <span class="md-list-item-text">{{ __('奖品兑换规则') }}</span>
+
+              <div class="md-inset">
+                <p>1.{{ __('小组累积积分前3名的组别每组获的Nespresso胶囊咖啡机一台。') }}</p>
+                <img class="pre1" src="/dist/static/img/pre1.png" alt="">
+                <p>2.{{ __('个人累积积分') }}</p>
+                <div class="flex_img">
+                  <div class="item">
+                    <p>{{ __('前3名') }}</p>
+                    <img src="/dist/static/img/pre2.png" alt="">
+                    <p>Kindle<br> Paperwhite<br>{{ __('电子书阅读器一部') }} </p>
+                  </div>
+                  <div class="item">
+                    <p>{{ __('4-10名') }}</p>
+                    <img src="/dist/static/img/pre3.png" alt="">
+                    <p>{ __('乐扣') }}<br>{ __('空气炸锅一台') }} </p>
+                  </div>
+                  <div class="item">
+                    <p>{{ __('11-100名') }}</p>
+                    <img src="/dist/static/img/pre4.png" alt="">
+                    <p>{{ __('罗技（Logitech）') }}<br>{{ __('蓝牙鼠标M336一枚') }}</p>
+                  </div>
+                </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="drawer md-dense dense_r">
+        <div class="panel">
+          <div class="drawer-title">
+            <img class="close_btn" src="/dist/static/img/close_icon.png" alt="">
+          </div>
+          <div class="thumb_l">
+            <img src="/dist/static/img/thumb_l.png" alt="">
+            <p class="username">userName</p>
+            <input class="username_input" type="text" placeholder="userName">
+            <p class="city">{{ __('城市') }}: 北京</p>
+          </div>
+          <div class="panel_item">
+            <p>{{ __('消息') }}</p>
+          </div>
+          <div class="panel_item">
+            <p>{{ __('排行榜') }}</p>
+          </div>
+          <button class="md-dense md-raised md-primary">{{ __('设置') }}</button>
+        </div>
+      </div>
   </div>
 
     <script src="/dist/static/vendor/jquery-3.1.1.min.js"></script>
@@ -114,6 +214,23 @@
             })
             $('.lang_item').on('click', function() {
                 $(this).addClass('active').siblings('.lang_item').removeClass('active')
+            })
+
+            $('.menu_icon').on('click', function() {
+              $('.drawer_l, .modal').addClass('active')
+              $('.index-container').addClass('hide')
+            })
+            $('.modal, .close_btn').on('click', function() {
+              $('.drawer_l, .dense_r, .modal').removeClass('active')
+              $('.index-container').removeClass('hide')
+            })
+            $('.drawer_item').on('click', function() {
+              $(this).children('.md-inset').toggleClass('active');
+              $(this).siblings('.drawer_item').children('.md-inset').removeClass('active')
+            })
+            $('.thumb').on('click', function() {
+              $('.dense_r, .modal').addClass('active')
+              $('.index-container').addClass('hide')
             })
         })
     </script>

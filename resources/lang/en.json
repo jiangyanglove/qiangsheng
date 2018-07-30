@@ -8,6 +8,52 @@
     "中文": "中文",
     "敬请期待……": "Coming soon……",
 
+    "网站分组规则": "Website Rules of Grouping",
+    "分组须知": "Grouping instructions",
+    "请大家组队参与小组积分赛，每组需要8名成员，累计积分排名前三的小组将获得奖品。": "Please team up to participate in the group points game. Each group needs 8 members and the teams with the accumulated points ranked top three will receive prizes.",
+    "在8月3日前完成小组组建的用户可获得每人+3分的奖励，过此时限其它用户将被随机分组，随机分组没有加分。": "Users who complete the group before August 3 will receive a reward of +3 points per person. After this time, other users will be randomly grouped, and there will be no points for random grouping.",
+    "分组操作": "Grouping operation",
+    "用户可登陆分组页面，在所属区域新建小组，建组完成后可发送邀请链接邀请其他用户进组，创建者为组长。": "The users can log in to the grouping page and create a new group in their area , The creator is the group leader.",
+    "用户也可在分组页面选择已有小组并点击加入，小组满8人后加入功能将关闭。": "The users can also select the existing group on the group page and click to join. After the group is over 8 people, the function will be closed.",
+    "网站积分规则": "Website Rules of Cumulating Points",
+    "积分分类": "Points classification",
+    "个人积分：通过参与线上和线下互动获得积分。截止8月31日下午6点，积分停止累积。": "Personal points: Points are earned by participating in online and offline interactions. As of 6 pm on August 31, points will stop accumulating.",
+    "小组积分：通过参与线上和线下互动获得积分，截止8月31日下午6点，积分停止累积。": "Group points: Points are earned by participating in online and offline interactions. As of 6 pm on August 31, points will stop accumulating.",
+
+    "分值参考": "Points value reference",
+
+    "线上互动": "Online interaction",
+    "持续登录，每人每天＋1分": "To continuous login, +1 per person per day",
+    "8月3日前完成建组，每人+3分": "To complete the establishment of group before August 3, +3 points per person",
+    "参加性格测试，每人+5分": "To participate in the personality test, +5 points per person",
+    "在活动预览区提问，每人+2分": "To ask questions in the activity preview area, +2 points per person",
+    "上传职业照和生活照，每人+5分": "To upload professional photos and life photos, +5 points per person",
+    "推荐书籍，每人+5分": "To recommended books, +5 points per person",
+    "在自由讨论区发布话题，每人+3分": "To post topics in the free discussion forum, +3 points per person",
+    "将未来邮局的内容转发到自由讨论区，+5分": "To forward the contents of the future post office to the free discussion forum, +5 points",
+
+    "线下互动": "Offline interaction",
+    "参与线下活动，扫描二维码进行签到打卡，每人+2分（可关注活动预览区内容，及时了解活动信息）": "To participate in offline activities, and scan the QR code for sign-in, +2 points per person (pay attention to the content of the event preview area, and learn about the event information in time)",
+    "奖品兑换规则": "Prize redemption rules",
+    "小组累积积分前3名的组别每组获的Nespresso胶囊咖啡机一台。": "Each team member of the teams with the accumulated points ranked top three earns capsule coffee machine.",
+    "个人累积积分": "个人累积积分",
+    "前3名": "前3名",
+    "电子书阅读器一部": "电子书阅读器一部",
+    "4-10名": "4-10名",
+    "乐扣": "乐扣",
+    "空气炸锅一台": "空气炸锅一台",
+    "11-100名": "11-100名",
+    "罗技（Logitech）": "罗技（Logitech）",
+    "蓝牙鼠标M336一枚": "蓝牙鼠标M336一枚",
+
+
+
+    "城市": "City",
+    "消息": "Message",
+    "排行榜": "TOP",
+    "设置": "Setting",
+
+
     "活动分组": "Grouping Activities",
     "请大家组队参与小组积分赛，每组需要8名成员，累计积分排名前三的小组将获得奖品。": "Please form a team to participate in the group points contest, each group needs 8 members, and the group with the top three cumulative points will be awarded prizes.",
     "精彩预告": "Wonderful Preview",
