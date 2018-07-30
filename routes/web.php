@@ -14,6 +14,7 @@ require app_path() . '/../routes/helper.php';
 require app_path() . '/../routes/api.php';
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/login', 'HomeController@login')->name('login');
 Route::get('/logout', 'LoginController@logout');
 
 //Auth::routes();

@@ -34,11 +34,22 @@ class HomeController extends Controller
     {
         $user = '';
         $id = isauth();
-        if($id){
-            $user = User::findOrFail($id);
+        if(!$id){
+            return redirect()->route('login');
         }
+        $user = User::findOrFail($id);
         $lang = getLang();
         return view('index', ['lang' => $lang, 'user' => $user]);
+    }
+
+    public function login()
+    {
+        $id = isauth();
+        if($id){
+            return redirect()->route('home');
+        }
+        $lang = getLang();
+        return view('login', ['lang' => $lang]);
     }
 
     public function apiChangeLanguage()

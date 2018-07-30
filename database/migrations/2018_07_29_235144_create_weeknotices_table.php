@@ -16,6 +16,7 @@ class CreateWeeknoticesTable extends Migration
         Schema::create('weeknotices', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('week');
+            $table->string('icon')->default('');
             $table->string('name');
             $table->string('name_en');
             $table->string('start_date');
