@@ -22,20 +22,20 @@
           </div>
           <div class="sex">
             <div class="male sex_item active">
-              <input type="radio" id="male" value="1" v-model="sex">
+              <input type="radio" id="male" value="1" name="sex">
               <label for="male"></label>
               <img src="/dist/static/img/male.png" alt="">
               <span>{{ __('男') }}</span>
             </div>
             <div class="female sex_item">
-                <input type="radio" id="female" value="2" v-model="sex">
+                <input type="radio" id="female" value="2" name="sex">
                 <label for="female"></label>
                 <img src="/dist/static/img/female.png" alt="">
                 <span>{{ __('女') }}</span>
             </div>
           </div>
           <div class="input">
-            <input type="password" value="">
+            <input type="password" id="wwid" value="">
           </div>
           <button class="login_btn">{{ __('登录') }}</button>
         </div>
@@ -70,6 +70,26 @@
 			}
 		  })
 		})
+    $('.login_btn').on('click', function () {
+      var sex = $(".sex_item.active input").val()
+      var wwid = $('#wwid').val()
+      if (!wwid) {
+        alert('请输入wwid')
+        return false
+      }
+      $.ajax({
+        url: '/api/login',
+        type: 'GET',
+        dataType:'json',
+        data: {
+          wwid: wwid,
+          sex: sex
+        },
+        success:function(res) {
+          window.location.href = '/';
+        }
+      })
+    })
 	  })
 
 	</script>
