@@ -9,43 +9,185 @@
     <link rel="stylesheet" href="../static/style/index.css">
 </head>
 <body>
-
-    <div class="content">
-        <div class="logo">
-              <img src="/static/img/logo.png" alt="">
+    
+  <div class="index-container">
+    <div class="head">            
+      <div class="nav">
+        <div class="menu_icon"></div>
+        <img class="logo_img" src="/static/img/logo_white.png" alt="">
+        <div class="md-toolbar-section-end">
+          <div class="thumb"><img src="/static/img/thumb.png" alt=""></div>
         </div>
-        <div class="login_panel">
-          <h3>您好,请登录</h3>
-          <div class="lang">
-            <span class="lang_item">CN</span>
-            <span class="lang_item active">EN</span>
-          </div>
-          <div class="sex">
-            <div class="male sex_item active">
-              <input type="radio" id="male" value="1" v-model="sex">
-              <label for="male"></label>
-              <img src="/static/img/male.png" alt="">
-              <span>男</span>
-            </div>
-            <div class="female sex_item">
-                <input type="radio" id="female" value="2" v-model="sex">
-                <label for="female"></label>
-                <img src="/static/img/female.png" alt="">
-                <span>女</span>
-            </div>
-          </div>
-          <div class="input">
-            <input type="password" value="">
-          </div>
-          <button class="login_btn">登录</button>
-        </div>
-        <p class="copyRight">2018 ONE China Finance Career Month by Johnson & Johnson</p>
       </div>
+    </div>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide banner"><img src="/static/img/banner.png" alt=""></div>
+        <div class="swiper-slide banner"><img src="/static/img/banner.png" alt=""></div>
+        <div class="swiper-slide banner"><img src="/static/img/banner.png" alt=""></div>
+      </div>
+    </div>
+      <a href="">
+      <div class="active_card">
+          <img src="/static/img/Photo.png" alt="">
+          <div class="card_r">
+            <h3>活动分组</h3>
+            <p>请大家组队参与小组积分赛，每组需要8名成员，累计积分排名前三的小组将获得奖品。</p>
+          </div>
+      </div>         
+      </a>
 
+      <a href="">
+      <div class="active_card">
+        <img src="/static/img/thumb_l.png" alt="">
+        <div class="card_r">
+          <h3>精彩预告</h3>
+          <p>这里有全部的活动资讯，欢迎关注查看。活动问题收集：请提交与活动分享主题相关的提问，现场由讲师进行回答。</p>
+        </div>
+      </div>
+      </a>
+      <a href="">
+      <div class="active_card">
+        <img src="/static/img/thumb_l.png" alt="">
+        <div class="card_r">
+          <h3>DISC测试</h3>
+          <p>完成DISC性格测试，揭秘你是超级英雄里的哪一位。</p>
+        </div>
+      </div>
+      </a>
+      <a href="">
+      <div class="active_card">
+        <img src="/static/img/thumb_l.png" alt="">
+        <div class="card_r">
+          <h3>读书的力量</h3>
+          <p>推荐共享好书，交流阅读心得，助力职业成长。</p>
+        </div>
+      </div>
+      </a>
+      <a href="">
+      <div class="active_card">
+        <img src="/static/img/thumb_l.png" alt="">
+        <div class="card_r">
+          <h3>我的职场范儿</h3>
+          <p>发布职业、生活的对比照。拍完职业照， 才知道我有多职业。</p>
+        </div>
+      </div>
+      </a>
+      <a href="">
+      <div class="active_card">
+        <img src="/static/img/thumb_l.png" alt="">
+        <div class="card_r">
+          <h3>自由讨论</h3>
+          <p>发起与职业发展主题相关话题，自由交流、相互探讨。</p>
+        </div>
+      </div>
+      </a>
+      <a href="">
+      <div class="active_card">
+        <img src="/static/img/thumb_l.png" alt="">
+        <div class="card_r">
+          <h3>每周回顾</h3>
+          <p>每周一篇新闻速递，带你回顾当周亮点。</p>
+        </div>
+      </div>
+      </a>
+      <a href="">
+      <div class="active_card">
+        <img src="/static/img/thumb_l.png" alt="">
+        <div class="card_r">
+          <h3>未来邮局</h3>
+          <p>写下自己的感悟和计划，在未来通过行动让改变发生。</p>
+        </div>
+      </div>
+      </a>
+
+      <!-- <div class="drawer md-dense">
+        <div class="drawer-title">
+          <img class="close_btn" src="/static/img/close_icon.png" alt="">
+        </div>
+        <div>
+          <div md-expand>
+            <span class="md-list-item-text">网站分组规则</span>
+            <div>
+              <div class="md-inset">
+                <h4>分组须知</h4>
+                <p>
+                  请大家组队参与小组积分赛，每组需要8名成员，累计积分排名前三的小组将获得奖品。在8月3日前完成小组组建的用户可获得每人+3分的奖励，过此时限其它用户将被随机分组，随机分组没有加分。</p>
+                <h4>分组操作</h4>
+                <p>
+                  1.  用户可登陆分组页面，在所属区域新建小组，建组完成后可发送邀请链接邀请其他用户进组，创建者为组长。
+                </p>
+                <p>
+                  2.  用户也可在分组页面选择已有小组并点击加入，小组满8人后加入功能将关闭。
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div md-expand>
+            <span class="md-list-item-text">网站积分规则</span>
+            <div>
+              <div class="md-inset">
+                <h4>积分分类:</h4>
+                <p>
+                  1.  个人积分：通过参与线上和线下互动获得积分。截止8月31日下午6点，积分停止累积。<br>
+                  2.  小组积分：通过参与线上和线下互动获得积分，截止8月31日下午6点，积分停止累积。</p>
+                <h4>分值参考:</h4>
+                <p>［线上互动］</p>
+                <p>
+                  1.  持续登录，每人每天＋1分<br>
+                  2.  8月3日前完成建组，每人+3分<br>
+                  3.  参加性格测试，每人+5分<br>
+                  4.  在活动预览区提问，每人+2分<br>
+                  5.  上传职业照和生活照，每人+5分<br>
+                  6.  推荐书籍，每人+5分<br>
+                  7.  在自由讨论区发布话题，每人+3分<br>
+                  8.  将未来邮局的内容转发到自由讨论区，+5分
+                </p>
+                <p>［线下互动］</p>
+                <p>参与线下活动，扫描二维码进行签到打卡，每人+2分（可关注活动预览区内容，及时了解活动信息</p>
+              </div>
+            </div>
+          </div>
+
+          <div md-expand>
+            <span class="md-list-item-text">奖品兑换规则</span>
+            <div>
+              <div class="md-inset">
+                <p>1.小组累积积分前3名的组别每组获的Nespresso胶囊咖啡机一台。</p>
+                <img class="pre1" src="/static/img/pre1.png" alt="">
+                <p>2.个人累积积分</p>
+                <div class="flex_img">
+                  <div class="item">
+                    <p>前3名</p>
+                    <img src="/static/img/pre2.png" alt="">
+                    <p>Kindle<br> Paperwhite<br>电纸书阅读器一部 </p>
+                  </div>
+                  <div class="item">
+                    <p>4-10名</p>
+                    <img src="/static/img/pre3.png" alt="">
+                    <p>乐扣<br>空气炸锅一台 </p>
+                  </div>
+                  <div class="item">
+                    <p>11-100名</p>
+                    <img src="/static/img/pre4.png" alt="">
+                    <p>罗技（Logitech）<br>蓝牙鼠标M336一枚</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+  </div>
+    
     <script src="../static/vendor/jquery-3.1.1.min.js"></script>
-    <!-- <script src="../static/vendor/swiper-3.4.0.jquery.min.js"></script> -->
+    <script src="../static/vendor/swiper-3.4.0.jquery.min.js"></script>
     <script>
         $(function () {
+           var mySwiper = new Swiper ('.swiper-container', {
+             loop: true
+           })
             $('.sex_item').on('click', function() {
                 $(this).addClass('active').siblings('.sex_item').removeClass('active')
             })
