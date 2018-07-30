@@ -11,8 +11,21 @@
 <body>
 
    <div class="index-container" :class="{'hide': showDrawer || showUser}">
-     <div class="head">            
-       
+     <div class="head">   
+     <div class="nav">
+       <!-- <div class="menu_icon"></div> -->
+       <!-- <img class="logo_img" src="/static/img/logo_white.png" alt=""> -->
+       <div class="back"><img src="/static/img/back.png" alt=""></div>
+       <div class="citys">
+         <div class="city active">北京</div>
+         <div class="city">上海</div>
+         <div class="city">西安</div>
+         <div class="city">苏州</div>
+       </div>
+       <div class="md-toolbar-section-end">
+         <div class="thumb"><img src="/static/img/thumb.png" alt=""></div>
+       </div>
+     </div>
      </div>
 
      <div class="search_bar">
@@ -59,12 +72,49 @@
          <div class="join_btn">申请加入</div>
        </div>
      </div>
+
+    <div class="modal"></div>
+     <div class="drawer md-dense dense_r">
+        <div class="panel">
+          <div class="drawer-title">
+            <img class="close_btn" src="/static/img/close_icon.png" alt="">
+          </div>
+          <div class="thumb_l">
+            <img src="/static/img/thumb_l.png" alt="">
+            <p class="username">userName</p>
+            <input class="username_input" type="text" placeholder="userName">
+            <p class="city">城市: 北京</p>
+          </div>
+          <div class="panel_item">
+            <p>消息</p>
+          </div>
+          <div class="panel_item">
+            <p>排行榜</p>
+          </div>
+          <button class="md-dense md-raised md-primary">设置</button>
+        </div>
+      </div>
  </div>
 
     <script src="../static/vendor/jquery-3.1.1.min.js"></script>
     <script>
         $(function () {
-            
+            $('.menu_icon').on('click', function() {
+              $('.drawer_l, .modal').addClass('active')
+              $('.index-container').addClass('hide')
+            })
+            $('.modal, .close_btn').on('click', function() {
+              $('.drawer_l, .dense_r, .modal').removeClass('active')
+              $('.index-container').removeClass('hide')
+            })
+            $('.drawer_item').on('click', function() {
+              $(this).children('.md-inset').toggleClass('active');
+              $(this).siblings('.drawer_item').children('.md-inset').removeClass('active')
+            })
+            $('.thumb').on('click', function() {
+              $('.dense_r, .modal').addClass('active')
+              $('.index-container').addClass('hide')
+            })
         })
     </script>
 </body>
