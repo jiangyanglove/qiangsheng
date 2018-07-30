@@ -22,8 +22,11 @@ class CreateUsersTable extends Migration
             $table->integer('sex')->default(0);//1 男 2女
             $table->string('city')->default('');
             $table->string('icon')->default('');
+            $table->integer('group_id')->default(0);//所属分组id
             $table->integer('logins')->default(0);
+            $table->integer('points')->default(0);//积分
             $table->datetime('last_login_at')->nullable();
+            $table->integer('status')->default(1);//用户状态 1 有效 0 无效（留用，比如离职等）
             $table->timestamps();
         });
     }

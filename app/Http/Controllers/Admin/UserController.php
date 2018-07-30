@@ -68,7 +68,7 @@ class UserController extends Controller
 
         $page_title = '用户详情';
 
-        return view('admin.user.show', compact(['page_title', 'user', 'posts']));
+        return view('admin.user.show', compact(['page_title', 'user']));
     }
 
     public function import(Request $request)
@@ -120,5 +120,6 @@ class UserController extends Controller
             }
             dump($chongfu);
         });
+        return redirect('admin/user');
     }
 }

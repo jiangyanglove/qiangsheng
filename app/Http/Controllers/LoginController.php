@@ -27,7 +27,7 @@ class LoginController extends Controller
     public function index(){
         $id = isauth();
         if($id){
-            $msg = Lang::get('logins.repeat_login');
+            $msg = Lang::get('tips.repeat_login');
             return err(2, $msg);
         }
 
@@ -44,7 +44,8 @@ class LoginController extends Controller
 
         $user = User::select('id', 'name', 'icon', 'wwid', 'sex', 'city')->where('wwid', $wwid)->first();
         if(!$user){
-            return err(2, "wwid不存在");
+            $msg = Lang::get('tips.no_wwid');
+            return err(2, $msg);
         }
 
         //设置性别

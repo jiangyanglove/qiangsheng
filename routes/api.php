@@ -24,3 +24,12 @@ Route::post("/api/image/upload", "ImageController@upload");
 
 //登录
 Route::get('/api/login', 'LoginController@index');
+
+//创建分组
+Route::get('/api/group/make', 'UserController@makeGroup');
+
+//加入分组
+Route::get('/api/group/join', 'UserController@joinGroup');
+
+//退出分组
+Route::get('/api/group/exit', 'UserController@exitGroup');

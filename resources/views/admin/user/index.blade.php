@@ -41,6 +41,7 @@
                             <th style="text-align:center;">WWID</th>
                             <th style="text-align:center;">姓名</th>
                             <th style="text-align:center;">性别</th>
+                            <th style="text-align:center;">积分</th>
 
                             <th style="text-align:center;">登录次数</th>
                             <!-- <th style="text-align:center;">最后登录时间</th> -->
@@ -56,6 +57,7 @@
                             <td style='vertical-align: middle;text-align:center;'>{{ $user->wwid }}</td>
                             <td style='vertical-align: middle;text-align:center;'>{{ $user->name }}</td>
                             <td style='vertical-align: middle;text-align:center;'>{{ $user->sex }}</td>
+                            <td style='vertical-align: middle;text-align:center;'>{{ $user->points }}</td>
 
                             <td style='vertical-align: middle;text-align:center;'>{{ $user->logins }}</td>
                             <!-- <td style='vertical-align: middle;text-align:center;'>{{ $user->last_login_at }}</td> -->
