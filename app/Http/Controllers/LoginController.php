@@ -50,7 +50,10 @@ class LoginController extends Controller
 
         //设置性别
         $user->sex = $sex;
+        $user->logins = $user->logins + 1;
+        $user->last_login_at = date('Y-m-d H:i:s');
         $user->save();
+        $user->icon = getFullUrl($user->icon);
 
         $authtoken = Crypt::encrypt([
             'time' => time(),

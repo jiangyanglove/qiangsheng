@@ -32,4 +32,4 @@ Route::get('/api/group/make', 'UserController@makeGroup');
 Route::get('/api/group/join', 'UserController@joinGroup');
 
 //退出分组
-Route::get('/api/group/exit', 'UserController@exitGroup');
+Route::get('/api/group/quit', 'UserController@quitGroup');

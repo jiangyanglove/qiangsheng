@@ -19,7 +19,8 @@ class CreateWeeknoticesTable extends Migration
             $table->string('name');
             $table->string('name_en');
             $table->string('start_date');
-            $table->text('content_en');
+            $table->text('content')->nullable();
+            $table->text('content_en')->nullable();
             $table->timestamps();
         });
     }

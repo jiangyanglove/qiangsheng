@@ -66,9 +66,21 @@ function clearNull2(&$m){
     }
 }
 
-function fullUrl($img){
-  $img = $img ? $img : 'staff-icon-default.jpg';
-  return env('APP_URL') . $img;
+function getFullUrl($img, $more = false){
+    $return = '';
+    if(!$more){
+        $return = $img ? env('APP_URL') . $img : '';
+    }
+    else{
+        $imgs = explode(",", $img);
+        foreach($imgs as $key=>$img){
+            if($key >= 1){
+                $return .= ',';
+            }
+            $return .= env('APP_URL') . $img;
+        }
+    }
+    return $return;
 }
 
 //转移到中间件
