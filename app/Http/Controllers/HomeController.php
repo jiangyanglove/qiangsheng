@@ -38,6 +38,10 @@ class HomeController extends Controller
             return redirect()->route('login');
         }
         $user = User::findOrFail($id);
+        if(!$user->icon){
+            $user->icon = 'images/user_icon_default' . $user->sex . '.png';
+        }
+
         $lang = getLang();
         return view('index', ['lang' => $lang, 'user' => $user]);
     }
