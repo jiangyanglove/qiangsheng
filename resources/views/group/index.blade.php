@@ -13,23 +13,22 @@
    <div class="index-container" :class="{'hide': showDrawer || showUser}">
      <div class="head">
      <div class="nav">
-       <!-- <div class="menu_icon"></div> -->
-       <!-- <img class="logo_img" src="/dist/static/img/logo_white.png" alt=""> -->
-       <div class="back"><img src="/dist/static/img/back.png" alt=""></div>
+       <div class="back"><img src="/static/img/back.png" alt=""></div>
        <div class="citys">
-         <div class="city active">北京</div>
-         <div class="city">上海</div>
-         <div class="city">西安</div>
-         <div class="city">苏州</div>
+         <div class="city @if($city == '北京') active @endif">{{ __('北京') }}</div>
+         <div class="city @if($city == '上海') active @endif">{{ __('上海') }}</div>
+         <div class="city @if($city == '广州') active @endif">{{ __('广州') }}</div>
+         <div class="city @if($city == '西安') active @endif">{{ __('西安') }}</div>
+         <div class="city @if($city == '苏州') active @endif">{{ __('苏州') }}</div>
        </div>
        <div class="md-toolbar-section-end">
-         <div class="thumb"><img src="/dist/static/img/thumb.png" alt=""></div>
+         <div class="thumb"><img src="/static/img/thumb.png" alt=""></div>
        </div>
      </div>
      </div>
 
      <div class="search_bar">
-       <div class="num">已分组人数：270  |  未分组人数：300</div>
+       <div class="num">已分组人数：{{ $do_number }}  |  未分组人数：{{ $undo_number }}</div>
        <div class="serarch_wrap">
          <div class="search">
            <input type="text" placeholder="搜索">
@@ -41,46 +40,31 @@
      </div>
 
      <div class="group_cards">
+      @foreach ($groups as $key=>$group)
        <div class="group_card">
          <div class="df item">
-           <div class="red">小组名称：Penny xie</div>
-           <div class="black">积分：800</div>
+           <div class="red">小组名称：{{ $group->name }}</div>
+           <div class="black">积分：{{ $group->points }}</div>
          </div>
          <div class="item member">
-           <span class="fw">Penny(组长)</span>
-           <span>john</span>
-           <span>john</span>
-           <span>john</span>
-           <span>john</span>
-           <span>john</span>
+           <span class="fw">{{ $group->leader->name }}(组长)</span>
+           @foreach ($group->members as $key=>$member)
+           <span>{{ $member->user->name }}</span>
+           @endforeach
          </div>
          <div class="join_btn">申请加入</div>
        </div>
-       <div class="group_card">
-         <div class="df item">
-           <div class="red">小组名称：Penny xie</div>
-           <div class="black">积分：800</div>
-         </div>
-         <div class="item member">
-           <span class="fw">Penny(组长)</span>
-           <span>john</span>
-           <span>john</span>
-           <span>john</span>
-           <span>john</span>
-           <span>john</span>
-         </div>
-         <div class="join_btn">申请加入</div>
-       </div>
+       @endforeach
      </div>
 
     <div class="modal"></div>
      <div class="drawer md-dense dense_r">
         <div class="panel">
           <div class="drawer-title">
-            <img class="close_btn" src="/dist/static/img/close_icon.png" alt="">
+            <img class="close_btn" src="/static/img/close_icon.png" alt="">
           </div>
           <div class="thumb_l">
-            <img src="/dist/static/img/thumb_l.png" alt="">
+            <img src="/static/img/thumb_l.png" alt="">
             <p class="username">userName</p>
             <input class="username_input" type="text" placeholder="userName">
             <p class="city">城市: 北京</p>

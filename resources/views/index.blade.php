@@ -27,7 +27,7 @@
         <div class="swiper-slide banner"><img src="/dist/static/img/banner.png" alt=""></div>
       </div>
     </div>
-      <a href="/group">
+      <a href="/group/{{ $user->city }}">
       <div class="active_card">
           <img src="/dist/static/img/Photo.png" alt="">
           <div class="card_r">

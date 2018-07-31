@@ -16,7 +16,7 @@ require app_path() . '/../routes/api.php';
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/login', 'HomeController@login')->name('login');
 Route::get('/logout', 'LoginController@logout');
-Route::get('/group', 'GroupController@index');
+Route::get('/group/{city?}', 'GroupController@index');
 
 //Auth::routes();
 
