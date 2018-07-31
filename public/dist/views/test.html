@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>penny</title>
+    <link rel="stylesheet" href="../static/style/index.css">
+    <script type="text/javascript">
+        　　document.documentElement.style.fontSize = document.documentElement.clientWidth / 23.3 + 'px';
+    </script>
+</head>
+<body>
+
+   <div class="index-container" :class="{'hide': showDrawer || showUser}">
+     <div class="head">   
+     <div class="nav">
+       <div class="back"><img src="/static/img/back.png" alt=""></div>
+       <div class="md-toolbar-section-end">
+         <div class="thumb"><img src="/static/img/thumb.png" alt=""></div>
+       </div>
+     </div>
+     </div>
+    
+    <div class="qu_swiper">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="qu_wrap">
+          <h4  class="title">Administrator System</h4>
+          <p class="p">Manage your projects easily, quickly and conveniently. Our service will help you not.</p>
+          <div class="qu">
+            <div class="qu_item active">
+              <span>A:Update the information in the group</span>
+              <div class="check_box"><label for="qu1"></label><input type="radio" name="qu1" id="qu1"></div>
+            </div>
+            <div class="qu_item">
+              <span>A:Update the information in the group</span>
+              <div class="check_box"><label for="qu2"></label><input type="radio" name="qu1" id="qu2"></div>
+            </div>
+            <div class="qu_item">
+              <span>A:Update the information in the group</span>
+              <div class="check_box"><label for="qu3"></label><input type="radio" name="qu1" id="qu3"></div>
+            </div>
+            <div class="qu_item">
+              <span>A:Update the information in the group</span>
+              <div class="check_box"><label for="qu4"></label><input type="radio" name="qu1" id="qu4"></div>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="qu_wrap">
+          <h4  class="title">Administrator System</h4>
+          <p class="p">Manage your projects easily, quickly and conveniently. Our service will help you not.</p>
+          <div class="qu">
+            <div class="qu_item">
+              <span>A:Update the information in the group</span>
+              <span class="check_box"></span>
+            </div>
+            <div class="qu_item">
+              <span>A:Update the information in the group</span>
+              <span class="check_box"></span>
+            </div>
+            <div class="qu_item">
+              <span>A:Update the information in the group</span>
+              <span class="check_box"></span>
+            </div>
+            <div class="qu_item">
+              <span>A:Update the information in the group</span>
+              <span class="check_box"></span>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="arrows">
+        <div class="swiper-button-prev swiper-button-red"></div>
+        <div class="swiper-button-next swiper-button-red"></div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+    </div>
+    <div class="bootmbutton">
+        Send Message
+    </div>
+    
+
+    <div class="modal"></div>
+     <div class="drawer md-dense dense_r">
+        <div class="panel">
+          <div class="drawer-title">
+            <img class="close_btn" src="/static/img/close_icon.png" alt="">
+          </div>
+          <div class="thumb_l">
+            <img src="/static/img/thumb_l.png" alt="">
+            <p class="username">userName</p>
+            <input class="username_input" type="text" placeholder="userName">
+            <p class="city">城市: 北京</p>
+          </div>
+          <div class="panel_item">
+            <p>消息</p>
+          </div>
+          <div class="panel_item">
+            <p>排行榜</p>
+          </div>
+          <button class="md-dense md-raised md-primary">设置</button>
+        </div>
+      </div>
+ </div>
+
+    <script src="../static/vendor/jquery-3.1.1.min.js"></script>
+    <script src="../static/vendor/swiper-3.4.0.jquery.min.js"></script>
+    <script>
+        $(function () {
+            var mySwiper = new Swiper ('.swiper-container', {
+               loop: false,
+               pagination : '.swiper-pagination',
+               prevButton:'.swiper-button-prev',
+               nextButton:'.swiper-button-next',
+             })
+            $('.menu_icon').on('click', function() {
+              $('.drawer_l, .modal').addClass('active')
+              $('.index-container').addClass('hide')
+            })
+            $('.modal, .close_btn').on('click', function() {
+              $('.drawer_l, .dense_r, .modal').removeClass('active')
+              $('.index-container').removeClass('hide')
+            })
+            $('.drawer_item').on('click', function() {
+              $(this).children('.md-inset').toggleClass('active');
+              $(this).siblings('.drawer_item').children('.md-inset').removeClass('active')
+            })
+            $('.thumb').on('click', function() {
+              $('.dense_r, .modal').addClass('active')
+              $('.index-container').addClass('hide')
+            })
+            $('.qu_item').on('click', function() {
+              $(this).addClass('active').siblings('.qu_item').removeClass('active');
+            })
+        })
+    </script>
+</body>
+</html>
