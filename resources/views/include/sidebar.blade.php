@@ -1,3 +1,11 @@
+     <style>
+       .panel_item {
+         padding: 0;
+       }
+       .panel_item p {
+         padding: 20px 0;
+       }
+     </style>
      <div class="drawer md-dense dense_r">
         <div class="panel">
           <div class="drawer-title">
@@ -13,7 +21,7 @@
             <p>{{ __('消息') }}</p>
           </div>
           <div class="panel_item">
-            <p><a href="/group/points/list">{{ __('排行榜') }}</p>
+            <a href="/group/points/list"><p>{{ __('排行榜') }}</p></a>
           </div>
           <button class="setting md-dense md-raised md-primary">{{ __('设置') }}</button>
           <button style="display: none" class="save md-dense md-raised md-primary">{{ __('保存') }}</button>
@@ -40,7 +48,7 @@
               name: name
             },
             success: function (res) {
-              console.log(res)
+              $('.username').text(res.data.name)
             }
           })
         })
