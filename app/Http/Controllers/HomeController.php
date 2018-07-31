@@ -32,6 +32,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $from = request()->input("from");//线下扫码
+        if($from == 'offline'){
+            request()->session()->put('from', $from);
+        }
+
         $user = '';
         $id = isauth();
         if(!$id){

@@ -22,5 +22,6 @@ return [
     'not_in_this_group' => '你不在此分组.',
     'leader_can_not_quit' => '你是该小组组长，不可退出。',
     'group_user_data_error' => '你的小组数据错误。',
+    'today_has_qiandao' => '你今日已签到。',
 
 ];

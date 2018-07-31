@@ -22,5 +22,6 @@ return [
     'not_in_this_group' => 'you are not in this group.',
     'leader_can_not_quit' => 'you are this group leader, you cannot quit.',
     'group_user_data_error' => 'group data error.',
+    'today_has_qiandao' => 'only one times one day.',
 
 ];

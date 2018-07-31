@@ -10,6 +10,7 @@ use Crypt;
 use Cookie;
 use Illuminate\Encryption\Encrypter;
 use App\Models\User;
+use App\Models\PointRecord;
 use Lang;
 
 class LoginController extends Controller
@@ -42,10 +43,19 @@ class LoginController extends Controller
         $wwid = request()->input("wwid");
         $sex = request()->input("sex");
 
-        $user = User::select('id', 'name', 'icon', 'wwid', 'sex', 'city')->where('wwid', $wwid)->first();
+        $user = User::select('id', 'name', 'icon', 'wwid', 'sex', 'city', 'logins')->where('wwid', $wwid)->first();
         if(!$user){
             $msg = Lang::get('tips.no_wwid');
             return err(2, $msg);
+        }
+
+        //如果是线下扫码，增加相应积分
+        if(request()->session()->has('from') && request()->session()->get('from') == 'offline'){
+
+            $exist = PointRecord::where('user_id', $user->id)->where('type', 1)->first();
+            if(!$exist){
+                score($user->id, 1);
+            }
         }
 
         //设置性别

@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Encryption\Encrypter;
+use App\Models\PointRecord;
+use App\Models\User;
+
 function err($code, $msg){
     return [
         "code" => $code,
@@ -97,4 +100,59 @@ function getLang(){
         $lang = request()->session()->get('lang');
     }
     return $lang;
+}
+
+function score($user_id, $type){
+    $user = User::findOrFail($user_id);
+    //积分类型
+    $point_type =  array(
+                    1   => array(
+                            'point' => 2,
+                            'description' => '线下扫码',
+                            ),
+                    2   => array(
+                            'point' => 1,
+                            'description' => '每日签到',
+                            ),
+                    3   => array(
+                            'point' => 3,
+                            'description' => '8月3日前完成建组',
+                            ),
+                    4   => array(
+                            'point' => 5,
+                            'description' => '参加性格测试',
+                            ),
+                    5   => array(
+                            'point' => 2,
+                            'description' => '在活动预览区提问',
+                            ),
+                    6   => array(
+                            'point' => 5,
+                            'description' => '上传职业照和生活照',
+                            ),
+                    7   => array(
+                            'point' => 5,
+                            'description' => '推荐书籍',
+                            ),
+                    8   => array(
+                            'point' => 3,
+                            'description' => '在自由讨论区发布话题',
+                            ),
+                    9   => array(
+                            'point' => 5,
+                            'description' => '将未来邮局的内容转发到自由讨论区',
+                            ),
+    );
+    $data = [];
+    $data['type'] = $type;
+    $data['user_id'] = $user_id;
+    $data['point'] = $point_type[$type]['point'];
+    $data['description'] = $point_type[$type]['description'];
+
+    if(PointRecord::create($data)){
+        $user->points = $user->points + $data['point'];
+        $user->save();
+    }
+
+    return true;
 }

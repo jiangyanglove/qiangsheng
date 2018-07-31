@@ -36,3 +36,6 @@ Route::get('/api/group/quit', 'UserController@quitGroup');
 
 //按名称搜索
 Route::get('/api/group/search', 'UserController@searchGroup');
+
+//签到
+Route::get('/api/qiandao', 'UserController@qiandao');

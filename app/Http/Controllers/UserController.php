@@ -13,6 +13,9 @@ use Lang;
 use App\Models\User;
 use App\Models\Group;
 use App\Models\GroupUser;
+use App\Models\QiandaoLog;
+
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -178,16 +181,56 @@ class UserController extends Controller
         $group = Group::where('name', $group_name)->first();
 
         if($group){
+            unset(
+                $group->created_at,
+                $group->updated_at
+            );
             $points = User::where('group_id', $group->id)->sum('points');
             $group->points = $points;
+
+            $leader_user = User::where('id', $group->leader_user_id)->first();
+            //leader
+            $group->leader_name = $leader_user->name;
+
             $members = GroupUser::where('group_id', $group->id)->where('quit', 0)->get();
             foreach($members as $member){
-                $member->user = User::where('id', $member->id)->first();
+                unset(
+                    $member->quit,
+                    $member->created_at,
+                    $member->updated_at
+                );
             }
             $group->members = $members;
         }
         return ok([
             'group' => $group
         ]);
+    }
+
+    public function qiandao()
+    {
+        $id = isauth();
+        if(!$id){
+            $msg = Lang::get('tips.no_login');
+            return err(2, $msg);
+        }
+        $user = User::findOrFail($id);
+
+        $today = Carbon::now()->toDateString();
+
+        $exist = QiandaoLog::where('user_id', $id)->where('date', $today)->first();
+        if($exist){
+            $msg = Lang::get('tips.today_has_qiandao');
+            return err(2, $msg);
+        }
+
+        $new_qiandaolog = new QiandaoLog();
+        $new_qiandaolog->user_id = $id;
+        $new_qiandaolog->date = $today;
+        $new_qiandaolog->save();
+
+        //每日签到加积分
+        score($user->id, 2);
+        return ok();
     }
 }
