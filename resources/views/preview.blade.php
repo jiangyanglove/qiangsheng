@@ -46,7 +46,7 @@
       @endif
     </div>
 
-    <div class="preview_textarea_wrap">
+    <div class="preview_textarea_wrap" style="display: none">
       <textarea class="preview_textarea" name="" id="preview_textarea" cols="5"></textarea>
     </div>
 
@@ -94,7 +94,7 @@
             var weeknotice_id;
             $('#work_btn').on('click', function () {
               weeknotice_id = $(this).attr('data_id');
-              $('#preview_textarea').focus();
+              $('#preview_textarea').show().focus();
             })
 
             $('#preview_textarea').on('keypress', function (event) {
@@ -107,8 +107,11 @@
                     content: content
                   },
                   success: function (res) {
-                    // console.log(res)
-                    window.location.reload();
+                    if (res.code == 0) {
+                      window.location.reload();
+                    } else {
+                      alert(res.error_msg)
+                    }
                   }
                 })
               }
