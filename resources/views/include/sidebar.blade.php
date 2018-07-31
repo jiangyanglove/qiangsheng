@@ -6,6 +6,7 @@
          padding: 20px 0;
        }
      </style>
+     <div class="modal"></div>
      <div class="drawer md-dense dense_r">
         <div class="panel">
           <div class="drawer-title">
