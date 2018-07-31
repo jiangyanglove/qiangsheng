@@ -13,7 +13,7 @@
             <p>{{ __('消息') }}</p>
           </div>
           <div class="panel_item">
-            <p>{{ __('排行榜') }}</p>
+            <p><a href="/group/points/list">{{ __('排行榜') }}</p>
           </div>
           <button class="setting md-dense md-raised md-primary">{{ __('设置') }}</button>
           <button style="display: none" class="save md-dense md-raised md-primary">{{ __('保存') }}</button>

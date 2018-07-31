@@ -33,6 +33,9 @@
                 <div class="city @if($city == '苏州') active @endif"><a style="color: #ffffff;"
                                                                       href="/group/{{ __('苏州') }}">{{ __('苏州') }}</a>
                 </div>
+                <div class="city @if($city == '杭州') active @endif"><a style="color: #ffffff;"
+                                                                      href="/group/{{ __('杭州') }}">{{ __('杭州') }}</a>
+                </div>
             </div>
             <div class="md-toolbar-section-end">
                 <div class="thumb"><img src="/{{ $user->icon }}" alt=""></div>
@@ -78,26 +81,7 @@
     </div>
 
     <div class="modal"></div>
-    <div class="drawer md-dense dense_r">
-        <div class="panel">
-            <div class="drawer-title">
-                <img class="close_btn" src="/dist/static/img/close_icon.png" alt="">
-            </div>
-            <div class="thumb_l">
-                <img src="/{{ $user->icon }}" alt="">
-                <p class="username">{{ $user->name }}</p>
-                <input class="username_input" type="text" placeholder="{{ $user->name }}">
-                <p class="city">{{ __('城市') }}: {{ $user->city }}</p>
-            </div>
-            <div class="panel_item">
-                <p>{{ __('消息') }}</p>
-            </div>
-            <div class="panel_item">
-                <p>{{ __('排行榜') }}</p>
-            </div>
-            <button class="md-dense md-raised md-primary">{{ __('设置') }}</button>
-        </div>
-    </div>
+    @include('include.sidebar', ['user' => $user])
 </div>
 
 <script src="/dist/static/vendor/jquery-3.1.1.min.js"></script>

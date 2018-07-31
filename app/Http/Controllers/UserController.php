@@ -233,4 +233,42 @@ class UserController extends Controller
         score($user->id, 2);
         return ok();
     }
+
+    // icon,name
+    public function updateUser(){
+        $id = isauth();
+        if(!$id){
+            $msg = Lang::get('tips.no_login');
+            return err(2, $msg);
+        }
+
+        $v = Validator::make(request()->all(), [
+            'name' => 'sometimes',
+            'icon' => 'sometimes',
+        ]);
+        if($v->fails()){
+            return err(1, $v->messages()->first());
+        }
+
+        $data = request()->only('name', 'icon');
+        clearNull($data);
+
+        $user = User::findOrFail($id);
+        if(isset($data['name']) && $data['name']){
+           $user->name = $data['name'];
+           $user->save();
+        }
+        if(isset($data['icon']) && $data['icon']){
+           $user->icon = $data['icon'];
+           $user->save();
+        }
+        if(!$user->icon){
+            $user->icon = 'images/user_icon_default' . $user->sex . '.png';
+        }
+        unset(
+            $user->created_at,
+            $user->updated_at
+        )        ;
+        return ok($user);
+    }
 }
