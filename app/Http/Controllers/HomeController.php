@@ -86,6 +86,9 @@ class HomeController extends Controller
             return err(2, $msg);
         }
         $user = User::findOrFail($id);
+        if(!$user->icon){
+            $user->icon = 'images/user_icon_default' . $user->sex . '.png';
+        }
 
         $weeknotices = Weeknotice::where('week', $week)->get();
         foreach($weeknotices as $weeknotice){
