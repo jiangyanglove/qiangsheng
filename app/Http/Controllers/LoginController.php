@@ -50,13 +50,13 @@ class LoginController extends Controller
         }
 
         //如果是线下扫码，增加相应积分
-        if(request()->session()->has('from') && request()->session()->get('from') == 'offline'){
+        // if(request()->session()->has('from') && request()->session()->get('from') == 'offline'){
 
-            $exist = PointRecord::where('user_id', $user->id)->where('type', 1)->first();
-            if(!$exist){
-                score($user->id, 1);
-            }
-        }
+        //     $exist = PointRecord::where('user_id', $user->id)->where('type', 1)->first();
+        //     if(!$exist){
+        //         score($user->id, 1);
+        //     }
+        // }
 
         //设置性别
         $user->sex = $sex;

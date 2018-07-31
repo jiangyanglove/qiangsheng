@@ -23,5 +23,6 @@ return [
     'leader_can_not_quit' => '你是该小组组长，不可退出。',
     'group_user_data_error' => '你的小组数据错误。',
     'today_has_qiandao' => '你今日已签到。',
+    'has_got_this_type_point' => '不可重复获得该积分。',
 
 ];

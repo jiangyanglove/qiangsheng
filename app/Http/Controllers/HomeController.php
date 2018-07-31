@@ -14,6 +14,8 @@ use Illuminate\Encryption\Encrypter;
 use App\Models\User;
 use App\Models\Weeknotice;
 use App\Models\Weekfaq;
+use App\Models\PointRecord;
+use Lang;
 
 class HomeController extends Controller
 {
@@ -34,10 +36,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $from = request()->input("from");//线下扫码
-        if($from == 'offline'){
-            request()->session()->put('from', $from);
-        }
+        // $from = request()->input("from");//线下扫码
+        // if($from == 'offline'){
+        //     request()->session()->put('from', $from);
+        // }
 
         $user = '';
         $id = isauth();
@@ -51,6 +53,42 @@ class HomeController extends Controller
 
         $lang = getLang();
         return view('index', ['lang' => $lang, 'user' => $user]);
+    }
+
+    public function offline(){
+        return view('offline/index');
+
+    }
+    public function offlineOk(){
+        return view('offline/ok');
+
+    }
+    public function apiOfflineOk(){
+        $v = Validator::make(request()->all(), [
+            'wwid' => 'required',
+        ]);
+        if($v->fails()){
+            return err(1, $v->messages()->first());
+        }
+        $data = request()->only('wwid');
+
+
+        $user = User::select('id', 'wwid')->where('wwid', $data['wwid'])->first();
+        if(!$user){
+            $msg = Lang::get('tips.no_wwid');
+            return err(2, $msg);
+        }
+
+        //如果是线下扫码，增加相应积分
+
+
+        $exist = PointRecord::where('user_id', $user->id)->where('type', 1)->first();
+        if($exist){
+            $msg = Lang::get('tips.has_got_this_type_point');
+            return err(2, $msg);
+        }
+        score($user->id, 1);
+        return ok();
     }
 
     public function login()
