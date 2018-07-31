@@ -58,4 +58,26 @@ class GroupController extends Controller
         }
     	return view('group.index', compact(['user', 'city', 'do_number', 'undo_number', 'groups']));
     }
+
+
+    public function add(){
+        $user = '';
+        $id = isauth();
+        if(!$id){
+            return redirect()->route('login');
+        }
+        $user = User::findOrFail($id);
+        if(!$user->icon){
+            $user->icon = 'images/user_icon_default' . $user->sex . '.png';
+        }
+
+        $lang = getLang();
+
+        $city = $user->city;
+
+        $do_number = User::where('group_id', '>', 0)->count();
+        $undo_number = User::where('group_id', 0)->count();
+
+        return view('group.add', compact(['user', 'city', 'do_number', 'undo_number']));
+    }
 }

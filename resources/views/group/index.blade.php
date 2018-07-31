@@ -13,7 +13,7 @@
    <div class="index-container" :class="{'hide': showDrawer || showUser}">
      <div class="head">
      <div class="nav">
-       <div class="back"><img src="/static/img/back.png" alt=""></div>
+       <div class="back"><img src="/dist/static/img/back.png" alt=""></div>
        <div class="citys">
          <div class="city @if($city == '北京') active @endif">{{ __('北京') }}</div>
          <div class="city @if($city == '上海') active @endif">{{ __('上海') }}</div>
@@ -22,7 +22,7 @@
          <div class="city @if($city == '苏州') active @endif">{{ __('苏州') }}</div>
        </div>
        <div class="md-toolbar-section-end">
-         <div class="thumb"><img src="/static/img/thumb.png" alt=""></div>
+         <div class="thumb"><img src="/{{ $user->icon }}" alt=""></div>
        </div>
      </div>
      </div>
@@ -40,42 +40,49 @@
      </div>
 
      <div class="group_cards">
-      @foreach ($groups as $key=>$group)
-       <div class="group_card">
-         <div class="df item">
-           <div class="red">小组名称：{{ $group->name }}</div>
-           <div class="black">积分：{{ $group->points }}</div>
+
+      @if(count($groups) > 0)
+        @foreach ($groups as $key=>$group)
+         <div class="group_card">
+           <div class="df item">
+             <div class="red">小组名称：{{ $group->name }}</div>
+             <div class="black">积分：{{ $group->points }}</div>
+           </div>
+           <div class="item member">
+             <span class="fw">{{ $group->leader->name }}(组长)</span>
+             @foreach ($group->members as $key=>$member)
+             <span>{{ $member->user_name }}</span>
+             @endforeach
+           </div>
+           <div class="join_btn">申请加入</div>
          </div>
-         <div class="item member">
-           <span class="fw">{{ $group->leader->name }}(组长)</span>
-           @foreach ($group->members as $key=>$member)
-           <span>{{ $member->user_name }}</span>
-           @endforeach
-         </div>
-         <div class="join_btn">申请加入</div>
-       </div>
-       @endforeach
+         @endforeach
+       @else
+        <div class="group_card">
+        还没有分组
+        </div>
+       @endif
      </div>
 
     <div class="modal"></div>
      <div class="drawer md-dense dense_r">
         <div class="panel">
           <div class="drawer-title">
-            <img class="close_btn" src="/static/img/close_icon.png" alt="">
+            <img class="close_btn" src="/dist/static/img/close_icon.png" alt="">
           </div>
           <div class="thumb_l">
-            <img src="/static/img/thumb_l.png" alt="">
-            <p class="username">userName</p>
-            <input class="username_input" type="text" placeholder="userName">
-            <p class="city">城市: 北京</p>
+            <img src="/{{ $user->icon }}" alt="">
+            <p class="username">{{ $user->name }}</p>
+            <input class="username_input" type="text" placeholder="{{ $user->name }}">
+            <p class="city">{{ __('城市') }}: {{ $user->city }}</p>
           </div>
           <div class="panel_item">
-            <p>消息</p>
+            <p>{{ __('消息') }}</p>
           </div>
           <div class="panel_item">
-            <p>排行榜</p>
+            <p>{{ __('排行榜') }}</p>
           </div>
-          <button class="md-dense md-raised md-primary">设置</button>
+          <button class="md-dense md-raised md-primary">{{ __('设置') }}</button>
         </div>
       </div>
  </div>

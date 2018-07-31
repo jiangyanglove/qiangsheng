@@ -16,7 +16,7 @@
         <div class="menu_icon"></div>
         <img class="logo_img" src="/dist/static/img/logo_white.png" alt="">
         <div class="md-toolbar-section-end">
-          <div class="thumb"><img src="/dist/static/img/thumb.png" alt=""></div>
+          <div class="thumb"><img src="/{{ $user->icon }}" alt=""></div>
         </div>
       </div>
     </div>
@@ -186,7 +186,7 @@
             <img class="close_btn" src="/dist/static/img/close_icon.png" alt="">
           </div>
           <div class="thumb_l">
-            <img src="/dist/static/img/thumb_l.png" alt="">
+            <img src="/{{ $user->icon }}" alt="">
             <p class="username">{{ $user->name }}</p>
             <input class="username_input" type="text" placeholder="{{ $user->name }}">
             <p class="city">{{ __('城市') }}: {{ $user->city }}</p>
