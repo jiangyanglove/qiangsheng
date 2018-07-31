@@ -54,9 +54,6 @@ class GroupController extends Controller
             $points = User::where('group_id', $group->id)->sum('points');
             $group->points = $points;
             $members = GroupUser::where('group_id', $group->id)->where('quit', 0)->get();
-            foreach($members as $member){
-                $member->user = User::where('id', $member->id)->first();
-            }
             $group->members = $members;
         }
     	return view('group.index', compact(['user', 'city', 'do_number', 'undo_number', 'groups']));

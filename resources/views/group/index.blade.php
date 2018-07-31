@@ -49,7 +49,7 @@
          <div class="item member">
            <span class="fw">{{ $group->leader->name }}(组长)</span>
            @foreach ($group->members as $key=>$member)
-           <span>{{ $member->user->name }}</span>
+           <span>{{ $member->user_name }}</span>
            @endforeach
          </div>
          <div class="join_btn">申请加入</div>

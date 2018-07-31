@@ -33,3 +33,6 @@ Route::get('/api/group/join', 'UserController@joinGroup');
 
 //退出分组
 Route::get('/api/group/quit', 'UserController@quitGroup');
+
+//按名称搜索
+Route::get('/api/group/search', 'UserController@searchGroup');

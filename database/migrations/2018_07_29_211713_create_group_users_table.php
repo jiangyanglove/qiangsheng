@@ -17,6 +17,7 @@ class CreateGroupUsersTable extends Migration
             $table->increments('id');
             $table->integer('group_id');
             $table->integer('user_id');
+            $table->string('user_name');
             $table->integer('quit')->default(0);
             $table->timestamps();
         });

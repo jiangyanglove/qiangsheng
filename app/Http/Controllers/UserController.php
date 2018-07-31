@@ -101,6 +101,7 @@ class UserController extends Controller
         $newGroupUser = new GroupUser();
         $newGroupUser->group_id = $group_id;
         $newGroupUser->user_id = $id;
+        $newGroupUser->user_name = $user->name;
         $newGroupUser->save();
 
         $user->group_id = $group_id;
@@ -109,7 +110,7 @@ class UserController extends Controller
         return ok();
     }
 
-       public function quitGroup()
+    public function quitGroup()
     {
         $v = Validator::make(request()->all(), [
             'group_id' => 'required',
@@ -155,5 +156,38 @@ class UserController extends Controller
         $user->save();
 
         return ok();
+    }
+
+    public function searchGroup()
+    {
+        $v = Validator::make(request()->all(), [
+            'group_name' => 'required',
+        ]);
+        if($v->fails()){
+            return err(2, $v->messages()->first());
+        }
+
+        $id = isauth();
+        if(!$id){
+            $msg = Lang::get('tips.no_login');
+            return err(2, $msg);
+        }
+
+        $group_name = request()->input("group_name");
+
+        $group = Group::where('name', $group_name)->first();
+
+        if($group){
+            $points = User::where('group_id', $group->id)->sum('points');
+            $group->points = $points;
+            $members = GroupUser::where('group_id', $group->id)->where('quit', 0)->get();
+            foreach($members as $member){
+                $member->user = User::where('id', $member->id)->first();
+            }
+            $group->members = $members;
+        }
+        return ok([
+            'group' => $group
+        ]);
     }
 }
