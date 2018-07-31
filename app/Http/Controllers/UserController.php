@@ -16,6 +16,7 @@ use App\Models\GroupUser;
 use App\Models\QiandaoLog;
 use App\Models\Weeknotice;
 use App\Models\Weekfaq;
+use App\Models\Reading;
 
 use Carbon\Carbon;
 
@@ -303,5 +304,38 @@ class UserController extends Controller
         //加积分
         score($user->id, 5);
         return ok($new_weekfaq);
+    }
+
+    public function addReading()
+    {
+        $id = isauth();
+        if(!$id){
+            $msg = Lang::get('tips.no_login');
+            return err(2, $msg);
+        }
+
+        $v = Validator::make(request()->all(), [
+            'icon' => 'required',
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+        if($v->fails()){
+            return err(1, $v->messages()->first());
+        }
+        $data = request()->only('icon', 'name', 'description');
+        $user = User::findOrFail($id);
+
+        $new_Reading = new Reading();
+        $new_Reading->user_id = $id;
+        $new_Reading->icon = $data['icon'];
+        $new_Reading->name = $data['name'];
+        $new_Reading->description = $data['description'];
+        $new_Reading->save();
+
+        $reading = Reading::find($new_Reading->id);
+
+        //加积分
+        score($user->id, 7);
+        return ok($reading);
     }
 }

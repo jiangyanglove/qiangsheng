@@ -85,5 +85,12 @@
     "第二周": "Week2",
     "第三周": "Week3",
     "第四周": "Week4",
-    "我要提问": "Ask A Question"
+    "我要提问": "Ask A Question",
+
+    "最新": "New",
+    "热门": "Hot",
+    "推荐书籍": "Recommended Books",
+    "取消": "Cancel",
+    "书名": "Book Name",
+    "简介": "Brief introduction ",
 }

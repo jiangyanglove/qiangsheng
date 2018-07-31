@@ -48,3 +48,6 @@ Route::get('/api/user/update', 'UserController@updateUser');
 
 //精彩预告提问
 Route::get('/api/offline', 'HomeController@apiOfflineOk');
+
+//精彩预告提问
+Route::get('/api/reading/add', 'UserController@addReading');

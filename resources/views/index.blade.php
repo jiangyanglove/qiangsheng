@@ -55,9 +55,9 @@
         </div>
       </div>
       </a>
-      <a href="">
+      <a href="/reading">
       <div class="active_card">
-        <img src="/dist/static/img/thumb_l.png" alt="">
+        <img src="/dist/static/img/reading.png" alt="">
         <div class="card_r">
           <h3>{{ __('读书的力量') }}</h3>
           <p>{{ __('推荐共享好书，交流阅读心得，助力职业成长。') }}</p>
@@ -181,26 +181,6 @@
       </div>
 
       @include('include.sidebar', ['user' => $user])
-      <!-- <div class="drawer md-dense dense_r">
-        <div class="panel">
-          <div class="drawer-title">
-            <img class="close_btn" src="/dist/static/img/close_icon.png" alt="">
-          </div>
-          <div class="thumb_l">
-            <img src="/dist/static/img/thumb_l.png" alt="">
-            <p class="username">{{ $user->name }}</p>
-            <input class="username_input" type="text" placeholder="{{ $user->name }}">
-            <p class="city">{{ __('城市') }}: {{ $user->city }}</p>
-          </div>
-          <div class="panel_item">
-            <p>{{ __('消息') }}</p>
-          </div>
-          <div class="panel_item">
-            <p>{{ __('排行榜') }}</p>
-          </div>
-          <button class="md-dense md-raised md-primary">{{ __('设置') }}</button>
-        </div>
-      </div> -->
   </div>
 
     <script src="/dist/static/vendor/jquery-3.1.1.min.js"></script>

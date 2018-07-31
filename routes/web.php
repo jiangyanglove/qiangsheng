@@ -25,6 +25,10 @@ Route::get('/group/{city?}', 'GroupController@index');
 
 Route::get('/preview/{week?}', 'HomeController@preview');
 
+Route::get('/reading/add', 'ReadingController@add');
+Route::get('/reading/{type?}', 'ReadingController@index');
+
+
 
 //Auth::routes();
 
