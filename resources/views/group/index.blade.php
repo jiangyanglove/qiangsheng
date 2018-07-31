@@ -5,115 +5,115 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ __('首页') }} - {{ __('中国强生财务职业发展月') }}</title>
+    <title>{{ __('活动分组') }} - {{ __('中国强生财务职业发展月') }}</title>
     <link rel="stylesheet" href="/dist/static/style/index.css">
 </head>
 <body>
 
-  <div class="index-container">
-    <div class="head">
-      <div class="nav">
-        <div class="menu_icon"></div>
-        <img class="logo_img" src="/dist/static/img/logo_white.png" alt="">
-        <div class="md-toolbar-section-end">
-          <div class="thumb"><img src="/{{ $user->icon}}" alt=""></div>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide banner"><img src="/dist/static/img/banner.png" alt=""></div>
-        <div class="swiper-slide banner"><img src="/dist/static/img/banner.png" alt=""></div>
-        <div class="swiper-slide banner"><img src="/dist/static/img/banner.png" alt=""></div>
-      </div>
-    </div>
-      <a href="/group">
-      <div class="active_card">
-          <img src="/dist/static/img/Photo.png" alt="">
-          <div class="card_r">
-            <h3>{{ __('活动分组') }}</h3>
-            <p>{{ __('请大家组队参与小组积分赛，每组需要8名成员，累计积分排名前三的小组将获得奖品。') }}</p>
-          </div>
-      </div>
-      </a>
+   <div class="index-container" :class="{'hide': showDrawer || showUser}">
+     <div class="head">
+     <div class="nav">
+       <!-- <div class="menu_icon"></div> -->
+       <!-- <img class="logo_img" src="/dist/static/img/logo_white.png" alt=""> -->
+       <div class="back"><img src="/dist/static/img/back.png" alt=""></div>
+       <div class="citys">
+         <div class="city active">北京</div>
+         <div class="city">上海</div>
+         <div class="city">西安</div>
+         <div class="city">苏州</div>
+       </div>
+       <div class="md-toolbar-section-end">
+         <div class="thumb"><img src="/dist/static/img/thumb.png" alt=""></div>
+       </div>
+     </div>
+     </div>
 
-      <a href="">
-      <div class="active_card">
-        <img src="/dist/static/img/thumb_l.png" alt="">
-        <div class="card_r">
-          <h3>{{ __('精彩预告') }}</h3>
-          <p>{{ __('这里有全部的活动资讯，欢迎关注查看。活动问题收集：请提交与活动分享主题相关的提问，现场由讲师进行回答。') }}</p>
+     <div class="search_bar">
+       <div class="num">已分组人数：270  |  未分组人数：300</div>
+       <div class="serarch_wrap">
+         <div class="search">
+           <input type="text" placeholder="搜索">
+         </div>
+         <router-link to="/group/new">
+           <button class="search_btn">创建一个小组</button>
+         </router-link>
+       </div>
+     </div>
+
+     <div class="group_cards">
+       <div class="group_card">
+         <div class="df item">
+           <div class="red">小组名称：Penny xie</div>
+           <div class="black">积分：800</div>
+         </div>
+         <div class="item member">
+           <span class="fw">Penny(组长)</span>
+           <span>john</span>
+           <span>john</span>
+           <span>john</span>
+           <span>john</span>
+           <span>john</span>
+         </div>
+         <div class="join_btn">申请加入</div>
+       </div>
+       <div class="group_card">
+         <div class="df item">
+           <div class="red">小组名称：Penny xie</div>
+           <div class="black">积分：800</div>
+         </div>
+         <div class="item member">
+           <span class="fw">Penny(组长)</span>
+           <span>john</span>
+           <span>john</span>
+           <span>john</span>
+           <span>john</span>
+           <span>john</span>
+         </div>
+         <div class="join_btn">申请加入</div>
+       </div>
+     </div>
+
+    <div class="modal"></div>
+     <div class="drawer md-dense dense_r">
+        <div class="panel">
+          <div class="drawer-title">
+            <img class="close_btn" src="/dist/static/img/close_icon.png" alt="">
+          </div>
+          <div class="thumb_l">
+            <img src="/dist/static/img/thumb_l.png" alt="">
+            <p class="username">userName</p>
+            <input class="username_input" type="text" placeholder="userName">
+            <p class="city">城市: 北京</p>
+          </div>
+          <div class="panel_item">
+            <p>消息</p>
+          </div>
+          <div class="panel_item">
+            <p>排行榜</p>
+          </div>
+          <button class="md-dense md-raised md-primary">设置</button>
         </div>
       </div>
-      </a>
-      <a href="">
-      <div class="active_card">
-        <img src="/dist/static/img/thumb_l.png" alt="">
-        <div class="card_r">
-          <h3>{{ __('DISC测试') }}</h3>
-          <p>{{ __('完成DISC性格测试，揭秘你是超级英雄里的哪一位。') }}</p>
-        </div>
-      </div>
-      </a>
-      <a href="">
-      <div class="active_card">
-        <img src="/dist/static/img/thumb_l.png" alt="">
-        <div class="card_r">
-          <h3>{{ __('读书的力量') }}</h3>
-          <p>{{ __('推荐共享好书，交流阅读心得，助力职业成长。') }}</p>
-        </div>
-      </div>
-      </a>
-      <a href="">
-      <div class="active_card">
-        <img src="/dist/static/img/thumb_l.png" alt="">
-        <div class="card_r">
-          <h3>{{ __('我的职场范儿') }}</h3>
-          <p>{{ __('发布职业、生活的对比照。拍完职业照， 才知道我有多职业。') }}</p>
-        </div>
-      </div>
-      </a>
-      <a href="">
-      <div class="active_card">
-        <img src="/dist/static/img/thumb_l.png" alt="">
-        <div class="card_r">
-          <h3>{{ __('自由讨论') }}</h3>
-          <p>{{ __('发起与职业发展主题相关话题，自由交流、相互探讨。') }}</p>
-        </div>
-      </div>
-      </a>
-      <a href="">
-      <div class="active_card">
-        <img src="/dist/static/img/thumb_l.png" alt="">
-        <div class="card_r">
-          <h3>{{ __('每周回顾') }}</h3>
-          <p>{{ __('每周一篇新闻速递，带你回顾当周亮点。') }}</p>
-        </div>
-      </div>
-      </a>
-      <a href="">
-      <div class="active_card">
-        <img src="/dist/static/img/thumb_l.png" alt="">
-        <div class="card_r">
-          <h3>{{ __('未来邮局') }}</h3>
-          <p>{{ __('写下自己的感悟和计划，在未来通过行动让改变发生。') }}</p>
-        </div>
-      </div>
-      </a>
-  </div>
+ </div>
 
     <script src="/dist/static/vendor/jquery-3.1.1.min.js"></script>
-    <script src="/dist/static/vendor/swiper-3.4.0.jquery.min.js"></script>
     <script>
         $(function () {
-           var mySwiper = new Swiper ('.swiper-container', {
-             loop: true
-           })
-            $('.sex_item').on('click', function() {
-                $(this).addClass('active').siblings('.sex_item').removeClass('active')
+            $('.menu_icon').on('click', function() {
+              $('.drawer_l, .modal').addClass('active')
+              $('.index-container').addClass('hide')
             })
-            $('.lang_item').on('click', function() {
-                $(this).addClass('active').siblings('.lang_item').removeClass('active')
+            $('.modal, .close_btn').on('click', function() {
+              $('.drawer_l, .dense_r, .modal').removeClass('active')
+              $('.index-container').removeClass('hide')
+            })
+            $('.drawer_item').on('click', function() {
+              $(this).children('.md-inset').toggleClass('active');
+              $(this).siblings('.drawer_item').children('.md-inset').removeClass('active')
+            })
+            $('.thumb').on('click', function() {
+              $('.dense_r, .modal').addClass('active')
+              $('.index-container').addClass('hide')
             })
         })
     </script>
