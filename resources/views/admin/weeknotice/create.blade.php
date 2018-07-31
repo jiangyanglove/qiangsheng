@@ -31,6 +31,10 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <label for="icon" class="col-sm-2 control-label">专属图片：</label>
+                  <div class="col-sm-6 controls"><input type="file" name="icon"></div>
+                </div>
+                <div class="form-group">
                   <label for="name" class="col-sm-2 control-label">中文标题：</label>
                   <div class="col-sm-10 controls">
                     <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" placeholder="请输入中文标题">
@@ -46,9 +50,10 @@
                 <div class="form-group">
                   <label for="start_date" class="col-sm-2 control-label">自定义日期：</label>
                   <div class="col-sm-10 controls">
-                    <input type="text" class="form-control" id="start_date" name="start_date" value="{{ old('start_date') }}" placeholder="自定义日期如7月30日 2018年7月30日">
+                    <input type="text" class="form-control" id="start_date" name="start_date" value="{{ old('start_date') }}" placeholder="自定义日期如2018-07-30">
                   </div>
                 </div>
+
                 <div class="form-group">
                   <label for="content" class="col-sm-2 control-label">详情：</label>
                   <div class="col-sm-10 controls">

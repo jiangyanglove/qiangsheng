@@ -52,6 +52,7 @@ class WeeknoticeController extends Controller
     {
         $this->validate($request, [
             'week' => 'required',
+            'icon' => 'required',
             'name' => 'required|min:2',
             'name_en' => 'required|min:2',
             'content' => 'sometimes',
@@ -79,7 +80,31 @@ class WeeknoticeController extends Controller
         if($content_en){
             $new_weeknotice->content_en = $content_en;
         }
+        // 文件是否上传成功 ICON
+        $file = $request->file('icon');
+        if($file){
+            if ($file->isValid()) {
 
+                // 获取文件相关信息
+                $originalName = $file->getClientOriginalName(); // 文件原名
+                $ext = $file->getClientOriginalExtension();     // 扩展名
+                $realPath = $file->getRealPath();   //临时文件的绝对路径
+                $type = $file->getClientMimeType();     // image/jpeg
+
+                if(!$ext){
+                    $ext = 'png';
+                }
+                // 上传文件
+                $filename = 'weeknotice/' . date('YmdHis') . '-' . uniqid() . '.' . $ext;
+
+                $bool = Storage::disk('uploads')->put($filename, file_get_contents($realPath));
+                if($bool){
+                    $icon_path = 'uploads/' . $filename;
+                    $new_weeknotice->icon = $icon_path;
+                }
+
+            }
+        }
 
         $new_weeknotice->save();
         return redirect("/admin/weeknotice");
@@ -122,6 +147,7 @@ class WeeknoticeController extends Controller
         $weeknotice = Weeknotice::findOrFail($id);
         $this->validate($request, [
             'week' => 'required',
+            'icon' => 'sometimes',
             'name' => 'required|min:2',
             'name_en' => 'required|min:2',
             'content' => 'sometimes',
@@ -142,6 +168,33 @@ class WeeknoticeController extends Controller
         $weeknotice->content = $content;
         $weeknotice->content_en = $content_en;
         $weeknotice->start_date = $start_date;
+
+        // 文件是否上传成功 ICON
+        $file = $request->file('icon');
+        if($file){
+            if ($file->isValid()) {
+
+                // 获取文件相关信息
+                $originalName = $file->getClientOriginalName(); // 文件原名
+                $ext = $file->getClientOriginalExtension();     // 扩展名
+                $realPath = $file->getRealPath();   //临时文件的绝对路径
+                $type = $file->getClientMimeType();     // image/jpeg
+
+                if(!$ext){
+                    $ext = 'png';
+                }
+
+                // 上传文件
+                $filename = 'weeknotice/' . date('YmdHis') . '-' . uniqid() . '.' . $ext;
+
+                $bool = Storage::disk('uploads')->put($filename, file_get_contents($realPath));
+                if($bool){
+                    $icon_path = 'uploads/' . $filename;
+                    $weeknotice->icon = $icon_path;
+                }
+
+            }
+        }
 
         $weeknotice->save();
         return redirect("/admin/weeknotice");

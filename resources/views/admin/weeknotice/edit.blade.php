@@ -31,7 +31,11 @@
                     </select>
                   </div>
                 </div>
-
+                <div class="form-group">
+                  <label for="icon" class="col-sm-2 control-label">图片：</label>
+                  @if(isset($weeknotice->icon) && $weeknotice->icon)<div class="col-sm-4 controls"><img src="/{{ $weeknotice->icon }}" width="50%" class="img-thumbnail"/></div>@endif
+                  <div class="col-sm-4 controls"><input type="file" name="icon"></div>
+                </div>
                 <div class="form-group">
                   <label for="name" class="col-sm-2 control-label">中文标题：</label>
                   <div class="col-sm-10 controls">
@@ -47,7 +51,7 @@
                 <div class="form-group">
                   <label for="start_date" class="col-sm-2 control-label">自定义日期：</label>
                   <div class="col-sm-10 controls">
-                    <input type="text" class="form-control" id="start_date" name="start_date" value="@if ($weeknotice->start_date){{ $weeknotice->start_date }}@endif" placeholder="自定义日期如7月30日 2018年7月30日">
+                    <input type="text" class="form-control" id="start_date" name="start_date" value="@if ($weeknotice->start_date){{ $weeknotice->start_date }}@endif" placeholder="自定义日期如2018-07-30">
                   </div>
                 </div>
                 <div class="form-group">
