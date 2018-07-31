@@ -17,6 +17,8 @@ use App\Models\QiandaoLog;
 use App\Models\Weeknotice;
 use App\Models\Weekfaq;
 use App\Models\Reading;
+use App\Models\ReadingLike;
+use App\Models\ReadingComment;
 
 use Carbon\Carbon;
 
@@ -337,5 +339,99 @@ class UserController extends Controller
         //加积分
         score($user->id, 7);
         return ok($reading);
+    }
+
+    public function ReadingLikeAdd(){
+        $id = isauth();
+        if(!$id){
+            $msg = Lang::get('tips.no_login');
+            return err(2, $msg);
+        }
+
+        $v = Validator::make(request()->all(), [
+            'reading_id' => 'required'
+        ]);
+        if($v->fails()){
+            return err(1, $v->messages()->first());
+        }
+
+        $data = request()->only('reading_id');
+        $reading_id = $data['reading_id'];
+
+        $reading = Reading::find($reading_id);
+        if(!$reading){
+            $msg = Lang::get('tips.no_reading');
+            return err(2, $msg);
+        }
+        $liked = ReadingLike::where('reading_id', $reading_id)->where('user_id', $id)->first();
+        if(!$liked){
+            $new_like = new ReadingLike;
+            $new_like->user_id = $id;
+            $new_like->reading_id = $reading_id;
+            $new_like->save();
+            $reading->likes += 1;
+            $reading->save();
+        }
+
+        $reading = Reading::find($reading_id);
+        unset(
+            $reading->icon,
+            $reading->user_id,
+            $reading->description,
+            $reading->comments,
+            $reading->created_at,
+            $reading->updated_at
+        );
+        return ok([
+            'reading' => $reading
+        ]);
+    }
+
+
+    public function ReadingCommentAdd(){
+        $id = isauth();
+        if(!$id){
+            $msg = Lang::get('tips.no_login');
+            return err(2, $msg);
+        }
+
+        $v = Validator::make(request()->all(), [
+            'reading_id' => 'required',
+            'content' => 'required'
+        ]);
+        if($v->fails()){
+            return err(1, $v->messages()->first());
+        }
+
+        $data = request()->only('reading_id', 'content');
+
+        $reading_id = $data['reading_id'];
+        $content = $data['content'];
+
+        $reading = Reading::find($reading_id);
+
+        $new_comment = new ReadingComment;
+        $new_comment->user_id = $id;
+        $new_comment->reading_id = $reading_id;
+        $new_comment->content = $content;
+
+        $new_comment->save();
+
+        $reading->comments += 1;
+        $reading->save();
+
+        $reading = Reading::find($reading_id);
+        unset(
+            $reading->icon,
+            $reading->user_id,
+            $reading->description,
+            $reading->likes,
+            $reading->created_at,
+            $reading->updated_at
+        );
+
+        return ok([
+            'reading' => $reading
+        ]);
     }
 }

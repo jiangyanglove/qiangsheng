@@ -18,23 +18,17 @@
                     <img src="/dist/static/img/back.png" alt=""></a>
             </div>
             <div class="citys">
-                <div class="city @if($city == '北京') active @endif"><a style="color: #ffffff;"
-                                                                      href="/group/{{ __('北京') }}">{{ __('北京') }}</a>
+                <div class="city @if($city == '北京' || $city == 'Beijing') active @endif"><a style="color: #ffffff;" href="/group/{{ __('北京') }}">{{ __('北京') }}</a>
                 </div>
-                <div class="city @if($city == '上海') active @endif"><a style="color: #ffffff;"
-                                                                      href="/group/{{ __('上海') }}">{{ __('上海') }}</a>
+                <div class="city @if($city == '上海' || $city == 'Shanghai') active @endif"><a style="color: #ffffff;" href="/group/{{ __('上海') }}">{{ __('上海') }}</a>
                 </div>
-                <div class="city @if($city == '广州') active @endif"><a style="color: #ffffff;"
-                                                                      href="/group/{{ __('广州') }}">{{ __('广州') }}</a>
+                <div class="city @if($city == '广州' || $city == 'Guangzhou') active @endif"><a style="color: #ffffff;" href="/group/{{ __('广州') }}">{{ __('广州') }}</a>
                 </div>
-                <div class="city @if($city == '西安') active @endif"><a style="color: #ffffff;"
-                                                                      href="/group/{{ __('西安') }}">{{ __('西安') }}</a>
+                <div class="city @if($city == '西安' || $city == 'Xian') active @endif"><a style="color: #ffffff;" href="/group/{{ __('西安') }}">{{ __('西安') }}</a>
                 </div>
-                <div class="city @if($city == '苏州') active @endif"><a style="color: #ffffff;"
-                                                                      href="/group/{{ __('苏州') }}">{{ __('苏州') }}</a>
+                <div class="city @if($city == '苏州' || $city == 'Suzhou') active @endif"><a style="color: #ffffff;" href="/group/{{ __('苏州') }}">{{ __('苏州') }}</a>
                 </div>
-                <div class="city @if($city == '杭州') active @endif"><a style="color: #ffffff;"
-                                                                      href="/group/{{ __('杭州') }}">{{ __('杭州') }}</a>
+                <div class="city @if($city == '杭州' || $city == 'Hangzhou') active @endif"><a style="color: #ffffff;" href="/group/{{ __('杭州') }}">{{ __('杭州') }}</a>
                 </div>
             </div>
             <div class="md-toolbar-section-end">
@@ -44,14 +38,16 @@
     </div>
 
     <div class="search_bar">
-        <div class="num">已分组人数：{{ $do_number }} | 未分组人数：{{ $undo_number }}</div>
+        <div class="num">{{ __('已分组人数') }}：{{ $do_number }} | {{ __('未分组人数') }}：{{ $undo_number }}</div>
         <div class="serarch_wrap">
             <div class="search">
-                <input type="text" placeholder="搜索" id="search">
+                <input type="text" placeholder="{{ __('搜索') }}" id="search">
             </div>
+            @if($user->group_id == 0)
             <a href="/group/add">
-                <button class="search_btn">创建一个小组</button>
+                <button class="search_btn">{{ __('创建一个小组') }}</button>
             </a>
+            @endif
         </div>
     </div>
 
@@ -61,21 +57,21 @@
             @foreach ($groups as $key=>$group)
                 <div class="group_card">
                     <div class="df item">
-                        <div class="red">小组名称：{{ $group->name }}</div>
-                        <div class="black">积分：{{ $group->points }}</div>
+                        <div class="red">{{ __('小组名称') }}：{{ $group->name }}</div>
+                        <div class="black">{{ __('积分') }}：{{ $group->points }}</div>
                     </div>
                     <div class="item member">
-                        <span class="fw">{{ $group->leader->name }}(组长)</span>
+                        <span class="fw">{{ $group->leader->name }}({{ __('组长') }})</span>
                         @foreach ($group->members as $key=>$member)
                             <span>{{ $member->user_name }}</span>
                         @endforeach
                     </div>
-                    <div class="join_btn" data-id="{{ $group->id }}">申请加入</div>
+                    <div class="join_btn" data-id="{{ $group->id }}">{{ __('申请加入') }}</div>
                 </div>
             @endforeach
         @else
-            <div class="group_card">
-                还没有分组
+            <div class="group_card" style="text-align: center;">
+                {{ __('该城市暂无分组') }}
             </div>
         @endif
     </div>

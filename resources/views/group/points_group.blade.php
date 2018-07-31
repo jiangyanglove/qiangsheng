@@ -15,8 +15,8 @@
      <div class="nav">
        <div class="back"><a href="javascript:history.back(-1)"><img src="/dist/static/img/back.png" alt=""></a></div>
        <div class="citys">
-         <div class="city active">团队</div>
-         <div class="city"><a href="/group/member/points/list">个人</a></div>
+         <div class="city active">{{ __('团队') }}</div>
+         <div class="city"><a href="/group/member/points/list">{{ __('个人') }}</a></div>
        </div>
        <div class="md-toolbar-section-end">
          <div class="thumb"><img src="/{{ $user->icon }}" alt=""></div>
@@ -28,18 +28,18 @@
       @if($my_group)
       <div class="group_card">
          <div class="df item">
-           <div class="red">小组名称：{{ $my_group->name }}</div>
-           <div class="black">积分：{{ $my_group->points }}</div>
+           <div class="red">{{ __('小组名称') }}：{{ $my_group->name }}</div>
+           <div class="black">{{ __('积分') }}：{{ $my_group->points }}</div>
          </div>
          <div class="item member">
-           <span class="fw">{{ $my_group->leader->name }}(组长)</span>
+           <span class="fw">{{ $my_group->leader->name }}({{ __('组长') }})</span>
             @if(count($my_group->members) > 0)
             @foreach ($my_group->members as $member)
-            <span>{{ $member->name }}</span>
+            <span>{{ $member->user->name }}</span>
             @endforeach
             @endif
          </div>
-         <div class="join_btn">我的小组</div>
+         <div class="join_btn"><a style="color: #ffffff;" href="/group/mine">{{ __('我的小组') }}</a></div>
        </div>
       @endif
 
@@ -47,11 +47,11 @@
       @foreach ($other_groups as $group)
       <div class="group_card">
          <div class="df item">
-           <div class="red">小组名称：{{ $group->name }}</div>
-           <div class="black">积分：{{ $group->points }}</div>
+           <div class="red">{{ __('小组名称') }}：{{ $group->name }}</div>
+           <div class="black">{{ __('积分') }}：{{ $group->points }}</div>
          </div>
          <div class="item member">
-           <span class="fw">{{ $group->leader->name }}(组长)</span>
+           <span class="fw">{{ $group->leader->name }}({{ __('组长') }})</span>
             @if(count($group->members) > 0)
             @foreach ($group->members as $member)
            <span>john</span>

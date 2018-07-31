@@ -15,7 +15,7 @@
             <img src="/{{ $user->icon }}" alt="">
             <p class="username">{{ $user->name }}</p>
             <input style="display: none" class="username_input" type="text" placeholder="{{ $user->name }}">
-            <p class="city">{{ __('城市') }}: {{ $user->city }}</p>
+            <p class="city">{{ __('城市') }}: {{ __($user->city) }}</p>
           </div>
           <div class="panel_item">
             <p>{{ __('消息') }}</p>

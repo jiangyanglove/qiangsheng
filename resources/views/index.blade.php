@@ -154,7 +154,7 @@
             <span class="md-list-item-text">{{ __('奖品兑换规则') }}</span>
 
               <div class="md-inset">
-                <p>1.{{ __('小组累积积分前3名的组别每组获的Nespresso胶囊咖啡机一台。') }}</p>
+                <p>1.{{ __('小组累积积分前3名的组别每人获得一个胶囊咖啡机。') }}</p>
                 <img class="pre1" src="/dist/static/img/pre1.png" alt="">
                 <p>2.{{ __('个人累积积分') }}</p>
                 <div class="flex_img">
@@ -171,7 +171,7 @@
                   <div class="item">
                     <p>{{ __('11-100名') }}</p>
                     <img src="/dist/static/img/pre4.png" alt="">
-                    <p>{{ __('罗技（Logitech）') }}<br>{{ __('蓝牙鼠标M336一枚') }}</p>
+                    <p>{{ __('罗技') }}<br>{{ __('蓝牙鼠标M336一枚') }}</p>
                   </div>
                 </div>
 

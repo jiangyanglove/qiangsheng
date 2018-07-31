@@ -24,5 +24,6 @@ return [
     'group_user_data_error' => 'group data error.',
     'today_has_qiandao' => 'only one times one day.',
     'has_got_this_type_point' => 'you cannot get this type integral over and over again.',
+    'no_reading' => 'no book.',
 
 ];

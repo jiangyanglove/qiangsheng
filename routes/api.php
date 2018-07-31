@@ -49,5 +49,11 @@ Route::get('/api/user/update', 'UserController@updateUser');
 //精彩预告提问
 Route::get('/api/offline', 'HomeController@apiOfflineOk');
 
-//精彩预告提问
+//添加书籍
 Route::get('/api/reading/add', 'UserController@addReading');
+
+//书籍点赞
+Route::get('/api/reading/like/add', 'UserController@ReadingLikeAdd');
+
+//书籍评论
+Route::get('/api/reading/comment/add', 'UserController@ReadingCommentAdd');

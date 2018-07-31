@@ -15,8 +15,8 @@
      <div class="nav">
        <div class="back"><a href="javascript:history.back(-1)"><img src="/dist/static/img/back.png" alt=""></a></div>
        <div class="citys">
-         <div class="city"><a href="/group/points/list">团队</a></div>
-         <div class="city active">个人</div>
+         <div class="city"><a href="/group/points/list">{{ __('团队') }}</a></div>
+         <div class="city active">{{ __('个人') }}</div>
        </div>
        <div class="md-toolbar-section-end">
          <div class="thumb"><img src="/{{ $user->icon }}" alt=""></div>
@@ -30,11 +30,11 @@
           <img src="/{{ $user->icon }}" alt="">
           <div class="l_r">
             <div>{{ $user->name }}</div>
-            <div>城市：{{ $user->city }}</div>
+            <div>{{ __('城市') }}：{{ __($user->city) }}</div>
           </div>
         </div>
         <div class="r">
-          积分：{{ $user->points }}
+          {{ __('积分') }}：{{ $user->points }}
         </div>
       </div>
       @foreach ($other_users as $u)
@@ -43,11 +43,11 @@
           <img src="/{{ $user->icon }}" alt="">
           <div class="l_r">
             <div>{{ $u->name }}</div>
-            <div>城市：{{ $u->city }}</div>
+            <div>{{ __('城市') }}：{{ __($u->city) }}</div>
           </div>
         </div>
         <div class="r">
-          积分：{{ $u->points }}
+          {{ __('积分') }}：{{ $u->points }}
         </div>
       </div>
       @endforeach

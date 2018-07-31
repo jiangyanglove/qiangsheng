@@ -24,5 +24,6 @@ return [
     'group_user_data_error' => '你的小组数据错误。',
     'today_has_qiandao' => '你今日已签到。',
     'has_got_this_type_point' => '不可重复获得该积分。',
+    'no_reading' => '书籍不存在。',
 
 ];

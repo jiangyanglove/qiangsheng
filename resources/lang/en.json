@@ -39,15 +39,15 @@
     "参与线下活动，扫描二维码进行签到打卡，每人+2分（可关注活动预览区内容，及时了解活动信息）": "To participate in offline activities, and scan the QR code for sign-in, +2 points per person (pay attention to the content of the event preview area, and learn about the event information in time)",
     "奖品兑换规则": "Prize redemption rules",
     "小组累积积分前3名的组别每人获得一个胶囊咖啡机。": "Each team member of the teams with the accumulated points ranked top three earns capsule coffee machine.",
-    "个人累积积分": "个人累积积分",
-    "前3名": "前3名",
-    "电子书阅读器一部": "电子书阅读器一部",
-    "4-10名": "4-10名",
-    "乐扣": "乐扣",
-    "空气炸锅一台": "空气炸锅一台",
-    "11-100名": "11-100名",
-    "罗技（Logitech）": "罗技（Logitech）",
-    "蓝牙鼠标M336一枚": "蓝牙鼠标M336一枚",
+    "个人累积积分": "Individual cumulative score",
+    "前3名": "Top3",
+    "电子书阅读器一部": "An e-book reader",
+    "4-10名": "Top4-10",
+    "乐扣": "Le buckle",
+    "空气炸锅一台": "One air fryer",
+    "11-100名": "Top11-100",
+    "罗技": "Logitech",
+    "蓝牙鼠标M336一枚": "Bluetooth mouse M336",
 
 
 
@@ -87,10 +87,28 @@
     "第四周": "Week4",
     "我要提问": "Ask A Question",
 
+
+    "我的小组": "My Group",
+    "已分组人数": "Grouped",
+    "未分组人数": "UnGrouped",
+    "小组名称": "Group Name",
+    "积分": "Scores",
+    "组长": "Group Leader",
+    "成员": "Group Member",
+    "退出小组": "Quit This Group",
+    "创建一个小组": "Make A Group",
+    "创建小组": "Make Group",
+    "团队": "Team",
+    "个人": "Person",
+    "申请加入": "Join In",
+    "该城市暂无分组": "No Group In This City.",
+    "搜索": "Search",
+
+
     "最新": "New",
     "热门": "Hot",
     "推荐书籍": "Recommended Books",
     "取消": "Cancel",
     "书名": "Book Name",
-    "简介": "Brief introduction ",
+    "简介": "Brief introduction "
 }

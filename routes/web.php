@@ -21,6 +21,8 @@ Route::get('/logout', 'LoginController@logout');
 Route::get('/group/points/list', 'GroupController@groupPointsList');
 Route::get('/group/member/points/list', 'GroupController@memberPointsList');
 Route::get('/group/add', 'GroupController@add');
+Route::get('/group/mine', 'GroupController@mine');
+Route::get('/group/quit', 'GroupController@quit');
 Route::get('/group/{city?}', 'GroupController@index');
 
 Route::get('/preview/{week?}', 'HomeController@preview');
