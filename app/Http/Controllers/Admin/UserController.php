@@ -90,9 +90,9 @@ class UserController extends Controller
             unset($datas[0]);
             $chongfu = [];
             foreach($datas as $key=>$data){
-                $city = $data[0];
-                $wwid = $data[1];
-                $name = $data[2];
+                $city = $data[2];
+                $wwid = $data[0];
+                $name = $data[1];
 
                 $exist = User::where('wwid', $wwid)->first();
 

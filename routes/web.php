@@ -16,6 +16,8 @@ require app_path() . '/../routes/api.php';
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/login', 'HomeController@login')->name('login');
 Route::get('/logout', 'LoginController@logout');
+Route::get('/group/points/list', 'GroupController@groupPointsList');
+Route::get('/group/member/points/list', 'GroupController@memberPointsList');
 Route::get('/group/add', 'GroupController@add');
 Route::get('/group/{city?}', 'GroupController@index');
 
