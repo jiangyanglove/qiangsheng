@@ -47,8 +47,14 @@
                             <td style='vertical-align: middle;text-align:center;'>{{ $group->city }}</td>
                             <td style='vertical-align: middle;text-align:center;'>{{ $group->name }}</td>
                             <td style='vertical-align: middle;text-align:center;'>{{ $group->leader->name }}</td>
-                            <td style='vertical-align: middle;text-align:center;'>{{ $group->name }}</td>
-                            <td style='vertical-align: middle;text-align:center;'>{{ $group->name }}</td>
+                            <td style='vertical-align: middle;text-align:center;'>
+              @if(count($group->members) >0 )
+              @foreach($group->members as $member)
+                <img src="/{{ $member->user->icon}}" width="30" alt="{{ $member->user->name}}">
+              @endforeach
+              @endif
+                            </td>
+                            <td style='vertical-align: middle;text-align:center;'>{{ $group->points }}</td>
                             <td style='vertical-align: middle;text-align:center;'><a class="text-warning" href='/admin/group/show/{{ $group->id }}'>详情</a></td>
                         </tr>
                     @endforeach

@@ -41,7 +41,7 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin'], function ($router)
     Route::get('logout', 'LoginController@logout')->name('admin.logout');
 
     //首页
-    Route::get('/', 'HomeController@index')->name('admin.home');
+    Route::get('/', 'UserController@index')->name('admin.home');
 
 
     Route::get('user/import', 'UserController@import');

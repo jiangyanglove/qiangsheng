@@ -184,12 +184,12 @@ class GroupController extends Controller
             }
             $members = GroupUser::where('group_id', $my_group->id)->where('quit', 0)->get();
             if(count($members)>0){
-                $my_group->members = $members;
                 foreach($members as $member){
                     if(!$member->user->icon){
                         $member->user->icon = 'images/user_icon_default' . $member->user->sex . '.png';
                     }
                 }
+                $my_group->members = $members;
             }
         }
 

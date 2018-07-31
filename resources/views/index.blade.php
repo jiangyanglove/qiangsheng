@@ -57,7 +57,7 @@
       </a>
       <a href="/reading">
       <div class="active_card">
-        <img src="/dist/static/img/reading.png" alt="">
+        <img src="/dist/static/img/book.png" alt="">
         <div class="card_r">
           <h3>{{ __('读书的力量') }}</h3>
           <p>{{ __('推荐共享好书，交流阅读心得，助力职业成长。') }}</p>

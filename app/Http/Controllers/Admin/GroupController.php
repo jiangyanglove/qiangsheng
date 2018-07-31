@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use DB;
 use Auth;
 use App\Models\Group;
+use App\Models\User;
+use App\Models\GroupUser;
 
 class GroupController extends Controller
 {
@@ -37,6 +39,23 @@ class GroupController extends Controller
             })
             ->orderBy('id', 'desc')
             ->paginate(10);
+        foreach($groups as $group){
+            $group->points = User::where('group_id', $group->id)->sum('points');
+            $group->leader = User::where('id', $group->leader_user_id)->first();
+            if(!$group->leader->icon){
+                $group->leader->icon = 'images/user_icon_default' . $group->leader->sex . '.png';
+            }
+            $members = GroupUser::where('group_id', $group->id)->where('quit', 0)->get();
+            if(count($members)>0){
+                foreach($members as $member){
+                    if(!$member->user->icon){
+                        $member->user->icon = 'images/user_icon_default' . $member->user->sex . '.png';
+                    }
+                }
+                $group->members = $members;
+            }
+        }
+
 
         $city_groups = DB::table('groups')
                      ->select(DB::raw('count(*) as group_count, city'))
