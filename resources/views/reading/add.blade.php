@@ -22,7 +22,28 @@
     left: 0;
     bottom: 0;
     right: 0;
-    /* opacity: 0; */
+    opacity: 0;
+}
+.recommendContent .upfile {
+    position: relative;
+}
+.recommendContent .upfile .icon {
+    width: 2.1rem;
+    height: 1.9rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.recommendContent .upfile img {
+    margin: 0;
+    width: auto;
+    height: auto;
+}
+#file_img {
+    z-index: 99;
+    width: 100%;
+    max-height: 100%;
 }
 </style>
 <body>
@@ -42,7 +63,7 @@
     </header>
     <section>
         <div class="recommendTop">
-            <div class="blacktitle">
+            <div class="blacktitle" id="back">
                 {{ __('取消') }}
             </div>
         </div>
@@ -50,7 +71,8 @@
             <form action="" id="uploadForm" method="post" enctype="multipart/form-data">
                 <div class="upfile">
                     <input id="file" type="file" name="file"/>
-                    <img src="/dist/static/img/xiangji.png" alt="">
+                    <img class="icon cama" src="/dist/static/img/xiangji.png" alt="">
+                    <img id="file_img" src="" alt="">
                 </div>
             </form>
             <div class="bookname">
@@ -98,22 +120,26 @@
               $('.dense_r, .modal').addClass('active')
               $('.index-container').addClass('hide')
             })
-
+            
+            var img_url = ''
+            $('#back').on('click', function() {window.history.back()})
             $('#file').on('change', function (e) {
                 var file = e.currentTarget.files[0];
                 var formData = new FormData();
                 formData.append("image", file);
+                console.log(formData.get('image'))
                 $.ajax({
                     url: '/api/image/upload',
-                    data: {
-                        image: formData
-                    },
+                    dataType: 'JSON',
+                    data: formData,
                     type: 'POST',
                     contentType: false,
                     processData: false,
                     cache: false,
                     success: function (res) {
-                        console.log(res)
+                        img_url = res.data.path;
+                        $('#file_img').attr('src', img_url)
+                        $('.cama').hide()
                     }
                 })
             })
@@ -121,11 +147,6 @@
             $('.bootmbutton').on('click', function () {
                 var bookname = $('#bookname').val();
                 var desc = $('#desc').val();
-                var formData = new FormData();
-                var file = $('#file')[0].files[0];
-                console.log(file)
-                formData.append('file', file);
-                console.log(formData)
                 if (!bookname) {
                     alert('请填写书名')
                     return false
@@ -137,7 +158,7 @@
                 $.ajax({
                     url: '/api/reading/add?icon=uploads/5b5ca47754f01.jpg&name=hello&description=wocaonima',
                     data: {
-                        icon: 'uploads/5b5ca47754f01.jpg',
+                        icon: img_url,
                         name: bookname,
                         description: desc
                     },
