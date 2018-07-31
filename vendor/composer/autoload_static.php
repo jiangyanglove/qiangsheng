@@ -484,6 +484,7 @@ class ComposerStaticInit7ab66a81321cc549fc0a4016fe8547a6
         'App\\Models\\PointRecord' => __DIR__ . '/../..' . '/app/Models/PointRecord.php',
         'App\\Models\\QiandaoLog' => __DIR__ . '/../..' . '/app/Models/QiandaoLog.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Models\\Weekfaq' => __DIR__ . '/../..' . '/app/Models/Weekfaq.php',
         'App\\Models\\Weeknotice' => __DIR__ . '/../..' . '/app/Models/Weeknotice.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

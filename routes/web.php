@@ -21,6 +21,8 @@ Route::get('/group/member/points/list', 'GroupController@memberPointsList');
 Route::get('/group/add', 'GroupController@add');
 Route::get('/group/{city?}', 'GroupController@index');
 
+Route::get('/preview/{week?}', 'HomeController@preview');
+
 
 //Auth::routes();
 

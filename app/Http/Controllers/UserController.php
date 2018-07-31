@@ -14,6 +14,8 @@ use App\Models\User;
 use App\Models\Group;
 use App\Models\GroupUser;
 use App\Models\QiandaoLog;
+use App\Models\Weeknotice;
+use App\Models\Weekfaq;
 
 use Carbon\Carbon;
 
@@ -270,5 +272,36 @@ class UserController extends Controller
             $user->updated_at
         )        ;
         return ok($user);
+    }
+
+    public function ask()
+    {
+        $id = isauth();
+        if(!$id){
+            $msg = Lang::get('tips.no_login');
+            return err(2, $msg);
+        }
+
+        $v = Validator::make(request()->all(), [
+            'weeknotice_id' => 'required',
+            'content' => 'required',
+        ]);
+        if($v->fails()){
+            return err(1, $v->messages()->first());
+        }
+        $data = request()->only('weeknotice_id', 'content');
+        $user = User::findOrFail($id);
+        $weeknotice = Weeknotice::findOrFail($data['weeknotice_id']);
+
+        $new_weekfaq = new Weekfaq();
+        $new_weekfaq->user_id = $id;
+        $new_weekfaq->weeknotice_id = $data['weeknotice_id'];
+        $new_weekfaq->week = $weeknotice->week;
+        $new_weekfaq->content = $data['content'];
+        $new_weekfaq->save();
+
+        //加积分
+        score($user->id, 5);
+        return ok($new_weekfaq);
     }
 }

@@ -59,6 +59,7 @@ return array(
     'App\\Models\\PointRecord' => $baseDir . '/app/Models/PointRecord.php',
     'App\\Models\\QiandaoLog' => $baseDir . '/app/Models/QiandaoLog.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
+    'App\\Models\\Weekfaq' => $baseDir . '/app/Models/Weekfaq.php',
     'App\\Models\\Weeknotice' => $baseDir . '/app/Models/Weeknotice.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',

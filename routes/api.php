@@ -40,5 +40,8 @@ Route::get('/api/group/search', 'UserController@searchGroup');
 //签到
 Route::get('/api/qiandao', 'UserController@qiandao');
 
+//签到
+Route::get('/api/ask', 'UserController@ask');
+
 //修改资料
 Route::get('/api/user/update', 'UserController@updateUser');

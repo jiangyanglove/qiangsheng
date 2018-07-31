@@ -12,6 +12,8 @@ use Crypt;
 use Cookie;
 use Illuminate\Encryption\Encrypter;
 use App\Models\User;
+use App\Models\Weeknotice;
+use App\Models\Weekfaq;
 
 class HomeController extends Controller
 {
@@ -72,5 +74,31 @@ class HomeController extends Controller
         request()->session()->put('lang', $lang);
         $lang = request()->session()->get('lang');
         return ok();
+    }
+
+    public function preview($week = 0){
+        if(!$week){
+            $week = 1;
+        }
+        $id = isauth();
+        if(!$id){
+            $msg = Lang::get('tips.no_login');
+            return err(2, $msg);
+        }
+        $user = User::findOrFail($id);
+
+        $weeknotices = Weeknotice::where('week', $week)->get();
+        foreach($weeknotices as $weeknotice){
+            $weeknotice->icon = getFullUrl($weeknotice->icon);
+        }
+
+        $weekfaqs = Weekfaq::where('week', $week)->get();
+        foreach($weekfaqs as $weekfaq){
+            if(!$weekfaq->user->icon){
+                $weekfaq->user->icon = 'images/user_icon_default' . $user->sex . '.png';
+            }
+        }
+
+        return view('preview', ['week' => $week, 'user' => $user, 'weeknotices' => $weeknotices, 'weekfaqs' => $weekfaqs]);
     }
 }
