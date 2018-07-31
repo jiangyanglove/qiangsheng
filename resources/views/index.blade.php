@@ -16,7 +16,7 @@
         <div class="menu_icon"></div>
         <img class="logo_img" src="/dist/static/img/logo_white.png" alt="">
         <div class="md-toolbar-section-end">
-          <div class="thumb"><img src="/{{ $user->icon }}" alt=""></div>
+          <div class="thumb"><img src="/dist/static/img/thumb.png" alt=""></div>
         </div>
       </div>
     </div>
@@ -154,7 +154,7 @@
             <span class="md-list-item-text">{{ __('奖品兑换规则') }}</span>
 
               <div class="md-inset">
-                <p>1.{{ __('小组累积积分前3名的组别每人获得一个胶囊咖啡机。') }}</p>
+                <p>1.{{ __('小组累积积分前3名的组别每组获的Nespresso胶囊咖啡机一台。') }}</p>
                 <img class="pre1" src="/dist/static/img/pre1.png" alt="">
                 <p>2.{{ __('个人累积积分') }}</p>
                 <div class="flex_img">
@@ -180,13 +180,14 @@
         </div>
       </div>
 
-      <div class="drawer md-dense dense_r">
+      @include('include.sidebar', ['user' => $user])
+      <!-- <div class="drawer md-dense dense_r">
         <div class="panel">
           <div class="drawer-title">
             <img class="close_btn" src="/dist/static/img/close_icon.png" alt="">
           </div>
           <div class="thumb_l">
-            <img src="/{{ $user->icon }}" alt="">
+            <img src="/dist/static/img/thumb_l.png" alt="">
             <p class="username">{{ $user->name }}</p>
             <input class="username_input" type="text" placeholder="{{ $user->name }}">
             <p class="city">{{ __('城市') }}: {{ $user->city }}</p>
@@ -199,7 +200,7 @@
           </div>
           <button class="md-dense md-raised md-primary">{{ __('设置') }}</button>
         </div>
-      </div>
+      </div> -->
   </div>
 
     <script src="/dist/static/vendor/jquery-3.1.1.min.js"></script>
