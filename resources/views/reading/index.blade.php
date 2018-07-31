@@ -190,6 +190,7 @@ $(function () {
             $('.modal, .close_btn').on('click', function() {
               $('.drawer_l, .dense_r, .modal').removeClass('active')
               $('.index-container').removeClass('hide')
+              $('.cont_news').removeClass('active')
             })
             $('.drawer_item').on('click', function() {
               $(this).children('.md-inset').toggleClass('active');
