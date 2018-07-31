@@ -37,9 +37,9 @@
       </div>
       </a>
 
-      <a href="">
+      <a href="/preview">
       <div class="active_card">
-        <img src="/dist/static/img/thumb_l.png" alt="">
+        <img src="/dist/static/img/m2.png" alt="">
         <div class="card_r">
           <h3>{{ __('精彩预告') }}</h3>
           <p>{{ __('这里有全部的活动资讯，欢迎关注查看。活动问题收集：请提交与活动分享主题相关的提问，现场由讲师进行回答。') }}</p>
