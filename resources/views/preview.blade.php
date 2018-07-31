@@ -7,6 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ __('精彩预告') }} - {{ __('中国强生财务职业发展月') }}</title>
     <link rel="stylesheet" href="/dist/static/style/index.css">
+    <style>
+      .city a {
+        color: #fff;
+      }
+    </style>
 </head>
 <body>
 
@@ -16,9 +21,9 @@
        <div class="back"><a href="javascript:history.back(-1)"><img src="/dist/static/img/back.png" alt=""></a></div>
        <div class="citys">
          <div class="city @if($week == 1) active @endif"><a href="/preview/1">{{ __('第一周') }}</a></div>
-         <div class="city" @if($week == 1) active @endif><a href="/preview/2">{{ __('第二周') }}</a></div>
-         <div class="city" @if($week == 1) active @endif><a href="/preview/2">{{ __('第三周') }}</a></div>
-         <div class="city" @if($week == 1) active @endif><a href="/preview/2">{{ __('第四周') }}</a></div>
+         <div class="city @if($week == 2) active @endif"><a href="/preview/2">{{ __('第二周') }}</a></div>
+         <div class="city @if($week == 3) active @endif"><a href="/preview/3">{{ __('第三周') }}</a></div>
+         <div class="city @if($week == 4) active @endif"><a href="/preview/4">{{ __('第四周') }}</a></div>
        </div>
        <div class="md-toolbar-section-end">
          <div class="thumb"><img src="/{{ $user->icon }}" alt=""></div>
@@ -33,8 +38,8 @@
         <img src="{{ $o->icon }}" alt="">
         <div class="preview_txt">
           <h4>{{ $o->name }}</h4>
-          <p>{{ $o->name }}</p>
-          <div class="btn">{{ __('我要提问') }}</div>
+          <p>{{$o->start_date}}</p>
+          <div class="btn" id="work_btn" data_id="{{ $o->id }}">{{ __('我要提问') }}</div>
         </div>
       </div>
       @endforeach
@@ -42,7 +47,7 @@
     </div>
 
     <div class="preview_textarea_wrap">
-      <textarea class="preview_textarea" name="" id="" cols="5"></textarea>
+      <textarea class="preview_textarea" name="" id="preview_textarea" cols="5"></textarea>
     </div>
 
     <div class="preview_conts">
@@ -84,6 +89,29 @@
             $('.thumb').on('click', function() {
               $('.dense_r, .modal').addClass('active')
               $('.index-container').addClass('hide')
+            })
+
+            var weeknotice_id;
+            $('#work_btn').on('click', function () {
+              weeknotice_id = $(this).attr('data_id');
+              $('#preview_textarea').focus();
+            })
+
+            $('#preview_textarea').on('keypress', function (event) {
+              var content = $(this).val();
+              if (event.keyCode == 13) {
+                $.ajax({
+                  url: '/api/ask',
+                  data: {
+                    weeknotice_id: weeknotice_id,
+                    content: content
+                  },
+                  success: function (res) {
+                    // console.log(res)
+                    window.location.reload();
+                  }
+                })
+              }
             })
         })
     </script>
