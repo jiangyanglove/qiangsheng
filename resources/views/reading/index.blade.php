@@ -133,27 +133,6 @@
         </div>
           @endforeach
           @endif
-        @if(count($comments)>0)
-        @foreach ($comments as $comment)
-            <div class="recommendBottom">
-                <div class="border1px">
-                    <div class="comment">
-                        <div class="left">
-                            <img src="/{{ @$comment->user->icon }}" alt="">
-                        </div>
-                        <div class="right">
-                            <p class="information">
-                                <span class="name">{{ @$comment->user->name }}</span>
-                                <span class="time">{{ @$comment->time }}</span>
-                            </p>
-                            <p class="one">Commented on <span class="three">{{ @$comment->reading->name }}</span></p>
-                            <p class="two">”{{ @$comment->content }}”</p>
-                        </div>
-                    </div>
-                </div>
-            </div>  
-          @endforeach
-          @endif
     </section>
 @include('include.sidebar', ['user' => $user])
 

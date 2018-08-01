@@ -73,7 +73,7 @@ class ReadingController extends Controller
         }
 
         $lang = getLang();
-        return view('reading/index', ['lang' => $lang, 'type' => $type, 'user' => $user, 'readings' => $readings, 'comments' => $comments]);
+        return view('reading/index', ['lang' => $lang, 'type' => $type, 'user' => $user, 'readings' => $readings]);
     }
 
     public function add(){
