@@ -97,6 +97,9 @@
               weeknotice_id = $(this).attr('data_id');
               $(this).children('.preview_textarea_wrap').fadeToggle().children('.preview_textarea').focus();
             })
+            $('.preview_textarea').on('click', function (event) {
+                event.stopPropagation();
+            })
             $('.preview_textarea').on('keypress', function (event) {
               var content = $(this).val();
               if (event.keyCode == 13) {
