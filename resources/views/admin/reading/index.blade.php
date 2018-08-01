@@ -9,7 +9,7 @@
 
 
 
-            <div class="box-body">
+            <div class="box-body table-responsive">
             <!-- Display Validation Errors -->
             @include('admin.common.errors')
                 <table class="table table-bordered table-hover text-nowrap">
@@ -23,7 +23,6 @@
                             <th style="text-align:center;">评论</th>
                             <th style="text-align:center;">点赞</th>
                             <th style="text-align:center;">状态</th>
-                            <th style="text-align:center;">发布时间</th>
                             <th style="text-align:center;">操作</th>
                         </tr>
                     </thead>
@@ -33,8 +32,8 @@
                             <td style='vertical-align: middle;text-align:center;'>{{ $reading->id }}</td>
                             <td style='text-align:center;'>@if($reading->icon)<img src="{{ $reading->icon }}" class="img" width='200px;'>@endif</td>
                             <td style='vertical-align: middle;text-align:center;'>{{ $reading->name }}</td>
-                            <td style='vertical-align: middle;text-align:center;'>{{ $reading->user->name }}<br>{{ $reading->user->wwid }}</td>
-                            <td style='vertical-align: middle;text-align:center;'>{{ str_limit($reading->description,50) }}</td>
+                            <td style='vertical-align: middle;text-align:center;'>{{ $reading->user->name }}<br>wwid:{{ $reading->user->wwid }}<br><small>at:{{ $reading->created_at }}</small></td>
+                            <td style='vertical-align: middle;text-align:center;' width="20%">{{ str_limit($reading->description,100) }}</td>
                             <td style='vertical-align: middle;text-align:center;'>
                                 <a href="#" class="link-black text-sm"><i class="fa fa-comments-o"></i>({{ $reading->comments }})</a>
                             </td>
@@ -45,7 +44,6 @@
                             @if($reading->enabled == 1) <span class="text-green">显示中</span> @endif
                             @if($reading->enabled == 0) <span class="text-yellow">已屏蔽</span> @endif
                             </td>
-                            <td style='vertical-align: middle;text-align:center;'>{{ $reading->created_at }}</td>
                             <td style='vertical-align: middle;text-align:center;'>
                                 <!-- <a class="text-warning" href='/admin/reading/show/{{ $reading->id }}'>详情</a> -->
                                 @if($reading->enabled == 1) <a class="btn btn-warning disable" href='/admin/reading/{{ $reading->id }}/disable'>屏蔽</a> @endif
