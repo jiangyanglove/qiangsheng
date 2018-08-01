@@ -204,7 +204,7 @@ class HomeController extends Controller
         $data = request()->only('result');
 
         $result = $data['result'];
-        $result = 'B,B,D,D,D,D,B,A,B,D';
+        //$result = 'B,B,D,D,D,D,B,A,B,D';
 
         $id = isauth();
         if(!$id){
