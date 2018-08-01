@@ -42,7 +42,7 @@
     display: inline-block;
     padding: 6px 20px;
 }
-        
+
 </style>
 <body>
 
@@ -77,8 +77,8 @@
                     <p class="desc">{{ $reading->description }}</p>
                     <div class="appreciate">
                         <div class="left">
-                            <img src="/{{ $reading->user->icon }}" alt="">
-                            <p>{{ $reading->user->name }}</p>
+                            <img src="/{{ @$reading->user->icon }}" alt="">
+                            <p>{{ @$reading->user->name }}</p>
                         </div>
                         <div class="right">
                             <div class="like" data_id="{{ $reading->id }}">
@@ -101,70 +101,29 @@
             <div class="cont_news_btn">评论</div>
         </div>
         </div>
-<!--         <div class="recommendBottom">
+        <div class="recommendBottom">
+        @if(count($comments)>0)
+        @foreach ($comments as $comment)
             <div class="border1px">
                 <div class="comment">
                     <div class="left">
-                        <img src="/static/img/thumb.png" alt="">
+                        <img src="/{{ @$comment->user->icon }}" alt="">
                     </div>
                     <div class="right">
                         <p class="information">
-                            <span class="name">STACY MARTIN</span>
-                            <span class="time">17 MIN AGO</span>
+                            <span class="name">{{ @$comment->user->name }}</span>
+                            <span class="time">{{ @$comment->time }}</span>
                         </p>
-                        <p class="one">Commented on <span class="three">Stop Wars Tree.</span></p>
-                        <p class="two">”I hope this isn’t avaible in Germany”</p>
+                        <p class="one">Commented on <span class="three">{{ @$comment->reading->name }}</span></p>
+                        <p class="two">”{{ @$comment->content }}”</p>
                     </div>
                 </div>
             </div>
-            <div class="border1px">
-                <div class="comment">
-                    <div class="left">
-                        <img src="/static/img/thumb.png" alt="">
-                    </div>
-                    <div class="right">
-                        <p class="information">
-                            <span class="name">STACY MARTIN</span>
-                            <span class="time">17 MIN AGO</span>
-                        </p>
-                        <p class="one">Commented on <span class="three">Stop Wars Tree.</span></p>
-                        <p class="two">”I hope this isn’t avaible in Germany”</p>
-                    </div>
-                </div>
-            </div>
-            <div class="border1px">
-                <div class="comment">
-                    <div class="left">
-                        <img src="/static/img/thumb.png" alt="">
-                    </div>
-                    <div class="right">
-                        <p class="information">
-                            <span class="name">STACY MARTIN</span>
-                            <span class="time">17 MIN AGO</span>
-                        </p>
-                        <p class="one">Commented on <span class="three">Stop Wars Tree.</span></p>
-                        <p class="two">”I hope this isn’t avaible in Germany”</p>
-                    </div>
-                </div>
-            </div>
-            <div class="border1px">
-                <div class="comment">
-                    <div class="left">
-                        <img src="/static/img/thumb.png" alt="">
-                    </div>
-                    <div class="right">
-                        <p class="information">
-                            <span class="name">STACY MARTIN</span>
-                            <span class="time">17 MIN AGO</span>
-                        </p>
-                        <p class="one">Commented on <span class="three">Stop Wars Tree.</span></p>
-                        <p class="two">”I hope this isn’t avaible in Germany”</p>
-                    </div>
-                </div>
-            </div>
-        </div> -->
+          @endforeach
+          @endif
+        </div>
     </section>
-<!--     <footer>
+<!--      <footer>
         <div class="bootmbutton">
             Send Message
         </div>
@@ -221,7 +180,7 @@ $(function () {
                     }
                 })
             })
-            
+
             $('.like').on('click', function () {
                 var id = $(this).attr('data_id');
                 var num = $(this).children('.num')
