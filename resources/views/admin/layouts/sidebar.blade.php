@@ -22,10 +22,10 @@
 			<li><a href="/admin/weeknotice"><i class="fa fa-users"></i> <span>精彩预告</span></a></li>
 			<li><a href="/admin/hero"><i class="fa fa-users"></i> <span>DISC英雄</span></a></li>
 			<li><a href="/admin/reading"><i class="fa fa-users"></i> <span>读书的力量</span></a></li>
-			<li><a href="/admin/group"><i class="fa fa-users"></i> <span>我的职场范</span></a></li>
+<!-- 			<li><a href="/admin/group"><i class="fa fa-users"></i> <span>我的职场范</span></a></li>
 			<li><a href="/admin/group"><i class="fa fa-users"></i> <span>自由讨论</span></a></li>
 			<li><a href="/admin/group"><i class="fa fa-users"></i> <span>每周回顾</span></a></li>
-			<li><a href="/admin/group"><i class="fa fa-users"></i> <span>未来邮局</span></a></li>
+			<li><a href="/admin/group"><i class="fa fa-users"></i> <span>未来邮局</span></a></li> -->
 		</ul>
 		<!-- /.sidebar-menu -->
 	</section>

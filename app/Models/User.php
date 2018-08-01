@@ -12,4 +12,9 @@ class User extends Model
     {
         return $this->belongsTo('App\Models\Group');
     }
+
+    public function hero()
+    {
+        return $this->belongsTo('App\Models\Hero');
+    }
 }
