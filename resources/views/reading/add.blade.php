@@ -155,6 +155,10 @@
                     alert('请填写描述')
                     return false
                 }
+                if (img_url == '') {
+                    alert('请上传图片')
+                    return false
+                }
                 $.ajax({
                     url: '/api/reading/add?icon=uploads/5b5ca47754f01.jpg&name=hello&description=wocaonima',
                     data: {

@@ -116,8 +116,6 @@
     "简介": "Brief introduction",
     "回复": "Commented on",
 
-    "DISC测评": "DISC Test",
-    "提交": "Submit",
 
     "一、在同事（同学）眼中您是一位？": "1.In the eyes of your fellow workers (fellow students), you are?",
     "A:积极、热情、有行动力的人。": "A:An active and enthusiastic person who can take prompt action.",
@@ -135,6 +133,56 @@
     "A:希望能立即有效。": "A:You hope your decision can create an immediate effect. ",
     "B:感觉重于一切。": "B:Your feelings are more important than anything else.",
     "C:有时间考虑或寻求他人意见。": "C:You spend time contemplating the decision and solicit opinions from others.",
-    "D:要有详细的资料评估。": "D:You need detailed information before making assessment."
+    "D:要有详细的资料评估。": "D:You need detailed information before making assessment.",
+
+
+    "四、职务上哪种工作是我最擅长的？": "4.At your work post, what kind of work are you adept at most? ",
+    "A:以目标为导向，有不服输的精神。": "A:The work that is target-oriented and requires a spirit of accepting no failure",
+    "B:良好的口才，能主动的与人建立友善关系": "B:The work that requires eloquence and the capability of actively establishing sound relationship with others",
+    "C:能配合团队，扮演忠诚的拥护者。 ": "C:The work that requires team cooperation and playing the role of loyal supporter",
+    "D:流程的掌握，注意到细节。": "D:The work that requires the mastery of procedures and the attention to details",
+
+    "五、当面对压力时，您会？": "5.What will you do when you are faced with pressure?",
+    "A:用行动力去面对它，并且克服它。": "A:You face it with action and overcome it",
+    "B:希望找人倾吐，获得认同。": "B:You hope you can tell others about your pressure and win their understanding.",
+    "C:逆来顺受，尽量避免冲突。": "C:You give in to the pressure and try as much as possible to avoid conflicts.",
+    "D:重新思考缘由，必要时做精细的解说。": "D:You think again about the cause of the pressure, and make detailed explanation when necessary.",
+
+
+    "六、与同事（同学）之间的相处？": "6.How do you get along with your fellow workers (fellow students)?",
+    "A:以公事为主，很少谈到个人生活": "A:You mainly talk about public business, and seldom do you touch personal life.",
+    "B:重视气氛，能够带动团队情趣。": "B:You attach importance to creating a congenial mood and can establish a team spirit.",
+    "C:良好的倾听者，对人态度温和友善。": "C:You are an ideal listener and you are gentle and friendly with people.",
+    "D:被动，不会主动与人建立关系。": "D:You have a passive personality and will not actively establish relationship with others.",
+
+
+    "七、您希望别人如何与您沟通？": "7.What do you expect others do when they communicate with you?",
+    "A:直接讲重点，不要拐弯抹角。": "A:They can get to the point instead of beating about the bush.",
+    "B:轻松，不要太严肃。": "B:They communicate with you in a light-hearted way instead of being serious.",
+    "C:不要一次说太多，要给予明确的支持。": "C:They do not cram too many things into the talk, and give clear support to you.",
+    "D:凡事说清楚，讲明白。": "D:They interpret or explain everything clearly.",
+    
+
+    "八、要完成一件事情时，您最在意的部份是？": "8.What’s your focus in accomplishing a task?",
+    "A:效果是否有达到。": "A:Whether you have achieved the desired result",
+    "B:过程是否快乐。": "B:Whether the process is happy",
+    "C:前后是否有改变。": "C:Whether differences occur in the process",
+    "D:流程是否正确。": "D:Whether the procedures are correct",
+
+
+    "九、什么事情会让您恐惧？": "9.What makes you feel uneasy? ",
+    "A:呈现弱点，被人利用。": "A:Your weak points are known and taken advantage of.",
+    "B:失去认同，被人排挤。": "B:You lose recognition and are pushed aside. ",
+    "C:过度变动，让人无所适从。": "C:You are excessively passive and do not know what to do. ",
+    "D:制度不清，标准不一。": "D:The system is unclear and the standards are not unified. ",
+
+
+    "十、哪些是您自觉的缺点？": "10.What shortcomings are you aware of?",
+    "A:没有耐心。": "A:Lack of patience",
+    "B:欠缺细心。": "B:Lack of carefulness",
+    "C:没有主见。": "C:Lack of your own judgment",
+    "D:欠缺风趣。": "D:Lack of a sense of humor",
+    "DISC测评": "DISC Test",
+    "提交": "Submit"
 
 }
