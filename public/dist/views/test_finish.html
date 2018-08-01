@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>penny</title>
+    <link rel="stylesheet" href="../static/style/index.css">
+</head>
+<style>
+  .test_f {
+    padding: 20px;
+    line-height: 1.5;
+  }
+  .test_f .red {
+    color: #ef3d42;
+    font-size: 12px;
+  }
+  .test_f p {
+    font-size: 10px;
+    color: #000;
+  }
+  .test_f h3 {
+    font-size: 12px;
+  }
+  .test_f img {
+    display: block;
+    margin: 50px auto;
+    width: 60%;
+  }
+</style>
+<body>
+
+   <div class="index-container">
+     <div class="head">   
+     <div class="nav">
+       <div class="back"><img src="/static/img/back.png" alt=""></div>
+       <div class="md-toolbar-section-end">
+         <div class="thumb"><img src="/static/img/thumb.png" alt=""></div>
+       </div>
+     </div>
+     </div>
+    
+     <div class="test_f">
+       <h4 class="red">如果选1的答案最多，代表Dominance为支配型性格较为突出，其解释如下：</h4>
+       <p>支配度高者有自己的想法，且非常想成功，同时极擅于让别人依他们的方法做事，具有支配能量高的人会做全盘考虑，并看情况是否有利，为满足自己的需要，他们会透过直接且压迫性的行为掌控环境，但现况不利时，他们通常能压住反对的声音。</p>
+       <h3>工作时：</h3>
+       <p>支配度高者很像生意人。他们的工作环境忙碌、正式、有效率、有组织且功能性高。果断、反应快的人擅言词，同时尖锐而不圆融，因为他们以事为主，并要求结果。高自我意识的长处，使这类人经常成为组织的火车头，因为他们好胜、喜欢改变且讨厌现况。身为爱探险的行动派，这类人要的是直接答案，且喜欢马上看到结果。</p>
+       <h3>匹配英雄：雷神</h3>
+        <p>在北欧神话中，奥丁之子索尔拥有掌管闪电与风暴的能力，是复仇者联盟中能力最稳定、坚强的存在，在巨大的挑战面前，也永不退缩。身为一个神域的领导者，他不会轻易向命运低头，坚信只有自己能够掌握自己的命运，同时控制欲比较强，习惯自己独立思考和决策，并关注结果。</p>
+        <img src="/static/img/bian.jpg" alt="">
+     </div>
+    <div class="bootmbutton">
+        Send Message
+    </div>
+    
+
+    <div class="modal"></div>
+     <div class="drawer md-dense dense_r">
+        <div class="panel">
+          <div class="drawer-title">
+            <img class="close_btn" src="/static/img/close_icon.png" alt="">
+          </div>
+          <div class="thumb_l">
+            <img src="/static/img/thumb_l.png" alt="">
+            <p class="username">userName</p>
+            <input class="username_input" type="text" placeholder="userName">
+            <p class="city">城市: 北京</p>
+          </div>
+          <div class="panel_item">
+            <p>消息</p>
+          </div>
+          <div class="panel_item">
+            <p>排行榜</p>
+          </div>
+          <button class="md-dense md-raised md-primary">设置</button>
+        </div>
+      </div>
+ </div>
+
+    <script src="../static/vendor/jquery-3.1.1.min.js"></script>
+    <script src="../static/vendor/swiper-3.4.0.jquery.min.js"></script>
+    <script>
+        $(function () {
+            var mySwiper = new Swiper ('.swiper-container', {
+               loop: false,
+               pagination : '.swiper-pagination',
+               prevButton:'.swiper-button-prev',
+               nextButton:'.swiper-button-next',
+             })
+            $('.menu_icon').on('click', function() {
+              $('.drawer_l, .modal').addClass('active')
+              $('.index-container').addClass('hide')
+            })
+            $('.modal, .close_btn').on('click', function() {
+              $('.drawer_l, .dense_r, .modal').removeClass('active')
+              $('.index-container').removeClass('hide')
+            })
+            $('.drawer_item').on('click', function() {
+              $(this).children('.md-inset').toggleClass('active');
+              $(this).siblings('.drawer_item').children('.md-inset').removeClass('active')
+            })
+            $('.thumb').on('click', function() {
+              $('.dense_r, .modal').addClass('active')
+              $('.index-container').addClass('hide')
+            })
+            $('.qu_item').on('click', function() {
+              $(this).addClass('active').siblings('.qu_item').removeClass('active');
+            })
+        })
+    </script>
+</body>
+</html>
