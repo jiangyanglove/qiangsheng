@@ -29,8 +29,8 @@
           </div>
           <div class="panel_item" style="margin:5px 0;">
             <span>{{ __('语言切换') }}</span><br>
-            <span class= "changeLang1" style="font-size:15px;@if($lang == 'zh_cn') color:#ef3d42; @else color:#000; @endif font-weight:700;">{{ __('中文') }}</span>|
-            <span class= "changeLang2" style="font-size:15px;@if($lang == 'en') color:#ef3d42; @else color:#000; @endif font-weight:700;">EN</span>
+            <span class= "changeLang1" style="font-size:12px;@if($lang == 'zh_cn') color:#ef3d42; @else color:#000; @endif font-weight:700;">{{ __('中文') }}</span>|
+            <span class= "changeLang2" style="font-size:12px;@if($lang == 'en') color:#ef3d42; @else color:#000; @endif font-weight:700;">EN</span>
           </div>
           <div class="panel_item">
             <a href="/logout"><p style="color:#ef3d42;">{{ __('退出') }}</p></a>
