@@ -94,6 +94,18 @@
     right: 0;
     margin-top: -17px;
 }
+.cus_img {
+    box-shadow: inset 0 0 20px -10px #eee;
+    -webkit-box-shadow: inset 0 0 20px -10px #eee;
+}
+.trigger_comment:first-child .recommendBottom .border1px {
+    border-top: 0;
+}
+.recommendContent .borderhas .appreciate .right div img {
+    width: .7rem;
+    height: .6rem;
+    margin-right: 6px;
+}
 </style>
 <body>
 
@@ -121,7 +133,7 @@
         @foreach ($readings as $reading)
         <div class="cont_cus" data_id="{{ $reading->id }}">
             <div class="martop1rem">
-                <div>
+                <div class="cus_img">
                     <img src="{{ $reading->icon }}" alt="" width="100%">
                 </div>
                 <div class="borderhas">
@@ -147,12 +159,14 @@
             </div>
             <div class="preview_textarea_wrap" style="display: none">
                 <textarea class="preview_textarea" name="" cols="5"></textarea>
-                <div class="send_btn">
+                <div class="send_btn" data_id="{{ $reading->id }}">
                     <img class="send_btn_img" src="/dist/static/img/send_btn.png" alt="">
                 </div>
             </div>
             @if(count(@$reading->comments)>0)
+            <div>
             @foreach ($reading->commentsList as $comment)
+            <div class="trigger_comment">
                 <div class="recommendBottom">
                     <div class="border1px">
                         <div class="comment">
@@ -170,7 +184,15 @@
                         </div>
                     </div>
                 </div>
+                <div class="preview_textarea_wrap" style="display: none">
+                    <textarea class="preview_textarea" name="" cols="5"></textarea>
+                    <div class="send_btn" data_id="{{ $reading->id }}" parent_id="{{ $comment->id }}">
+                        <img class="send_btn_img" src="/dist/static/img/send_btn.png" alt="">
+                    </div>
+                </div>
+            </div>
             @endforeach
+            </div>
             @endif
         </div>
           @endforeach
@@ -215,26 +237,34 @@ $(function () {
             $('.preview_textarea').on('click', function (event) {
                 event.stopPropagation();
             })
+            $('.trigger_comment').on('click', function(event) {
+                event.stopPropagation();
+                $(this).children('.preview_textarea_wrap').fadeToggle().children('.preview_textarea').focus();
+                // addComment(data_id, )
+            })
+            function addComment(reading_id, content, parent_id) {
+                $.ajax({
+                    url: 'api/reading/comment/add',
+                    data: {
+                        reading_id: reading_id,
+                        content: content,
+                        parent: parent_id
+                    },
+                    success: function (res) {
+                        if (res.code == 0) {
+                            window.location.reload();
+                        } else {
+                            alert(res.error_msg)
+                        }
+                    }
+                })
+            }
             $('.send_btn').on('click', function (event) {
                 var content = $(this).siblings('.preview_textarea').val();
+                var parent_id = $(this).attr('parent_id');
+                var data_id = $(this).attr('data_id');
                 event.stopPropagation();
-                // if (event.keyCode == 13) {
-                    $.ajax({
-                        url: 'api/reading/comment/add',
-                        data: {
-                            reading_id: news_id,
-                            content: content
-                        },
-                        success: function (res) {
-                            if (res.code == 0) {
-                                window.location.reload();
-                            } else {
-                                alert(res.error_msg)
-                            }
-                            // $('.cont_news').removeClass('active').siblings('.modal').removeClass('active');
-                        }
-                    })
-                // }
+                addComment(data_id, content, parent_id)
             })
 
             $('.like').on('click', function (e) {
