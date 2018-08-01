@@ -50,6 +50,15 @@ class ReadingController extends Controller
         if(count($readings) > 0){
             foreach($readings as $reading){
                 $reading->user->icon = 'images/user_icon_default' . $reading->user->sex . '.png';
+                $comments = ReadingComment::where('reading_id', $reading->id)->orderBy('id', 'desc')->get();
+                if(count($comments) > 0){
+                    foreach($comments as $comment){
+                        $comment->user->icon = 'images/user_icon_default' . $comment->user->sex . '.png';
+                        $time = Carbon::parse($comment->created_at);
+                        $comment->time = $time->diffForHumans();
+                    }
+                }
+                $reading->commentsList = $comments;
             }
         }
 
@@ -62,14 +71,7 @@ class ReadingController extends Controller
         if(!$user->icon){
             $user->icon = 'images/user_icon_default' . $user->sex . '.png';
         }
-        $comments = ReadingComment::orderBy('id', 'desc')->get();
-        if(count($comments) > 0){
-            foreach($comments as $comment){
-                $comment->user->icon = 'images/user_icon_default' . $comment->user->sex . '.png';
-                $time = Carbon::parse($comment->created_at);
-                $comment->time = $time->diffForHumans();
-            }
-        }
+
         $lang = getLang();
         return view('reading/index', ['lang' => $lang, 'type' => $type, 'user' => $user, 'readings' => $readings, 'comments' => $comments]);
     }
