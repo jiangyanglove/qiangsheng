@@ -43,17 +43,39 @@
     display: inline-block;
     padding: 6px 20px;
 }
-<<<<<<< HEAD
-
-=======
 .preview_textarea_wrap {
     margin: 20px 0;
     padding: 10px;
     border: 1px solid #eee;
     box-shadow: inset 0 0 2px rgba(0,0,0,0.5);
 }
-
->>>>>>> 4a1910b4f47b2907109ba23faa9f9e307d92fe01
+.recommendBottom .border1px .comment {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 19.8rem;
+    margin-left: .9rem;
+    padding: 1.3rem 0;
+    justify-content: flex-start;
+}
+.recommendBottom .border1px .comment .left {
+    margin-right: 20px;
+}
+.recommendBottom {
+    border-bottom: 0;
+}
+.recommendContent .borderhas .appreciate .right div {
+    padding: 10px;
+}
 </style>
 <body>
 
@@ -79,6 +101,7 @@
         <div class="recommendContent">
         @if(count($readings)>0)
         @foreach ($readings as $reading)
+        <div class="cont_cus" data_id="{{ $reading->id }}">
             <div class="martop1rem">
                 <div>
                     <img src="{{ $reading->icon }}" alt="" width="100%" style="height: 12rem;">
@@ -104,40 +127,34 @@
                     </div>
                 </div>
             </div>
+            <div class="preview_textarea_wrap" style="display: none">
+                <textarea class="preview_textarea" name=""  id="preview_textarea" cols="5"></textarea>
+            </div>
+        </div>
           @endforeach
           @endif
-        <div class="preview_textarea_wrap" style="display: none">
-            <textarea class="preview_textarea" name=""  id="preview_textarea" cols="5"></textarea>
-        </div>
-        <div class="modal"></div>
-        <div class="cont_news">
-            <textarea id="aaa"></textarea>
-            <div class="cont_news_btn">评论</div>
-        </div>
-        <div class="recommendBottom">
         @if(count($comments)>0)
         @foreach ($comments as $comment)
-         <div class="recommendBottom">
-            <div class="border1px">
-                <div class="comment">
-                    <div class="left">
-                        <img src="/{{ @$comment->user->icon }}" alt="">
-                    </div>
-                    <div class="right">
-                        <p class="information">
-                            <span class="name">{{ @$comment->user->name }}</span>
-                            <span class="time">{{ @$comment->time }}</span>
-                        </p>
-                        <p class="one">Commented on <span class="three">{{ @$comment->reading->name }}</span></p>
-                        <p class="two">”{{ @$comment->content }}”</p>
+            <div class="recommendBottom">
+                <div class="border1px">
+                    <div class="comment">
+                        <div class="left">
+                            <img src="/{{ @$comment->user->icon }}" alt="">
+                        </div>
+                        <div class="right">
+                            <p class="information">
+                                <span class="name">{{ @$comment->user->name }}</span>
+                                <span class="time">{{ @$comment->time }}</span>
+                            </p>
+                            <p class="one">Commented on <span class="three">{{ @$comment->reading->name }}</span></p>
+                            <p class="two">”{{ @$comment->content }}”</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </div>  
           @endforeach
           @endif
-        </div>
     </section>
-</div>
 @include('include.sidebar', ['user' => $user])
 
 
@@ -170,14 +187,19 @@ $(function () {
             })
 
             var news_id;
-            $('.news').on('click', function () {
+            // $('.news').on('click', function () {
+            //     news_id = $(this).attr('data_id');
+            //     // $('.cont_news').addClass('active').siblings('.modal').addClass('active');
+            //     $('.preview_textarea_wrap').show();
+            //     $('#preview_textarea').focus();
+            // })
+
+            $('.cont_cus').on('click', function() {
                 news_id = $(this).attr('data_id');
-                // $('.cont_news').addClass('active').siblings('.modal').addClass('active');
-                $('.preview_textarea_wrap').show();
-                $('#preview_textarea').focus();
+                $(this).children('.preview_textarea_wrap').fadeToggle().children('#preview_textarea').focus();
             })
 
-            $('#preview_textarea').on('keypress', function (event) {
+            $('.preview_textarea').on('keypress', function (event) {
                 var content = $(this).val();
                 if (event.keyCode == 13) {
                     $.ajax({
@@ -198,7 +220,8 @@ $(function () {
                 }
             })
 
-            $('.like').on('click', function () {
+            $('.like').on('click', function (e) {
+                e.stopPropagation();
                 var id = $(this).attr('data_id');
                 var num = $(this).children('.num')
                 $.ajax({
