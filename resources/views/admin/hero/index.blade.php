@@ -9,28 +9,28 @@
             <div class="box-body table-responsive">
             <!-- Display Validation Errors -->
             @include('admin.common.errors')
-                <table class="table table-bordered table-hover text-nowrap">
-                    <thead>
-                        <tr>
-                            <th width="10%" style="text-align:left;">ID</th>
-                            <th width="10%" style="text-align:left;">头像</th>
-                            <th width="10%" style="text-align:left;">名字</th>
-                            <th width="10%" style="text-align:left;">测评结果</th>
-                            <th width="10%" style="text-align:left;">说明</th>
-                            <th width="10%" style="text-align:left;">工作时</th>
-                            <th width="10%" style="text-align:left;">英雄描述</th>
+                <table class="table table-bordered table-hover row mx-0">
+                    <thead class="w-100">
+                        <tr class="row mx-0">
+                            <th class="col-1" style="text-align:center;">ID</th>
+                            <th class="col-1" style="text-align:center;">头像</th>
+                            <th class="col-2" style="text-align:center;">名字</th>
+                            <th class="col-2" style="text-align:center;">测评结果</th>
+                            <th class="col-2" style="text-align:center;">说明</th>
+                            <th class="col-2" style="text-align:center;">工作时</th>
+                            <th class="col-2" style="text-align:center;">英雄描述</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="w-100">
                     @foreach ($heroes as $key=>$hero)
-                        <tr>
-                            <td style='text-align:left;'>{{ $hero->id }}</td>
-                            <td style='text-align:left;'>@if($hero->icon)<img src="/images/hero/{{ $hero->icon }}" class="img" width="100px;">@endif</td>
-                            <td style='text-align:left;'>《{{ $hero->hero_name }}》<br>{{ $hero->hero_name_en }}</small></td>
-                            <td style='text-align:left;'>{{ $hero->title }}<br>{{ $hero->title_en }}</small></td>
-                            <td style='text-align:left;'>{{ $hero->explanations }}<br>{{ $hero->explanations_en }}</td>
-                            <td style='text-align:left;'>{{ $hero->when_at_work }}<br>{{ $hero->when_at_work_en }}</td>
-                            <td style='text-align:left;'>{{ $hero->hero_desc }}<br>{{ $hero->hero_desc_en }}</td>
+                        <tr class="row mx-0 bg-dark">
+                            <td class="col-2" style='text-align:left;'>{{ $hero->id }}</td>
+                            <td class="col-2" style='text-align:left;'>@if($hero->icon)<img src="/images/hero/{{ $hero->icon }}" class="img" width="50px;">@endif</td>
+                            <td class="col-2" style='text-align:left;'>《{{ $hero->hero_name }}》<br>{{ $hero->hero_name_en }}</small></td>
+                            <td class="col-2" style='text-align:left;'><span title="{{ $hero->title_en }}">{{ $hero->title }}</span></td>
+                            <td class="col-2" style='text-align:left;'><span title="{{ $hero->explanations_en }}">{{ $hero->explanations }}</span></td>
+                            <td class="col-2" style='text-align:left;'><span title="{{ $hero->when_at_work_en }}">{{ $hero->when_at_work }}</span></td>
+                            <td class="col-2" style='text-align:left;'><span title="{{ $hero->hero_desc_en }}">{{ $hero->hero_desc }}</span></td>
                         </tr>
                     @endforeach
                     </tbody>

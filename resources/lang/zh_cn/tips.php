@@ -26,5 +26,6 @@ return [
     'has_got_this_type_point' => '不可重复获得该积分。',
     'no_reading' => '书籍不存在。',
     'three_most' => '最多发布三本书。',
+    'test_have_done' => '你已参加过测试。',
 
 ];

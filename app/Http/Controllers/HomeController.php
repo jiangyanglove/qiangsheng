@@ -17,6 +17,7 @@ use App\Models\Weekfaq;
 use App\Models\PointRecord;
 use App\Models\Hero;
 use Lang;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -183,12 +184,63 @@ class HomeController extends Controller
             $user->icon = 'images/user_icon_default' . $user->sex . '.png';
         }
         if(!$user->hero_id){
-            //return redirect()->route('disc_test');
+            return redirect()->route('disc_test');
         }
 
         $hero = Hero::findOrFail($user->hero_id);
 
         $lang = getLang();
         return view('hero/result', ['lang' => $lang, 'user' => $user, 'hero' => $hero]);
+    }
+
+    public function ApiDiscTestProcess()
+    {
+        $v = Validator::make(request()->all(), [
+            'result' => 'required',
+        ]);
+        if($v->fails()){
+            return err(1, $v->messages()->first());
+        }
+        $data = request()->only('result');
+
+        $result = $data['result'];
+        //$result = 'B,B,D,D,D,D,B,A,B,D';
+
+        $id = isauth();
+        if(!$id){
+            $msg = Lang::get('tips.no_login');
+            return err(2, $msg);
+        }
+        $user = User::findOrFail($id);
+        if($user->hero_id > 0){
+            $msg = Lang::get('tips.test_have_done');
+            return err(2, $msg);
+        }
+        $sex = $user->sex;
+
+        //找到最多的那个hero_type
+        $results = explode(",", $result);
+        $ac = array_count_values($results);
+        $hero_type = array_search(max($ac), $ac);
+
+        if(!$sex){
+            $sex = 1;
+        }
+
+        $match_hero = Hero::where('type', $hero_type)->where('sex', $sex)->first();
+
+        $hero_id = $match_hero->id;
+        $user_new_icon = 'images/hero/' . $match_hero->icon;
+        $disc_time = Carbon::now()->toDateTimeString();
+
+        $user->icon = $user_new_icon;
+        $user->disc_answer = $result;
+        $user->disc_time = $disc_time;
+        $user->hero_id = $hero_id;
+        $user->save();
+
+        //加积分
+        score($user->id, 4);
+        return ok();
     }
 }
