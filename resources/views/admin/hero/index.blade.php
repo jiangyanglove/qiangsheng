@@ -12,13 +12,13 @@
                 <table class="table table-bordered table-hover row mx-0">
                     <thead class="w-100">
                         <tr class="row mx-0">
-                            <th class="col-1" style="text-align:left;">ID</th>
-                            <th class="col-1" style="text-align:left;">头像</th>
-                            <th class="col-2" style="text-align:left;">名字</th>
-                            <th class="col-2" style="text-align:left;">测评结果</th>
-                            <th class="col-2" style="text-align:left;">说明</th>
-                            <th class="col-2" style="text-align:left;">工作时</th>
-                            <th class="col-2" style="text-align:left;">英雄描述</th>
+                            <th class="col-1" style="text-align:center;">ID</th>
+                            <th class="col-1" style="text-align:center;">头像</th>
+                            <th class="col-2" style="text-align:center;">名字</th>
+                            <th class="col-2" style="text-align:center;">测评结果</th>
+                            <th class="col-2" style="text-align:center;">说明</th>
+                            <th class="col-2" style="text-align:center;">工作时</th>
+                            <th class="col-2" style="text-align:center;">英雄描述</th>
                         </tr>
                     </thead>
                     <tbody class="w-100">
