@@ -148,4 +148,20 @@ class HomeController extends Controller
 
         return view('preview', ['week' => $week, 'lang' => $lang, 'user' => $user, 'weeknotices' => $weeknotices]);
     }
+
+    public function disctest()
+    {
+        $id = isauth();
+        if(!$id){
+            $msg = Lang::get('tips.no_login');
+            return err(2, $msg);
+        }
+        $user = User::findOrFail($id);
+        if(!$user->icon){
+            $user->icon = 'images/user_icon_default' . $user->sex . '.png';
+        }
+
+        $lang = getLang();
+        return view('disctest', ['lang' => $lang, 'user' => $user]);
+    }
 }

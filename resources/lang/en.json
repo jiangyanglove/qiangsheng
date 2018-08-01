@@ -117,6 +117,25 @@
     "回复": "Commented on",
 
 
+    "一、在同事（同学）眼中您是一位？": "1.In the eyes of your fellow workers (fellow students), you are?",
+    "A:积极、热情、有行动力的人。": "A:An active and enthusiastic person who can take prompt action.",
+    "B:活泼、开朗、风趣幽默的人。": "B:A lively, outgoing and humorous person.",
+    "C:忠诚、随和、容易相处的人。": "C:A loyal and easy-going person who gets along well with others.",
+    "D:谨慎、冷静、注意细节的人。": "D:A prudent and sober-minded person who attends to details",
+
+    "二、您喜欢看哪一类型的杂志？": "2.Which kind of magazines do you prefer?",
+    "A:管理、财经、趋势类。": "A:Magazines themed with management, finance, and development trend.",
+    "B:旅游、美食、时尚类。": "B:Magazines themed with tourism, food and fashion.",
+    "C:心灵、散文、家庭类。": "C:Magazines themed with self-motivation, prose and family.",
+    "D:科技、专业、艺术类。": "D:Magazines themed with science and technology, specialties, and arts.",
+
+    "三、您做决策的方式？": "3.How do you make a decision?",
+    "A:希望能立即有效。": "A:You hope your decision can create an immediate effect. ",
+    "B:感觉重于一切。": "B:Your feelings are more important than anything else.",
+    "C:有时间考虑或寻求他人意见。": "C:You spend time contemplating the decision and solicit opinions from others.",
+    "D:要有详细的资料评估。": "D:You need detailed information before making assessment.",
+
+
     "四、职务上哪种工作是我最擅长的？": "4.At your work post, what kind of work are you adept at most? ",
     "A:以目标为导向，有不服输的精神。": "A:The work that is target-oriented and requires a spirit of accepting no failure",
     "B:良好的口才，能主动的与人建立友善关系": "B:The work that requires eloquence and the capability of actively establishing sound relationship with others",
@@ -162,6 +181,8 @@
     "A:没有耐心。": "A:Lack of patience",
     "B:欠缺细心。": "B:Lack of carefulness",
     "C:没有主见。": "C:Lack of your own judgment",
-    "D:欠缺风趣。": "D:Lack of a sense of humor"
+    "D:欠缺风趣。": "D:Lack of a sense of humor",
+    "DISC测评": "DISC Test",
+    "提交": "Submit"
 
 }
