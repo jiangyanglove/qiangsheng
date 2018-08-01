@@ -9,7 +9,7 @@
 
 
 
-            <div class="box-body">
+            <div class="box-body table-responsive">
             <!-- Display Validation Errors -->
             @include('admin.common.errors')
                 <table class="table table-bordered table-hover text-nowrap">
@@ -34,7 +34,7 @@
                             <td style='text-align:center;'>@if($reading->icon)<img src="{{ $reading->icon }}" class="img" width='200px;'>@endif</td>
                             <td style='vertical-align: middle;text-align:center;'>{{ $reading->name }}</td>
                             <td style='vertical-align: middle;text-align:center;'>{{ $reading->user->name }}<br>{{ $reading->user->wwid }}</td>
-                            <td style='vertical-align: middle;text-align:center;'>{{ str_limit($reading->description,50) }}</td>
+                            <td style='vertical-align: middle;text-align:center;' width="20%">{{ str_limit($reading->description,100) }}</td>
                             <td style='vertical-align: middle;text-align:center;'>
                                 <a href="#" class="link-black text-sm"><i class="fa fa-comments-o"></i>({{ $reading->comments }})</a>
                             </td>
