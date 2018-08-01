@@ -130,8 +130,8 @@
             <div class="preview_textarea_wrap" style="display: none">
                 <textarea class="preview_textarea" name="" cols="5"></textarea>
             </div>
-            @if(count($reading->comments)>0)
-            @foreach ($reading->comments as $comment)
+            @if(count(@$reading->comments)>0)
+            @foreach ($reading->commentsList as $comment)
                 <div class="recommendBottom">
                     <div class="border1px">
                         <div class="comment">
@@ -148,7 +148,7 @@
                             </div>
                         </div>
                     </div>
-                </div>  
+                </div>
             @endforeach
             @endif
         </div>
