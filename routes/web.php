@@ -30,6 +30,8 @@ Route::get('/preview/{week?}', 'HomeController@preview');
 Route::get('/reading/add', 'ReadingController@add');
 Route::get('/reading/{type?}', 'ReadingController@index');
 
+Route::get('/disctest', 'HomeController@disctest');
+
 
 
 //Auth::routes();
@@ -57,4 +59,6 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin'], function ($router)
     Route::get('reading/{reading}/enable', 'ReadingController@enable');
     Route::get('reading/{reading}/disable', 'ReadingController@disable');
     Route::resource('reading', 'ReadingController');
+
+    Route::resource('disc', 'DiscController');
 });
