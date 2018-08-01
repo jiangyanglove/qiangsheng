@@ -36,10 +36,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $from = request()->input("from");//线下扫码
-        // if($from == 'offline'){
-        //     request()->session()->put('from', $from);
-        // }
+        if(!request()->session()->get('clean') && request()->session()->get('clean') != 'ok'){
+            request()->session()->put('clean', 'ok');
+            return redirect()->route('home')->withCookie(cookie("user", null));
+        }
+
 
         $user = '';
         $id = isauth();
@@ -134,11 +135,14 @@ class HomeController extends Controller
         }
 
         $weekfaqs = Weekfaq::where('week', $week)->get();
-        foreach($weekfaqs as $weekfaq){
-            if(!$weekfaq->user->icon){
-                $weekfaq->user->icon = 'images/user_icon_default' . $user->sex . '.png';
+        if(count($weekfaqs) >0 ){
+            foreach($weekfaqs as $weekfaq){
+                if(!$weekfaq->user->icon){
+                    $weekfaq->user->icon = 'images/user_icon_default' . $user->sex . '.png';
+                }
             }
         }
+
 
         $lang = getLang();
 
