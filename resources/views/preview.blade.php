@@ -34,6 +34,7 @@
     <div class="preview_cards">
       @if(count($weeknotices)>0)
       @foreach ($weeknotices as $o)
+      <div class="pre_card"  data_id="{{ $o->id }}">
       <div class="preview_card">
         <img src="{{ $o->icon }}" alt="">
         <div class="preview_txt">
@@ -42,12 +43,12 @@
           <div class="btn" id="work_btn" data_id="{{ $o->id }}">{{ __('我要提问') }}</div>
         </div>
       </div>
+      <div class="preview_textarea_wrap" style="display: none">
+        <textarea class="preview_textarea" name=""  id="preview_textarea" cols="5"></textarea>
+      </div>
+      </div>
       @endforeach
       @endif
-    </div>
-
-    <div class="preview_textarea_wrap" style="display: none">
-      <textarea class="preview_textarea" name=""  id="preview_textarea" cols="5"></textarea>
     </div>
 
     <div class="preview_conts">
@@ -92,13 +93,11 @@
             })
 
             var weeknotice_id;
-            $('#work_btn').on('click', function () {
+            $('.pre_card').on('click', function () {
               weeknotice_id = $(this).attr('data_id');
-              $('.preview_textarea_wrap').show();
-              $('#preview_textarea').focus();
+              $(this).children('.preview_textarea_wrap').fadeToggle().children('.preview_textarea').focus();
             })
-
-            $('#preview_textarea').on('keypress', function (event) {
+            $('.preview_textarea').on('keypress', function (event) {
               var content = $(this).val();
               if (event.keyCode == 13) {
                 $.ajax({
