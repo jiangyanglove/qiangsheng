@@ -87,7 +87,7 @@ class GroupController extends Controller
 
             $group->members = $members;
         }
-    	return view('group.index', compact(['user', 'city', 'do_number', 'undo_number', 'groups']));
+    	return view('group.index', compact(['user', 'lang', 'city', 'do_number', 'undo_number', 'groups']));
     }
 
 
@@ -109,7 +109,7 @@ class GroupController extends Controller
         $do_number = User::where('group_id', '>', 0)->count();
         $undo_number = User::where('group_id', 0)->count();
 
-        return view('group.add', compact(['user', 'city', 'do_number', 'undo_number']));
+        return view('group.add', compact(['user', 'lang', 'city', 'do_number', 'undo_number']));
     }
 
     public function groupPointsList(){
@@ -141,7 +141,8 @@ class GroupController extends Controller
                 $group->members = GroupUser::where('group_id', $group->id)->where('quit', 0)->get();
             }
         }
-        return view('group.points_group', compact(['user', 'my_group', 'other_groups']));
+        $lang = getLang();
+        return view('group.points_group', compact(['user', 'lang', 'my_group', 'other_groups']));
     }
 
     public function memberPointsList(){
@@ -160,7 +161,9 @@ class GroupController extends Controller
         foreach($other_users as $u){
             $u->icon = 'images/user_icon_default' . $u->sex . '.png';
         }
-        return view('group.points_member', compact(['user', 'other_users']));
+
+                $lang = getLang();
+        return view('group.points_member', compact(['user', 'lang', 'other_users']));
     }
 
     public function mine(){
@@ -195,7 +198,9 @@ class GroupController extends Controller
 
         $do_number = User::where('group_id', '>', 0)->count();
         $undo_number = User::where('group_id', 0)->count();
-        return view('group.mine', compact(['user', 'my_group', 'do_number', 'undo_number']));
+
+                $lang = getLang();
+        return view('group.mine', compact(['user', 'lang', 'my_group', 'do_number', 'undo_number']));
     }
 
     public function quit(){
