@@ -128,8 +128,29 @@
                 </div>
             </div>
             <div class="preview_textarea_wrap" style="display: none">
-                <textarea class="preview_textarea" name=""  id="preview_textarea" cols="5"></textarea>
+                <textarea class="preview_textarea" name="" cols="5"></textarea>
             </div>
+            @if(count($reading->comments)>0)
+            @foreach ($reading->comments as $comment)
+                <div class="recommendBottom">
+                    <div class="border1px">
+                        <div class="comment">
+                            <div class="left">
+                                <img src="/{{ @$comment->user->icon }}" alt="">
+                            </div>
+                            <div class="right">
+                                <p class="information">
+                                    <span class="name">{{ @$comment->user->name }}</span>
+                                    <span class="time">{{ @$comment->time }}</span>
+                                </p>
+                                <p class="one">Commented on <span class="three">{{ @$comment->reading->name }}</span></p>
+                                <p class="two">”{{ @$comment->content }}”</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            @endforeach
+            @endif
         </div>
           @endforeach
           @endif
@@ -140,7 +161,7 @@
 <script src="/dist/static/vendor/jquery-3.1.1.min.js"></script>
 <script>
 $(function () {
-        $('.sex_item').on('click', function() {
+            $('.sex_item').on('click', function() {
                 $(this).addClass('active').siblings('.sex_item').removeClass('active')
             })
             $('.lang_item').on('click', function() {
@@ -166,18 +187,10 @@ $(function () {
             })
 
             var news_id;
-            // $('.news').on('click', function () {
-            //     news_id = $(this).attr('data_id');
-            //     // $('.cont_news').addClass('active').siblings('.modal').addClass('active');
-            //     $('.preview_textarea_wrap').show();
-            //     $('#preview_textarea').focus();
-            // })
-
             $('.cont_cus').on('click', function() {
                 news_id = $(this).attr('data_id');
-                $(this).children('.preview_textarea_wrap').fadeToggle().children('#preview_textarea').focus();
+                $(this).children('.preview_textarea_wrap').fadeToggle().children('.preview_textarea').focus();
             })
-
             $('.preview_textarea').on('keypress', function (event) {
                 var content = $(this).val();
                 if (event.keyCode == 13) {
