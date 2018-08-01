@@ -20,7 +20,7 @@
 			<li><a href="/admin/user"><i class="fa fa-users"></i> <span>用户列表</span></a></li>
 			<li><a href="/admin/group"><i class="fa fa-users"></i> <span>分组管理</span></a></li>
 			<li><a href="/admin/weeknotice"><i class="fa fa-users"></i> <span>精彩预告</span></a></li>
-			<li><a href="/admin/disc"><i class="fa fa-users"></i> <span>DISC测试</span></a></li>
+			<li><a href="/admin/hero"><i class="fa fa-users"></i> <span>DISC英雄</span></a></li>
 			<li><a href="/admin/reading"><i class="fa fa-users"></i> <span>读书的力量</span></a></li>
 			<li><a href="/admin/group"><i class="fa fa-users"></i> <span>我的职场范</span></a></li>
 			<li><a href="/admin/group"><i class="fa fa-users"></i> <span>自由讨论</span></a></li>
