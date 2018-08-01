@@ -3,27 +3,39 @@
       <div class="row">
       	<div class="row">
       		<div class="col-md-12 text-right">
-                <a href="/admin/staff" class="link-black text-sm"><i class="fa fa-arrow-left margin-r-5"></i> 返回员工列表</a>
+                <a href="/admin/user" class="link-black text-sm"><i class="fa fa-arrow-left margin-r-5"></i> 返回用户列表</a>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-sm-4 col-md-4">
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-				@if($staff->icon)<img src="/{{ $staff->icon }}" class="profile-user-img img-responsive img-circle">@else <img src="/staff-icon-default.jpg" class="profile-user-img img-responsive img-circle">@endif
-              <h3 class="profile-username text-center">{{ $staff->nickname }}</h3>
+				@if($user->icon)<img src="/{{ $user->icon }}" class="profile-user-img img-responsive img-circle" width='30' height='30'>@else <img src="/images/user_icon_default{{ @$user->sex}}.png" class="profile-user-img img-responsive img-circle" width='30' height='30'>@endif
+              <h3 class="profile-username text-center">{{ $user->name }}</h3>
 
-              <p class="text-muted text-center">{{ $staff->position }}</p>
+              <p class="text-muted text-center">wwid:{{ $user->wwid }}</p>
 
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
-                  <b>姓名</b> <a class="pull-right">{{ $staff->name }}</a>
+                  <b>姓名</b> <a class="pull-right">{{ $user->name }}</a>
                 </li>
                 <li class="list-group-item">
-                  <b>国家</b> <a class="pull-right">{{ $staff->country }}</a>
+                  <b>性别</b> <a class="pull-right">@if($user->sex == 1) 男 @endif @if($user->sex == 2) 女 @endif</a>
                 </li>
                 <li class="list-group-item">
-                  <b>城市</b> <a class="pull-right">{{ $staff->city }}</a>
+                  <b>城市</b> <a class="pull-right">{{ $user->city }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>积分</b> <a class="pull-right">{{ $user->points }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>所在分组</b> <a class="pull-right">{{ @$user->group_id }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>DISC测评时间</b> <a class="pull-right">{{ $user->disc_time }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>匹配英雄</b> <a class="pull-right">{{ @$user->hero->hero_name }}</a>
                 </li>
               </ul>
             </div>
@@ -32,70 +44,17 @@
           <!-- /.box -->
         </div>
         <!-- /.col -->
-        <div class="col-md-9">
-          	<div class="box box-success">
-				<div class="box-header ui-sortable-handle" style="cursor: move;">
-	              <i class="fa fa-comments-o"></i>
-	              <h3 class="box-title">员工帖子</h3>
-	            </div>
-	            <div class="box-body">
-	            	<div class="col-md-12">
-              	@if(count($staff->posts) > 0)
-	              	@foreach ($staff->posts as $key=>$post)
-	                  <div class="pull-right>
-	                    <span class="description">{{ $post->created_at }}</span>
-	                  </div>
-	                  <!-- /.user-block -->
-	                  <p>
-	                    {{ $post->title }}
-	                  </p>
-	                  <p>
-	                  	@if($post->video)<img width="50" height="50" src="/icon_video.png">@endif
-	                            @if(count($post->pictures) > 0)
-	                                @foreach($post->pictures as $pic)
-	                                    <a href="/{{ $pic->path }}"><img width="50" height="50" src="/{{ $pic->path }}"></a>
-	                                @endforeach
-	                    @endif
-	                  </p>
-	                  <ul class="list-inline">
-	                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like ({{ count($post->likes) }})</a>
-	                    </li>
-	                    <li class="pull-right">
-	                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-	                        ({{ count($post->comments) }})</a></li>
-	                  </ul><hr>
-	              </div>
-	                @endforeach
-	              	@foreach ($staff->posts as $key=>$post)
-	                  <p>  <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> {{ $post->created_at }}</small></p>
-	                  <!-- /.user-block -->
-	                  <p>
-	                    {{ $post->title }}
-	                  </p>
-	                  <p>
-	                  	@if($post->video)<img width="50" height="50" src="/icon_video.png">@endif
-	                            @if(count($post->pictures) > 0)
-	                                @foreach($post->pictures as $pic)
-	                                    <a href="/{{ $pic->path }}"><img width="50" height="50" src="/{{ $pic->path }}"></a>
-	                                @endforeach
-	                    @endif
-	                  </p>
-	                  <ul class="list-inline">
-	                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like ({{ count($post->likes) }})</a>
-	                    </li>
-	                    <li class="pull-right">
-	                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-	                        ({{ count($post->comments) }})</a></li>
-	                  </ul>
-	                @endforeach
-                @else
-                	<center>尚未发布帖子</center>
-                @endif
-	            </div>
-	            <!-- /.box-body -->
+		<div class="col-sm-8 col-md-8">
+            <div class="box box-solid">
+                <div class="box-body">
+                    <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
+                        其他信息
+                    </h4>
+                    <div class="media">
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- /.col -->
       </div>
       <!-- /.row -->
 @endsection

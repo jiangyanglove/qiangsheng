@@ -43,8 +43,8 @@
                             <th style="text-align:center;">性别</th>
                             <th style="text-align:center;">分组</th>
                             <th style="text-align:center;">积分</th>
-
-                            <th style="text-align:center;">登录次数</th>
+                            <th style="text-align:center;">匹配英雄</th>
+                            <!-- <th style="text-align:center;">登录次数</th> -->
                             <th style="text-align:center;">最后登录时间</th>
                             <th style="text-align:center;">操作</th>
                         </tr>
@@ -60,8 +60,9 @@
                             <td style='vertical-align: middle;text-align:center;'>@if($user->sex == 1) 男 @endif @if($user->sex == 2) 女 @endif</td>
                             <td style='vertical-align: middle;text-align:center;'>{{ @$user->group->name }}</td>
                             <td style='vertical-align: middle;text-align:center;'>{{ $user->points }}</td>
+                            <td style='vertical-align: middle;text-align:center;'>{{ @$user->hero->hero_name }}</td>
 
-                            <td style='vertical-align: middle;text-align:center;'>{{ $user->logins }}</td>
+                            <!-- <td style='vertical-align: middle;text-align:center;'>{{ $user->logins }}</td> -->
                             <td style='vertical-align: middle;text-align:center;'>{{ $user->last_login_at }}</td>
                             <td style='vertical-align: middle;text-align:center;'><a class="text-warning" href='/admin/user/show/{{ $user->id }}'>详情</a></td>
                         </tr>

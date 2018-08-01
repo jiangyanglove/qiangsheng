@@ -234,6 +234,7 @@ class HomeController extends Controller
         $disc_time = Carbon::now()->toDateTimeString();
 
         $user->icon = $user_new_icon;
+        $user->disc_answer = $result;
         $user->disc_time = $disc_time;
         $user->hero_id = $hero_id;
         $user->save();
