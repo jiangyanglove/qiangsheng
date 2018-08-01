@@ -29,7 +29,7 @@
                   <b>积分</b> <a class="pull-right">{{ $user->points }}</a>
                 </li>
                 <li class="list-group-item">
-                  <b>所在分组</b> <a class="pull-right">{{ @$user->group_id }}</a>
+                  <b>所在分组</b> <a class="pull-right">@if($user->group_id){{ @$user->group->name }} @else 尚未分组 @endif</a>
                 </li>
                 <li class="list-group-item">
                   <b>DISC测评时间</b> <a class="pull-right">{{ $user->disc_time }}</a>
