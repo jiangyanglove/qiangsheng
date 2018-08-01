@@ -18,7 +18,6 @@
                             <th style="text-align:center;">ID</th>
                             <th style="text-align:center;">图片</th>
                             <th style="text-align:center;">书名</th>
-                            <th style="text-align:center;">推荐人</th>
                             <th style="text-align:center;">简介</th>
                             <th style="text-align:center;">评论</th>
                             <th style="text-align:center;">点赞</th>
@@ -31,9 +30,8 @@
                         <tr>
                             <td style='vertical-align: middle;text-align:center;'>{{ $reading->id }}</td>
                             <td style='text-align:center;'>@if($reading->icon)<img src="{{ $reading->icon }}" class="img" width='200px;'>@endif</td>
-                            <td style='vertical-align: middle;text-align:center;'>{{ $reading->name }}</td>
-                            <td style='vertical-align: middle;text-align:center;'>{{ $reading->user->name }}<br>wwid:{{ $reading->user->wwid }}<br><small>at:{{ $reading->created_at }}</small></td>
-                            <td style='vertical-align: middle;text-align:center;' width="20%">{{ str_limit($reading->description,100) }}</td>
+                            <td style='vertical-align: middle;text-align:center;'>《{{ $reading->name }}》<br>{{ $reading->user->name }}<br>wwid:{{ $reading->user->wwid }}<br><small>at:{{ $reading->created_at }}</small></td>
+                            <td style='vertical-align: middle;text-align:center;'><span title="{{ $reading->description }}">{{ str_limit($reading->description,30) }}</span></td>
                             <td style='vertical-align: middle;text-align:center;'>
                                 <a href="#" class="link-black text-sm"><i class="fa fa-comments-o"></i>({{ $reading->comments }})</a>
                             </td>
