@@ -482,6 +482,7 @@ class ComposerStaticInit7ab66a81321cc549fc0a4016fe8547a6
         'App\\Models\\Disctest' => __DIR__ . '/../..' . '/app/Models/Disctest.php',
         'App\\Models\\Group' => __DIR__ . '/../..' . '/app/Models/Group.php',
         'App\\Models\\GroupUser' => __DIR__ . '/../..' . '/app/Models/GroupUser.php',
+        'App\\Models\\Hero' => __DIR__ . '/../..' . '/app/Models/Hero.php',
         'App\\Models\\PointRecord' => __DIR__ . '/../..' . '/app/Models/PointRecord.php',
         'App\\Models\\QiandaoLog' => __DIR__ . '/../..' . '/app/Models/QiandaoLog.php',
         'App\\Models\\Reading' => __DIR__ . '/../..' . '/app/Models/Reading.php',

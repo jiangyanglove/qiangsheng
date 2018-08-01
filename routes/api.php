@@ -57,3 +57,6 @@ Route::get('/api/reading/like/add', 'UserController@ReadingLikeAdd');
 
 //书籍评论
 Route::get('/api/reading/comment/add', 'UserController@ReadingCommentAdd');
+
+//disctest
+Route::get('/api/disc/answer', 'HomeController@ApiDiscTestProcess');
