@@ -33,7 +33,7 @@
                             <td style='text-align:center;'>@if($reading->icon)<img src="{{ $reading->icon }}" class="img" width='200px;'>@endif</td>
                             <td style='vertical-align: middle;text-align:center;'>{{ $reading->name }}</td>
                             <td style='vertical-align: middle;text-align:center;'>{{ $reading->user->name }}<br>wwid:{{ $reading->user->wwid }}<br><small>at:{{ $reading->created_at }}</small></td>
-                            <td style='vertical-align: middle;text-align:center;'>{{ str_limit($reading->description,15) }}</td>
+                            <td style='vertical-align: middle;text-align:center;'><span title="{{ $reading->description }}">{{ str_limit($reading->description,15) }}</span></td>
                             <td style='vertical-align: middle;text-align:center;'>
                                 <a href="#" class="link-black text-sm"><i class="fa fa-comments-o"></i>({{ $reading->comments }})</a>
                             </td>
