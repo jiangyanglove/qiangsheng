@@ -140,6 +140,8 @@ class HomeController extends Controller
             }
         }
 
-        return view('preview', ['week' => $week, 'user' => $user, 'weeknotices' => $weeknotices, 'weekfaqs' => $weekfaqs]);
+        $lang = getLang();
+
+        return view('preview', ['week' => $week, 'lang' => $lang, 'user' => $user, 'weeknotices' => $weeknotices, 'weekfaqs' => $weekfaqs]);
     }
 }
