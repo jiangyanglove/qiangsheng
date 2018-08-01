@@ -24,6 +24,9 @@
           <div class="panel_item">
             <a href="/group/points/list"><p>{{ __('排行榜') }}</p></a>
           </div>
+          <div class="panel_item">
+            <a href="/logout"><p>{{ __('退出') }}</p></a>
+          </div>
           <button class="setting md-dense md-raised md-primary">{{ __('设置') }}</button>
           <button style="display: none" class="save md-dense md-raised md-primary">{{ __('保存') }}</button>
         </div>
