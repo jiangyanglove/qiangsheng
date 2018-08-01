@@ -25,7 +25,15 @@
             <a href="/group/points/list"><p>{{ __('排行榜') }}</p></a>
           </div>
           <div class="panel_item">
-            <a href="/logout"><p>{{ __('退出') }}</p></a>
+            <a href="JavaScript:;" id="qiandao"><p>{{ __('每日签到') }}</p></a>
+          </div>
+          <div class="panel_item" style="margin:5px 0;">
+            <span>{{ __('语言切换') }}</span><br>
+            <span class= "changeLang1" style="font-size:15px;@if($lang == 'zh_cn') color:#ef3d42; @else color:#000; @endif font-weight:700;">{{ __('中文') }}</span>|
+            <span class= "changeLang2" style="font-size:15px;@if($lang == 'en') color:#ef3d42; @else color:#000; @endif font-weight:700;">EN</span>
+          </div>
+          <div class="panel_item">
+            <a href="/logout"><p style="color:#ef3d42;">{{ __('退出') }}</p></a>
           </div>
           <button class="setting md-dense md-raised md-primary">{{ __('设置') }}</button>
           <button style="display: none" class="save md-dense md-raised md-primary">{{ __('保存') }}</button>
@@ -34,6 +42,47 @@
 
       <script src="/dist/static/vendor/jquery-3.1.1.min.js"></script>
       <script>
+        $('#qiandao').on('click', function () {
+            $.ajax({
+                url: '/api/qiandao',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    if (data.code === 0) {
+                        alert("{{ __('签到成功') }}")
+                    }
+                    else if (data.code === 2) {
+                        alert(data.error_msg)
+                    }
+                    else{
+                      alert(data.data)
+                    }
+                    //window.location.reload();
+                }
+            })
+        });
+        $('.changeLang1').on('click', function () {
+            var language = 'zh_cn';
+            $.ajax({
+                url: '/api/change/language?lang=' + language,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    window.location.reload();
+                }
+            })
+        });
+        $('.changeLang2').on('click', function () {
+            var language = 'en';
+            $.ajax({
+                url: '/api/change/language?lang=' + language,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    window.location.reload();
+                }
+            })
+        });
         $('.setting').on('click', function () {
           var _this = $(this);
           $('.save').show();
