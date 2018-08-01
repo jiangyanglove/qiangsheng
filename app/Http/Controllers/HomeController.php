@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Models\Weeknotice;
 use App\Models\Weekfaq;
 use App\Models\PointRecord;
+use App\Models\Hero;
 use Lang;
 
 class HomeController extends Controller
@@ -149,7 +150,28 @@ class HomeController extends Controller
         return view('preview', ['week' => $week, 'lang' => $lang, 'user' => $user, 'weeknotices' => $weeknotices]);
     }
 
-    public function disctest()
+    public function discTest()
+    {
+        $id = isauth();
+        if(!$id){
+            $msg = Lang::get('tips.no_login');
+            return err(2, $msg);
+        }
+        $user = User::findOrFail($id);
+
+        if($user->hero_id > 0){
+            return redirect()->route('disc_result');
+        }
+        if(!$user->icon){
+            $user->icon = 'images/user_icon_default' . $user->sex . '.png';
+        }
+
+        $lang = getLang();
+        return view('hero/index', ['lang' => $lang, 'user' => $user]);
+    }
+
+
+    public function discResult()
     {
         $id = isauth();
         if(!$id){
@@ -160,8 +182,13 @@ class HomeController extends Controller
         if(!$user->icon){
             $user->icon = 'images/user_icon_default' . $user->sex . '.png';
         }
+        if(!$user->hero_id){
+            //return redirect()->route('disc_test');
+        }
+
+        $hero = Hero::findOrFail($user->hero_id);
 
         $lang = getLang();
-        return view('disctest', ['lang' => $lang, 'user' => $user]);
+        return view('hero/result', ['lang' => $lang, 'user' => $user, 'hero' => $hero]);
     }
 }

@@ -30,7 +30,8 @@ Route::get('/preview/{week?}', 'HomeController@preview');
 Route::get('/reading/add', 'ReadingController@add');
 Route::get('/reading/{type?}', 'ReadingController@index');
 
-Route::get('/disctest', 'HomeController@disctest');
+Route::get('/hero/test', 'HomeController@discTest')->name('disc_test');
+Route::get('/hero/result', 'HomeController@discResult')->name('disc_result');
 
 
 
@@ -61,4 +62,7 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin'], function ($router)
     Route::resource('reading', 'ReadingController');
 
     Route::resource('disc', 'DiscController');
+
+    Route::get('hero', 'HeroController@index');
+    Route::get('hero/import', 'HeroController@import');
 });

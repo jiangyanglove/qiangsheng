@@ -57,6 +57,7 @@ return array(
     'App\\Models\\Disctest' => $baseDir . '/app/Models/Disctest.php',
     'App\\Models\\Group' => $baseDir . '/app/Models/Group.php',
     'App\\Models\\GroupUser' => $baseDir . '/app/Models/GroupUser.php',
+    'App\\Models\\Hero' => $baseDir . '/app/Models/Hero.php',
     'App\\Models\\PointRecord' => $baseDir . '/app/Models/PointRecord.php',
     'App\\Models\\QiandaoLog' => $baseDir . '/app/Models/QiandaoLog.php',
     'App\\Models\\Reading' => $baseDir . '/app/Models/Reading.php',
