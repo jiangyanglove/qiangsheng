@@ -46,9 +46,9 @@
         </div>
       </div>
       </a>
-      <a href="">
+      <a href="/hero/test">
       <div class="active_card">
-        <img src="/dist/static/img/thumb_l.png" alt="">
+        <img src="/dist/static/img/m4.png" alt="">
         <div class="card_r">
           <h3>{{ __('DISC测试') }}</h3>
           <p>{{ __('完成DISC性格测试，揭秘你是超级英雄里的哪一位。') }}</p>
