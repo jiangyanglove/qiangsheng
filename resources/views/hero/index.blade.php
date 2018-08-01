@@ -333,13 +333,17 @@
               }
               var ans_str = ans_obj.join(',')
               $.ajax({
-                url: 'api/disc/answer',
+                url: '/api/disc/answer',
                 data: {
                   result: ans_str
                 },
                 success: function(res) {
                   if (res.code === 0) {
                     window.location.href = '/hero/result';
+                  }
+                  if (res.code === 2 ){
+                    alert(res.error_msg)
+                    window.history.back()
                   }
                 }
               })
