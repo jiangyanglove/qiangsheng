@@ -145,7 +145,7 @@
         });
 
         // 加入小组
-        $(document).on('click', '.join_btn', function () {
+        $('.join_btn').on('click', function () {
             $.ajax({
                 url: '/api/group/join',
                 type: 'GET',
