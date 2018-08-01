@@ -35,6 +35,9 @@
                   <b>DISC测评时间</b> <a class="pull-right">{{ $user->disc_time }}</a>
                 </li>
                 <li class="list-group-item">
+                  <b>DISC测评答案</b> <a class="pull-right">{{ $user->disc_answer }}</a>
+                </li>
+                <li class="list-group-item">
                   <b>匹配英雄</b> <a class="pull-right">{{ @$user->hero->hero_name }}</a>
                 </li>
               </ul>
