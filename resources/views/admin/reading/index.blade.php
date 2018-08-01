@@ -31,7 +31,7 @@
                     @foreach ($readings as $key=>$reading)
                         <tr>
                             <td style='vertical-align: middle;text-align:center;'>{{ $reading->id }}</td>
-                            <td style='text-align:center;'>@if($reading->icon)<img src="/{{ $reading->icon }}" class="img" width='200px;'>@endif</td>
+                            <td style='text-align:center;'>@if($reading->icon)<img src="{{ $reading->icon }}" class="img" width='200px;'>@endif</td>
                             <td style='vertical-align: middle;text-align:center;'>{{ $reading->name }}</td>
                             <td style='vertical-align: middle;text-align:center;'>{{ $reading->user->name }}<br>{{ $reading->user->wwid }}</td>
                             <td style='vertical-align: middle;text-align:center;'>{{ $reading->description }}</td>

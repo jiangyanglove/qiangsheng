@@ -129,7 +129,7 @@ class HomeController extends Controller
             $user->icon = 'images/user_icon_default' . $user->sex . '.png';
         }
 
-        $weeknotices = Weeknotice::where('week', $week)->get();
+        $weeknotices = Weeknotice::where('week', $week)->where('enabled', 1)->get();
         foreach($weeknotices as $weeknotice){
             $weeknotice->icon = getFullUrl($weeknotice->icon);
         }
