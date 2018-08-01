@@ -35,6 +35,45 @@
           position: relative;
           box-sizing: border-box;
       }
+      .preview_cont {
+        position: relative;
+        display: block;
+        padding-left: 50px;
+      }
+      .preview_cont .l {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 10px;
+      }
+      .preview_cont .r .i {
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -moz-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 5px;
+      }
+      .preview_cont .r .i h4 {
+        margin: 0;
+      }
+      .preview_cont .time {
+        font-size: 12px;
+      }
+      .preview_cont .c {
+        line-height: 1.5;
+        margin-top: 4px;
+      }
+      .preview_cont .c p {
+        margin: 0;
+      }
     </style>
 </head>
 <body>
@@ -83,12 +122,16 @@
       <div class="preview_cont">
         <div class="l">
           <img src="/{{ $q->user->icon }}" alt="">
-          <div class="c">
+        </div>
+        <div class="r">
+          <div class="i">
             <h4>{{ $q->user->name }}</h4>
-            <p>{{ $q->content }}</p>
+            <span class="time">{{ $q->created_at }}</span>
+          </div>
+          <div class="c">
+              <p>{{ $q->content }}</p>
           </div>
         </div>
-        <span class="time">{{ $q->created_at }}</span>
       </div>
       @endforeach
       @endif
