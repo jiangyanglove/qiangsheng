@@ -14,7 +14,7 @@ class ImageController extends Controller{
         //     return err(2, $v->messages()->first());
         // }
 
-
+dump($_FILES);exit;
         $img = Image::make($_FILES['image']['tmp_name']);
         // $img->fit(300, 200);
         $img->widen(300);
