@@ -95,8 +95,8 @@
     margin-top: -17px;
 }
 .cus_img {
-    box-shadow: inset 0 1px 5px -2px rgba(0,0,0,.5);
-    -webkit-box-shadow: inset 0 1px 5px -2px rgba(0,0,0,.5);
+    border: 1px solid #ccc;
+    border-bottom: 0;
 }
 .cus_img img {
     display: block;
