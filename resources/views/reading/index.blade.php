@@ -143,7 +143,7 @@
                                     <span class="name">{{ @$comment->user->name }}</span>
                                     <span class="time">{{ @$comment->time }}</span>
                                 </p>
-                                <p class="one">Commented on <span class="three">{{ @$comment->reading->name }}</span></p>
+                                @if($comment->parent >0)<p class="one">{{ __('回复') }}<span class="three">{{ @$comment->parent_user_name }}</span></p>@endif
                                 <p class="two">”{{ @$comment->content }}”</p>
                             </div>
                         </div>

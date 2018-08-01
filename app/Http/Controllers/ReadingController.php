@@ -56,6 +56,16 @@ class ReadingController extends Controller
                         $comment->user->icon = 'images/user_icon_default' . $comment->user->sex . '.png';
                         $time = Carbon::parse($comment->created_at);
                         $comment->time = $time->diffForHumans();
+
+                        $parent_user_name = '';
+                        if($comment->parent > 0){
+                            $parent_comment = ReadingComment::findOrFail($comment->parent);
+                            if($parent_comment){
+                                $parent_comment_user = User::findOrFail($parent_comment->user_id);
+                                $parent_user_name = $parent_comment_user->name;
+                            }
+                        }
+                        $comment->parent_user_name = $parent_user_name;
                     }
                 }
                 $reading->commentsList = $comments;

@@ -327,6 +327,13 @@ class UserController extends Controller
         $data = request()->only('icon', 'name', 'description');
         $user = User::findOrFail($id);
 
+        $exist_reading_count = Reading::where('user_id', $id)->count();
+
+        if($exist_reading_count >= 3){
+            $msg = Lang::get('tips.three_most');
+            return err(2, $msg);
+        }
+
         $new_Reading = new Reading();
         $new_Reading->user_id = $id;
         $new_Reading->icon = $data['icon'];
@@ -397,13 +404,14 @@ class UserController extends Controller
 
         $v = Validator::make(request()->all(), [
             'reading_id' => 'required',
-            'content' => 'required'
+            'content' => 'required',
+            'parent' => 'sometimes'
         ]);
         if($v->fails()){
             return err(1, $v->messages()->first());
         }
 
-        $data = request()->only('reading_id', 'content');
+        $data = request()->only('reading_id', 'content', 'parent');
 
         $reading_id = $data['reading_id'];
         $content = $data['content'];
@@ -414,6 +422,10 @@ class UserController extends Controller
         $new_comment->user_id = $id;
         $new_comment->reading_id = $reading_id;
         $new_comment->content = $content;
+        if(isset($data['parent']) && $data['parent'] > 0){
+            $parent_comment = ReadingComment::findOrFail($data['parent']);
+            $new_comment->parent = $data['parent'];
+        }
 
         $new_comment->save();
 

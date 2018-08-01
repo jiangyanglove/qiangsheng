@@ -25,5 +25,6 @@ return [
     'today_has_qiandao' => 'only one times one day.',
     'has_got_this_type_point' => 'you cannot get this type integral over and over again.',
     'no_reading' => 'no book.',
+    'three_most' => 'three most.',
 
 ];
