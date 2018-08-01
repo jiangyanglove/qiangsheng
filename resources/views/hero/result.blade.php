@@ -50,7 +50,7 @@
        @endif
        <h3>{{ __('匹配英雄') }}：@if($lang == 'en'){{ $hero->hero_name_en }} @else {{ $hero->hero_name }} @endif</h3>
         <p>@if($lang == 'en'){{ $hero->hero_desc_en }} @else {{ $hero->hero_desc }} @endif</p>
-        <img src="/images/hero/{{ $hero->icon }}" alt="">
+        <img src="/images/herotip/{{ $hero->icon }}" alt="">
      </div>
 
     <div class="modal"></div>
