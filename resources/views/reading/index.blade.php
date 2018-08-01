@@ -17,13 +17,14 @@
     border: 1px solid #000;
     margin: 10px;
     text-align: right;
-    z-index: -1;
-    position: fixed;
-    top: 30%;
+    /* z-index: -1; */
+    /* position: fixed; */
+    /* top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%;
+    width: 80%; */
     height: 100px;
+    border: 1px solid #000;
 }
 .cont_news.active{
     z-index: 1001;
@@ -41,6 +42,12 @@
     font-size: 13px;
     display: inline-block;
     padding: 6px 20px;
+}
+.preview_textarea_wrap {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #eee;
+    box-shadow: inset 0 0 2px rgba(0,0,0,0.5);
 }
         
 </style>
@@ -95,12 +102,15 @@
             </div>
           @endforeach
           @endif
-        <div class="modal"></div>
-        <div class="cont_news">
+        <div class="preview_textarea_wrap" style="display: none">
+            <textarea class="preview_textarea" name=""  id="preview_textarea" cols="5"></textarea>
+        </div>
+        <!-- <div class="modal"></div> -->
+        <!-- <div class="cont_news">
             <textarea id="aaa"></textarea>
             <div class="cont_news_btn">评论</div>
-        </div>
-        </div>
+        </div> -->
+        <!-- </div> -->
 <!--         <div class="recommendBottom">
             <div class="border1px">
                 <div class="comment">
@@ -204,22 +214,30 @@ $(function () {
             var news_id;
             $('.news').on('click', function () {
                 news_id = $(this).attr('data_id');
-                $('.cont_news').addClass('active').siblings('.modal').addClass('active');
+                // $('.cont_news').addClass('active').siblings('.modal').addClass('active');
+                $('.preview_textarea_wrap').show();
+                $('#preview_textarea').focus();
             })
 
-            $('.cont_news_btn').on('click', function () {
-                var content = $('#aaa').val();
-                $.ajax({
-                    url: 'api/reading/comment/add',
-                    data: {
-                        reading_id: news_id,
-                        content: content
-                    },
-                    success: function (res) {
-                        console.log(res)
-                        $('.cont_news').removeClass('active').siblings('.modal').removeClass('active');
-                    }
-                })
+            $('#preview_textarea').on('keypress', function (event) {
+                var content = $(this).val();
+                if (event.keyCode == 13) {
+                    $.ajax({
+                        url: 'api/reading/comment/add',
+                        data: {
+                            reading_id: news_id,
+                            content: content
+                        },
+                        success: function (res) {
+                            if (res.code == 0) {
+                                window.location.reload();
+                            } else {
+                                alert(res.error_msg)
+                            }
+                            // $('.cont_news').removeClass('active').siblings('.modal').removeClass('active');
+                        }
+                    })
+                }
             })
             
             $('.like').on('click', function () {
