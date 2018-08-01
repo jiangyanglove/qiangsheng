@@ -16,7 +16,7 @@
         <div class="menu_icon"></div>
         <img class="logo_img" src="/dist/static/img/logo_white.png" alt="">
         <div class="md-toolbar-section-end">
-          <div class="thumb"><img src="/dist/static/img/thumb.png" alt=""></div>
+          <div class="thumb"><img src="/{{ $user->icon }}" alt=""></div>
         </div>
       </div>
     </div>

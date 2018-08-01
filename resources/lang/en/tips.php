@@ -26,5 +26,6 @@ return [
     'has_got_this_type_point' => 'you cannot get this type integral over and over again.',
     'no_reading' => 'no book.',
     'three_most' => 'three most.',
+    'test_have_done' => 'test have done.',
 
 ];
