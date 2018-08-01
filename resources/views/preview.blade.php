@@ -74,13 +74,12 @@
             </div>
         </div>
       </div>
-      @endforeach
-      @endif
-    </div>
+
+
 
     <div class="preview_conts">
-      @if(count($weekfaqs)>0)
-      @foreach ($weekfaqs as $q)
+      @if(count($o->faqs)>0)
+      @foreach ($o->faqs as $q)
       <div class="preview_cont">
         <div class="l">
           <img src="/{{ $q->user->icon }}" alt="">
@@ -95,6 +94,10 @@
       @endif
     </div>
 
+
+      @endforeach
+      @endif
+    </div>
     <div class="modal"></div>
     @include('include.sidebar', ['user' => $user])
  </div>

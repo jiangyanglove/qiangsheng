@@ -130,22 +130,22 @@ class HomeController extends Controller
         }
 
         $weeknotices = Weeknotice::where('week', $week)->where('enabled', 1)->get();
-        foreach($weeknotices as $weeknotice){
-            $weeknotice->icon = getFullUrl($weeknotice->icon);
-        }
-
-        $weekfaqs = Weekfaq::where('week', $week)->get();
-        if(count($weekfaqs) >0 ){
-            foreach($weekfaqs as $weekfaq){
-                if(!$weekfaq->user->icon){
-                    $weekfaq->user->icon = 'images/user_icon_default' . $user->sex . '.png';
+        if(count($weeknotices)>0){
+            foreach($weeknotices as $weeknotice){
+                $weeknotice->icon = getFullUrl($weeknotice->icon);
+                $faqs = Weekfaq::where('weeknotice_id', $weeknotice->id)->where('enabled', 1)->get();
+                if(count($faqs) >0 ){
+                    foreach($faqs as $weekfaq){
+                        if(!$weekfaq->user->icon){
+                            $weekfaq->user->icon = 'images/user_icon_default' . $user->sex . '.png';
+                        }
+                    }
                 }
+                $weeknotice->faqs = $faqs;
             }
         }
-
-
         $lang = getLang();
 
-        return view('preview', ['week' => $week, 'lang' => $lang, 'user' => $user, 'weeknotices' => $weeknotices, 'weekfaqs' => $weekfaqs]);
+        return view('preview', ['week' => $week, 'lang' => $lang, 'user' => $user, 'weeknotices' => $weeknotices]);
     }
 }

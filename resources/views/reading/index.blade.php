@@ -95,8 +95,11 @@
     margin-top: -17px;
 }
 .cus_img {
-    box-shadow: inset 0 0 20px -10px #eee;
-    -webkit-box-shadow: inset 0 0 20px -10px #eee;
+    box-shadow: inset 0 1px 5px -2px rgba(0,0,0,.5);
+    -webkit-box-shadow: inset 0 1px 5px -2px rgba(0,0,0,.5);
+}
+.cus_img img {
+    display: block;
 }
 .trigger_comment:first-child .recommendBottom .border1px {
     border-top: 0;
@@ -105,6 +108,9 @@
     width: .7rem;
     height: .6rem;
     margin-right: 6px;
+}
+.recommendContent .borderhas {
+    margin-top: 0;
 }
 </style>
 <body>
