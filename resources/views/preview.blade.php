@@ -47,7 +47,7 @@
     </div>
 
     <div class="preview_textarea_wrap" style="display: none">
-      <textarea class="preview_textarea" name="" id="preview_textarea" cols="5"></textarea>
+      <textarea class="preview_textarea" name=""  id="preview_textarea" cols="5"></textarea>
     </div>
 
     <div class="preview_conts">
@@ -94,7 +94,8 @@
             var weeknotice_id;
             $('#work_btn').on('click', function () {
               weeknotice_id = $(this).attr('data_id');
-              $('#preview_textarea').show().focus();
+              $('.preview_textarea_wrap').show();
+              $('#preview_textarea').focus();
             })
 
             $('#preview_textarea').on('keypress', function (event) {
