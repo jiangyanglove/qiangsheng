@@ -82,7 +82,7 @@
 <div class="index-container">
     <header class="head">
         <div class="nav">
-            <div class="back"><a href="javascript:history.back(-1)"><img src="/dist/static/img/back.png" alt=""></a></div>
+            <div class="back"><a href="/"><img src="/dist/static/img/back.png" alt=""></a></div>
             <div class="citys">
                 <div class="city @if($type == 'new')active @endif"><a href="/reading/new">{{ __('最新') }}</a></div>
                 <div class="city" @if($type == 'hot')active @endif><a href="/reading/hot">{{ __('热门') }}</a></div>

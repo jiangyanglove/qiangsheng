@@ -18,7 +18,7 @@
    <div class="index-container" :class="{'hide': showDrawer || showUser}">
      <div class="head">
      <div class="nav">
-       <div class="back"><a href="javascript:history.back(-1)"><img src="/dist/static/img/back.png" alt=""></a></div>
+       <div class="back"><a href="/"><img src="/dist/static/img/back.png" alt=""></a></div>
        <div class="citys">
          <div class="city @if($week == 1) active @endif"><a href="/preview/1">{{ __('第一周') }}</a></div>
          <div class="city @if($week == 2) active @endif"><a href="/preview/2">{{ __('第二周') }}</a></div>
