@@ -45,9 +45,11 @@
 }
 .preview_textarea_wrap {
     margin: 20px 0;
-    padding: 10px;
+    padding: 10px 60px 10px 10px;
     border: 1px solid #eee;
-    box-shadow: inset 0 0 2px rgba(0,0,0,0.5);
+    box-shadow: inset 0 0 20px -8px rgba(0,0,0,0.5);
+    position: relative;
+    box-sizing: border-box;
 }
 .recommendBottom .border1px .comment {
     display: -webkit-box;
@@ -75,6 +77,22 @@
 }
 .recommendContent .borderhas .appreciate .right div {
     padding: 10px;
+}
+.send_btn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 46px;
+    background: #ef3d42;
+    top: 0;
+}
+.send_btn img {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin-top: -17px;
 }
 </style>
 <body>
@@ -129,6 +147,9 @@
             </div>
             <div class="preview_textarea_wrap" style="display: none">
                 <textarea class="preview_textarea" name="" cols="5"></textarea>
+                <div class="send_btn">
+                    <img class="send_btn_img" src="/dist/static/img/send_btn.png" alt="">
+                </div>
             </div>
             @if(count(@$reading->comments)>0)
             @foreach ($reading->commentsList as $comment)
@@ -143,7 +164,7 @@
                                     <span class="name">{{ @$comment->user->name }}</span>
                                     <span class="time">{{ @$comment->time }}</span>
                                 </p>
-                                <p class="one">Commented on <span class="three">{{ @$comment->reading->name }}</span></p>
+                                @if($comment->parent >0)<p class="one">{{ __('回复') }}<span class="three">{{ @$comment->parent_user_name }}</span></p>@endif
                                 <p class="two">”{{ @$comment->content }}”</p>
                             </div>
                         </div>
@@ -194,9 +215,10 @@ $(function () {
             $('.preview_textarea').on('click', function (event) {
                 event.stopPropagation();
             })
-            $('.preview_textarea').on('keypress', function (event) {
-                var content = $(this).val();
-                if (event.keyCode == 13) {
+            $('.send_btn').on('click', function (event) {
+                var content = $(this).siblings('.preview_textarea').val();
+                event.stopPropagation();
+                // if (event.keyCode == 13) {
                     $.ajax({
                         url: 'api/reading/comment/add',
                         data: {
@@ -212,7 +234,7 @@ $(function () {
                             // $('.cont_news').removeClass('active').siblings('.modal').removeClass('active');
                         }
                     })
-                }
+                // }
             })
 
             $('.like').on('click', function (e) {

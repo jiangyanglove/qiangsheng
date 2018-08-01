@@ -24,7 +24,7 @@ class WeeknoticeController extends Controller
      */
     public function index()
     {
-        $weeknotices = Weeknotice::paginate(10);
+        $weeknotices = Weeknotice::orderBy('id', 'desc')->paginate(10);
         $page_title = '精彩预告管理';
 
         return view('admin.weeknotice.index', compact(['weeknotices', 'page_title']));
@@ -215,16 +215,32 @@ class WeeknoticeController extends Controller
         return redirect('/admin/weeknotice')->with('status', '删除成功！');
     }
 
-    public function is_top($id)//置顶当做new
+
+    /**
+     * 启用
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function enable($id)
     {
         $weeknotice = Weeknotice::findOrFail($id);
-        if($weeknotice->is_top){
-           $weeknotice->is_top = 0;
-        }
-        else{
-            $weeknotice->is_top = 1;
-        }
+        $weeknotice->enabled = 1;
+        $weeknotice->save();
 
+        return redirect('/admin/weeknotice')->with('status', '操作成功');
+    }
+
+    /**
+     * 禁用
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function disable($id)
+    {
+        $weeknotice = Weeknotice::findOrFail($id);
+        $weeknotice->enabled = 0;
         $weeknotice->save();
 
         return redirect('/admin/weeknotice')->with('status', '操作成功');

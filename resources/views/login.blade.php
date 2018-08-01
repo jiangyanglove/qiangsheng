@@ -18,7 +18,7 @@
         <h3>{{ __('你好，请登录') }}</h3>
         <div class="lang">
             <span class="lang_item @if($lang == 'zh_cn')active @endif">{{ __('中文') }}</span>
-            <span class="lang_item @if($lang == 'en')active @endif"">EN</span>
+            <span class="lang_item @if($lang == 'en')active @endif">EN</span>
         </div>
         <div class="sex">
             <div class="male sex_item active">

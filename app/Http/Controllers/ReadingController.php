@@ -42,20 +42,30 @@ class ReadingController extends Controller
         }
 
         if($type == 'new'){
-            $readings = Reading::orderBy('id', 'desc')->get();
+            $readings = Reading::where('enabled', 1)->orderBy('id', 'desc')->get();
         }
         if($type == 'hot'){
-            $readings = Reading::orderBy('likes', 'desc')->orderBy('id', 'desc')->get();
+            $readings = Reading::where('enabled', 1)->orderBy('likes', 'desc')->orderBy('id', 'desc')->get();
         }
         if(count($readings) > 0){
             foreach($readings as $reading){
                 $reading->user->icon = 'images/user_icon_default' . $reading->user->sex . '.png';
-                $comments = ReadingComment::where('reading_id', $reading->id)->orderBy('id', 'desc')->get();
+                $comments = ReadingComment::where('reading_id', $reading->id)->where('enabled', 1)->orderBy('id', 'desc')->get();
                 if(count($comments) > 0){
                     foreach($comments as $comment){
                         $comment->user->icon = 'images/user_icon_default' . $comment->user->sex . '.png';
                         $time = Carbon::parse($comment->created_at);
                         $comment->time = $time->diffForHumans();
+
+                        $parent_user_name = '';
+                        if($comment->parent > 0){
+                            $parent_comment = ReadingComment::findOrFail($comment->parent);
+                            if($parent_comment){
+                                $parent_comment_user = User::findOrFail($parent_comment->user_id);
+                                $parent_user_name = $parent_comment_user->name;
+                            }
+                        }
+                        $comment->parent_user_name = $parent_user_name;
                     }
                 }
                 $reading->commentsList = $comments;

@@ -21,6 +21,7 @@
                             <th style="text-align:center;">周</th>
                             <th style="text-align:center;">标题</th>
                             <th style="text-align:center;">介绍</th>
+                            <th style="text-align:center;">状态</th>
                             <th style="text-align:center;">操作</th>
                         </tr>
                     </thead>
@@ -32,9 +33,14 @@
                             <td style='vertical-align: middle;text-align:center;'>WEEK{{ $weeknotice->week }}<br>{{ $weeknotice->start_date }}</td>
                             <td style='vertical-align: middle;text-align:center;'>{{ $weeknotice->name }}<br>{{ $weeknotice->name_en }}</td>
                             <td style='vertical-align: middle;text-align:center;'>{!! $weeknotice->content !!}</td>
-
                             <td style='vertical-align: middle;text-align:center;'>
-                                <a class="text-primary" href='/admin/weeknotice/{{ $weeknotice->id }}/edit'>编辑</a>
+                            @if($weeknotice->enabled == 1) <span class="text-green">显示中</span> @endif
+                            @if($weeknotice->enabled == 0) <span class="text-yellow">已屏蔽</span> @endif
+                            </td>
+                            <td style='vertical-align: middle;text-align:center;'>
+                                <a class="btn btn-default" href='/admin/weeknotice/{{ $weeknotice->id }}/edit'>编辑</a>
+                                @if($weeknotice->enabled == 1) <a class="btn btn-warning disable" href='/admin/weeknotice/{{ $weeknotice->id }}/disable'>屏蔽</a> @endif
+                                @if($weeknotice->enabled == 0) <a class="btn btn-success enable" href='/admin/weeknotice/{{ $weeknotice->id }}/enable'>显示</a> @endif
                             </td>
                         </tr>
                     @endforeach

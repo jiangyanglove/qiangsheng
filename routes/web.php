@@ -50,5 +50,11 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin'], function ($router)
 
     Route::get('group', 'GroupController@index');
 
+    Route::get('weeknotice/{weeknotice}/enable', 'WeeknoticeController@enable');
+    Route::get('weeknotice/{weeknotice}/disable', 'WeeknoticeController@disable');
     Route::resource('weeknotice', 'WeeknoticeController');
+
+    Route::get('reading/{reading}/enable', 'ReadingController@enable');
+    Route::get('reading/{reading}/disable', 'ReadingController@disable');
+    Route::resource('reading', 'ReadingController');
 });
