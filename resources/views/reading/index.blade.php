@@ -82,10 +82,10 @@
 <div class="index-container">
     <header class="head">
         <div class="nav">
-            <div class="back"><a href="javascript:history.back(-1)"><img src="/dist/static/img/back.png" alt=""></a></div>
+            <div class="back"><a href="/"><img src="/dist/static/img/back.png" alt=""></a></div>
             <div class="citys">
                 <div class="city @if($type == 'new')active @endif"><a href="/reading/new">{{ __('最新') }}</a></div>
-                <div class="city" @if($type == 'hot')active @endif><a href="/reading/hot">{{ __('热门') }}</a></div>
+                <div class="city @if($type == 'hot')active @endif"><a href="/reading/hot">{{ __('热门') }}</a></div>
             </div>
             <div class="md-toolbar-section-end">
                 <div class="thumb"><img src="/{{ $user->icon }}" alt=""></div>
@@ -104,7 +104,7 @@
         <div class="cont_cus" data_id="{{ $reading->id }}">
             <div class="martop1rem">
                 <div>
-                    <img src="{{ $reading->icon }}" alt="" width="100%" style="height: 12rem;">
+                    <img src="{{ $reading->icon }}" alt="" width="100%">
                 </div>
                 <div class="borderhas">
                     <p class="biaoti">{{ $reading->name }}</p>
@@ -190,6 +190,9 @@ $(function () {
             $('.cont_cus').on('click', function() {
                 news_id = $(this).attr('data_id');
                 $(this).children('.preview_textarea_wrap').fadeToggle().children('.preview_textarea').focus();
+            })
+            $('.preview_textarea').on('click', function (event) {
+                event.stopPropagation();
             })
             $('.preview_textarea').on('keypress', function (event) {
                 var content = $(this).val();

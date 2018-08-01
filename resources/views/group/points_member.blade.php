@@ -13,7 +13,7 @@
    <div class="index-container" :class="{'hide': showDrawer || showUser}">
      <div class="head">
      <div class="nav">
-       <div class="back"><a href="javascript:history.back(-1)"><img src="/dist/static/img/back.png" alt=""></a></div>
+       <div class="back"><a href="/"><img src="/dist/static/img/back.png" alt=""></a></div>
        <div class="citys">
          <div class="city"><a href="/group/points/list">{{ __('团队') }}</a></div>
          <div class="city active">{{ __('个人') }}</div>

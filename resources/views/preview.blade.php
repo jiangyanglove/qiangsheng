@@ -18,7 +18,7 @@
    <div class="index-container" :class="{'hide': showDrawer || showUser}">
      <div class="head">
      <div class="nav">
-       <div class="back"><a href="javascript:history.back(-1)"><img src="/dist/static/img/back.png" alt=""></a></div>
+       <div class="back"><a href="/"><img src="/dist/static/img/back.png" alt=""></a></div>
        <div class="citys">
          <div class="city @if($week == 1) active @endif"><a href="/preview/1">{{ __('第一周') }}</a></div>
          <div class="city @if($week == 2) active @endif"><a href="/preview/2">{{ __('第二周') }}</a></div>
@@ -96,6 +96,9 @@
             $('.pre_card').on('click', function () {
               weeknotice_id = $(this).attr('data_id');
               $(this).children('.preview_textarea_wrap').fadeToggle().children('.preview_textarea').focus();
+            })
+            $('.preview_textarea').on('click', function (event) {
+                event.stopPropagation();
             })
             $('.preview_textarea').on('keypress', function (event) {
               var content = $(this).val();
