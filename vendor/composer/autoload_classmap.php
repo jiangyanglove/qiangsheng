@@ -29,6 +29,7 @@ return array(
     'App\\Http\\Controllers\\Admin\\GroupController' => $baseDir . '/app/Http/Controllers/Admin/GroupController.php',
     'App\\Http\\Controllers\\Admin\\HomeController' => $baseDir . '/app/Http/Controllers/Admin/HomeController.php',
     'App\\Http\\Controllers\\Admin\\LoginController' => $baseDir . '/app/Http/Controllers/Admin/LoginController.php',
+    'App\\Http\\Controllers\\Admin\\ReadingController' => $baseDir . '/app/Http/Controllers/Admin/ReadingController.php',
     'App\\Http\\Controllers\\Admin\\UserController' => $baseDir . '/app/Http/Controllers/Admin/UserController.php',
     'App\\Http\\Controllers\\Admin\\WeeknoticeController' => $baseDir . '/app/Http/Controllers/Admin/WeeknoticeController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWeeknoticeAsksTable extends Migration
+class AddEnabledToWeeknoticesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateWeeknoticeAsksTable extends Migration
      */
     public function up()
     {
-        Schema::create('weeknotice_asks', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id');
-            $table->text('content')->nullable();
-            $table->timestamps();
+        Schema::table('weeknotices', function (Blueprint $table) {
+            $table->integer('enabled')->default(1)->after('content');
         });
     }
 
@@ -28,6 +25,6 @@ class CreateWeeknoticeAsksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('weeknotice_asks');
+        //
     }
 }

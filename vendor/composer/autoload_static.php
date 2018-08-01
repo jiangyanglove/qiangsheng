@@ -454,6 +454,7 @@ class ComposerStaticInit7ab66a81321cc549fc0a4016fe8547a6
         'App\\Http\\Controllers\\Admin\\GroupController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/GroupController.php',
         'App\\Http\\Controllers\\Admin\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/HomeController.php',
         'App\\Http\\Controllers\\Admin\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/LoginController.php',
+        'App\\Http\\Controllers\\Admin\\ReadingController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ReadingController.php',
         'App\\Http\\Controllers\\Admin\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/UserController.php',
         'App\\Http\\Controllers\\Admin\\WeeknoticeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/WeeknoticeController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
