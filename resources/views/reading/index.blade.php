@@ -83,11 +83,11 @@
                         <div class="right">
                             <div class="like" data_id="{{ $reading->id }}">
                                 <img src="/dist/static/img/hongxin.png" alt="">
-                                <span class"num">12</span>
+                                <span class"num">{{ $reading->likes }}</span>
                             </div>
-                            <div class="news">
+                            <div class="news" data_id="{{ $reading->id }}">
                                 <img src="/dist/static/img/xiaoxi.png" alt="">
-                                <span class="num">12</span>
+                                <span class="num">{{ $reading->comments }}</span>
                             </div>
                         </div>
                     </div>
@@ -201,7 +201,9 @@ $(function () {
               $('.index-container').addClass('hide')
             })
 
+            var news_id;
             $('.news').on('click', function () {
+                news_id = $(this).attr('data_id');
                 $('.cont_news').addClass('active').siblings('.modal').addClass('active');
             })
 
@@ -210,7 +212,7 @@ $(function () {
                 $.ajax({
                     url: 'api/reading/comment/add',
                     data: {
-                        reading_id: {{ $reading->id }},
+                        reading_id: news_id,
                         content: content
                     },
                     success: function (res) {
@@ -224,12 +226,13 @@ $(function () {
                 var id = $(this).attr('data_id');
                 var num = $(this).children('.num')
                 $.ajax({
-                    url: 'api/reading/like',
+                    url: '/api/reading/like/add',
                     data: {
                         reading_id: id
                     },
                     success: function (res) {
                         console.log(res)
+                        window.location.reload();
                         num.text(res.data.likes)
                     }
                 })
