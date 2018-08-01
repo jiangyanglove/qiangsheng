@@ -25,7 +25,7 @@ class ReadingController extends Controller
      */
     public function index(Request $request)
     {
-        $readings = Reading::orderBy('id', 'desc')->paginate(20);
+        $readings = Reading::orderBy('id', 'desc')->paginate(10);
 
         $page_title = '推荐书籍列表';
 
