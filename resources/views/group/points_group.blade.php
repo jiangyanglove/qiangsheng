@@ -54,7 +54,7 @@
            <span class="fw">{{ $other->group->leader->name }}({{ __('组长') }})</span>
             @if(count($other->group->members) > 0)
             @foreach ($other->group->members as $member)
-           <span>{{ $member->name }}</span>
+           <span>{{ $member->user_name }}</span>
             @endforeach
             @endif
          </div>

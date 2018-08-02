@@ -134,15 +134,11 @@ class GroupController extends Controller
         }
 
         $others = User::select('group_id', DB::raw('SUM(points) as total_points'))
-                     ->where('group_id', '<>', 0);
-        if($my_group){
-            $others->where('group_id', '<>', $my_group->id);
-        }
-        $others->groupBy('group_id')
-                ->having('total_points', '<>', 0)
-                ->orderBy('total_points', 'desc')
-                ->get();
-
+                     ->where('group_id', '<>', 0)
+                     ->groupBy('group_id')
+                     ->having('total_points', '<>', 0)
+                     ->orderBy('total_points', 'desc')
+                     ->get();
 
         if(count($others)>0){
             foreach($others as &$other){
