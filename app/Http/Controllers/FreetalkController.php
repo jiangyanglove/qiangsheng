@@ -1,9 +1,6 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use App;
 use Validator;
 use auth;
@@ -19,7 +16,6 @@ use App\Models\Letter;
 use App\Models\Letterplan;
 use Lang;
 use Carbon\Carbon;
-
 class FreetalkController extends Controller
 {
     /**
@@ -31,7 +27,6 @@ class FreetalkController extends Controller
     {
         //$this->middleware('auth');
     }
-
     /**
      * Show the application dashboard.
      *
@@ -48,12 +43,10 @@ class FreetalkController extends Controller
         if(!$user->icon){
             $user->icon = 'images/user_icon_default' . $user->sex . '.png';
         }
-
         $types = array("hot", "new");
         if(!$type || !in_array($type, $types)) {
             $type = 'new';
         }
-
         if($type == 'new'){
             $freetalks = Freetalk::where('enabled', 1)->orderBy('id', 'desc')->get();
         }
@@ -85,7 +78,6 @@ class FreetalkController extends Controller
                         }
                         $time = Carbon::parse($comment->created_at);
                         $comment->time = $time->diffForHumans();
-
                         $parent_user_name = '';
                         if($comment->parent > 0){
                             $parent_comment = FreetalkComment::findOrFail($comment->parent);
@@ -104,7 +96,6 @@ class FreetalkController extends Controller
         $lang = getLang();
         return view('freetalk/index', ['lang' => $lang, 'type' => $type, 'user' => $user, 'freetalks' => $freetalks]);
     }
-
     public function addPhotoPage(){
         $user = '';
         $id = isauth();
@@ -115,12 +106,9 @@ class FreetalkController extends Controller
         if(!$user->icon){
             $user->icon = 'images/user_icon_default' . $user->sex . '.png';
         }
-
         $lang = getLang();
         return view('freetalk/photo', ['lang' => $lang, 'user' => $user]);
-
     }
-
     public function addPlanPage(){
         $user = '';
         $id = isauth();
@@ -131,12 +119,9 @@ class FreetalkController extends Controller
         if(!$user->icon){
             $user->icon = 'images/user_icon_default' . $user->sex . '.png';
         }
-
         $lang = getLang();
         return view('freetalk/plan', ['lang' => $lang, 'user' => $user]);
-
     }
-
    public function add()
     {
         $id = isauth();
@@ -144,7 +129,6 @@ class FreetalkController extends Controller
             $msg = Lang::get('tips.no_login');
             return err(2, $msg);
         }
-
         $v = Validator::make(request()->all(), [
             'type' => 'required',
             'photos' => 'sometimes',
@@ -157,58 +141,44 @@ class FreetalkController extends Controller
         $data = request()->only('type', 'photos', 'content', 'letter_plan_ids');
         $type = $data['type'];
         $content = $data['content'];
-
         $user = User::findOrFail($id);
-
         $types = array("photo", "plan");
         if(!in_array($type, $types)) {
             return err(2, 'the type parameter value error');
         }
-
         if(!isset($data['photos']) && !isset($data['letter_plan_ids'])){
             return err(2, 'the photos or letter_plan_ids parameter is must');
         }
-
         $new_freetalk = new Freetalk();
-
         $new_freetalk->user_id = $id;
         $new_freetalk->type = $type;
         $new_freetalk->content = $content;
-
         if(isset($data['photos']) && $data['photos']){
             $new_freetalk->photos = $data['photos'];
         }
-
         if(isset($data['letter_plan_ids']) && $data['letter_plan_ids']){
             $new_freetalk->letter_plan_ids = $data['letter_plan_ids'];
         }
-
         $new_freetalk->save();
-
         $freetalk = Freetalk::find($new_freetalk->id);
-
         //加积分
         score($user->id, 8);
         return ok($freetalk);
     }
-
     public function likeAdd(){
         $id = isauth();
         if(!$id){
             $msg = Lang::get('tips.no_login');
             return err(2, $msg);
         }
-
         $v = Validator::make(request()->all(), [
             'freetalk_id' => 'required'
         ]);
         if($v->fails()){
             return err(1, $v->messages()->first());
         }
-
         $data = request()->only('freetalk_id');
         $freetalk_id = $data['freetalk_id'];
-
         $freetalk = Freetalk::find($freetalk_id);
         if(!$freetalk){
             return err(2, 'no this freetalk');
@@ -222,7 +192,6 @@ class FreetalkController extends Controller
             $freetalk->likes += 1;
             $freetalk->save();
         }
-
         $freetalk = Freetalk::find($freetalk_id);
         unset(
             $freetalk->user_id,
@@ -239,15 +208,12 @@ class FreetalkController extends Controller
             'freetalk' => $freetalk
         ]);
     }
-
-
     public function commentAdd(){
         $id = isauth();
         if(!$id){
             $msg = Lang::get('tips.no_login');
             return err(2, $msg);
         }
-
         $v = Validator::make(request()->all(), [
             'freetalk_id' => 'required',
             'content' => 'required',
@@ -256,14 +222,10 @@ class FreetalkController extends Controller
         if($v->fails()){
             return err(1, $v->messages()->first());
         }
-
         $data = request()->only('freetalk_id', 'content', 'parent');
-
         $freetalk_id = $data['freetalk_id'];
         $content = $data['content'];
-
         $freetalk = Freetalk::find($freetalk_id);
-
         $new_comment = new FreetalkComment;
         $new_comment->user_id = $id;
         $new_comment->freetalk_id = $freetalk_id;
@@ -272,12 +234,9 @@ class FreetalkController extends Controller
             $parent_comment = FreetalkComment::findOrFail($data['parent']);
             $new_comment->parent = $data['parent'];
         }
-
         $new_comment->save();
-
         $freetalk->comments += 1;
         $freetalk->save();
-
         $freetalk = Freetalk::find($freetalk_id);
         unset(
             $freetalk->user_id,
@@ -290,7 +249,6 @@ class FreetalkController extends Controller
             $freetalk->created_at,
             $freetalk->updated_at
         );
-
         return ok([
             'freetalk' => $freetalk
         ]);
