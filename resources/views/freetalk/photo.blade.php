@@ -12,6 +12,40 @@
         　　document.documentElement.style.fontSize = document.documentElement.clientWidth / 23.3 + 'px';
     </script>
 </head>
+<style>
+.upfile {
+    position: relative;
+}
+.upfile input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+}
+.recommendContent .upfile {
+    position: relative;
+}
+.recommendContent .upfile .icon {
+    width: 2.1rem;
+    height: 1.9rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.recommendContent .upfile img {
+    margin: 0;
+    width: auto;
+    height: auto;
+}
+#file_img {
+    z-index: 99;
+    width: 100%;
+    max-height: 100%;
+}
+</style>
 <body>
 
 <div class="index-container">
@@ -35,27 +69,18 @@
         </div>
         <div class="recommendContent">
             <div class="martop1rem">
-                <div class="images">
-                    <div class="item">
-                        <img src="http://img.zcool.cn/community/01bad358f9a153a8012160f765ae6e.jpg" width="100%">
+                <form action="" id="uploadForm" method="post" enctype="multipart/form-data">
+                    <div class="images">
+                        <div class="item upfile">
+                        </div>
+                        <div class="item upfile">
+                            <img src="/static/img/add-b.png" width="100%">
+                        </div>
+                        <input class="file" type="file" name="file"/>
+                        <img class="icon cama" width="100%" src="/dist/static/img/xiangji.png" alt="">
+                        <img id="file_img" src="" alt="">
                     </div>
-                    <div class="item">
-                        <img src="http://img.zcool.cn/community/01bad358f9a153a8012160f765ae6e.jpg" width="100%">
-                    </div>
-                    <div class="item">
-                        <img src="http://img.zcool.cn/community/01bad358f9a153a8012160f765ae6e.jpg" width="100%">
-                    </div>
-                    <div class="item">
-                        <img src="http://img.zcool.cn/community/01bad358f9a153a8012160f765ae6e.jpg" width="100%">
-                    </div>
-                   <div class="item">
-                        <img src="http://img.zcool.cn/community/01bad358f9a153a8012160f765ae6e.jpg" width="100%">
-                    </div>
-                    <div class="item">
-                        <img src="/dist/static/img/add-b.png" width="100%">
-                    </div>
-
-                </div>
+                </form>
                 <div class="textContent">
                     <textarea>|{{ __('这一刻的想法') }}...</textarea>
                 </div>
@@ -72,6 +97,67 @@
 
 <script src="/dist/static/vendor/jquery-3.1.1.min.js"></script>
 <script>
+    $(function () {
+        $('.sex_item').on('click', function() {
+                $(this).addClass('active').siblings('.sex_item').removeClass('active')
+            })
+            $('.lang_item').on('click', function() {
+                $(this).addClass('active').siblings('.lang_item').removeClass('active')
+            })
+
+            $('.menu_icon').on('click', function() {
+              $('.drawer_l, .modal').addClass('active')
+              $('.index-container').addClass('hide')
+            })
+            $('.modal, .close_btn').on('click', function() {
+              $('.drawer_l, .dense_r, .modal').removeClass('active')
+              $('.index-container').removeClass('hide')
+            })
+            $('.drawer_item').on('click', function() {
+              $(this).children('.md-inset').toggleClass('active');
+              $(this).siblings('.drawer_item').children('.md-inset').removeClass('active')
+            })
+            $('.thumb').on('click', function() {
+              $('.dense_r, .modal').addClass('active')
+              $('.index-container').addClass('hide')
+            })
+
+            var img_url = ''
+            var formData = new FormData();
+            $('#back').on('click', function() {window.history.back()})
+            $('.file').on('change', function (e) {
+                var file = e.currentTarget.files[0];
+                formData.append("image", file);
+                $.ajax({
+                    url: '/api/image/upload',
+                    dataType: 'JSON',
+                    data: formData,
+                    type: 'POST',
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    success: function (res) {
+                        img_url = res.data.path;
+                        $('#file_img').attr('src', img_url)
+                        $('.cama').hide()
+                    }
+                })
+            })
+
+            $('.bootmbutton').on('click', function () {
+                $.ajax({
+                    url: '/api/reading/add?icon=uploads/5b5ca47754f01.jpg&name=hello&description=wocaonima',
+                    data: {
+                        icon: img_url,
+                        name: bookname,
+                        description: desc
+                    },
+                    success: function(res) {
+                        window.location.href = '/reading';
+                    }
+                })
+            })
+    })
 
 </script>
 </body>
