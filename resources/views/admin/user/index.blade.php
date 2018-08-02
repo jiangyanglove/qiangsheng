@@ -22,7 +22,7 @@
                                 @endforeach
                             </select>
                         </div>
-                    <button type="submit" class="btn btn-default">搜索</button><a href="/admin/user/import" class="btn">导入用户</a>
+                    <button type="submit" class="btn btn-default">搜索</button><a href="/admin/user/create" class="btn btn-info btn-flat">添加用户</a> <!-- <a href="/admin/user/import" class="btn">导入用户</a> -->
                 </form>
             </div>
             <!-- /.box-header -->
@@ -64,7 +64,9 @@
 
                             <!-- <td style='vertical-align: middle;text-align:center;'>{{ $user->logins }}</td> -->
                             <td style='vertical-align: middle;text-align:center;'>{{ $user->last_login_at }}</td>
-                            <td style='vertical-align: middle;text-align:center;'><a class="text-warning" href='/admin/user/show/{{ $user->id }}'>详情</a></td>
+                            <td style='vertical-align: middle;text-align:center;'>
+                                <a class="btn btn-default" href='/admin/user/{{ $user->id }}/edit'>编辑</a>
+                                <a class="btn btn-primary" href='/admin/user/{{ $user->id }}'>详情</a></td>
                         </tr>
                     @endforeach
                     </tbody>

@@ -48,8 +48,7 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin'], function ($router)
 
 
     Route::get('user/import', 'UserController@import');
-    Route::get('user', 'UserController@index');
-    Route::get('user/show/{id}', 'UserController@show');
+    Route::resource('user', 'UserController');
 
     Route::get('group', 'GroupController@index');
 
@@ -60,8 +59,6 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin'], function ($router)
     Route::get('reading/{reading}/enable', 'ReadingController@enable');
     Route::get('reading/{reading}/disable', 'ReadingController@disable');
     Route::resource('reading', 'ReadingController');
-
-    Route::resource('disc', 'DiscController');
 
     Route::get('hero', 'HeroController@index');
     Route::get('hero/import', 'HeroController@import');

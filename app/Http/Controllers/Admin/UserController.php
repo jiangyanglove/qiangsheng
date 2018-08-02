@@ -71,13 +71,96 @@ class UserController extends Controller
         return view('admin.user.show', compact(['page_title', 'user']));
     }
 
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $page_title = '用户管理';
+
+        return view('admin.user.create', compact(['page_title']));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'city' => 'required',
+            'name' => 'required',
+            'wwid' => 'required',
+        ]);
+
+        $city = $request->input('city');
+        $name = $request->input('name');
+        $wwid = $request->input('wwid');
+
+        $new_user = new User;
+        $new_user->city = $city;
+        $new_user->name = $name;
+        $new_user->wwid = $wwid;
+
+        $new_user->save();
+        return redirect("/admin/user")->with('status', '添加成功！');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        $page_title = "精彩预告管理";
+
+        return view('admin.user.edit', compact(['page_title', 'user']));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $this->validate($request, [
+            'city' => 'required',
+            'name' => 'required',
+            'wwid' => 'required',
+        ]);
+
+        $city = $request->input('city');
+        $name = $request->input('name');
+        $wwid = $request->input('wwid');
+
+        $user->city = $city;
+        $user->name = $name;
+        $user->wwid = $wwid;
+
+
+        $user->save();
+        return redirect("/admin/user")->with('status', '操作成功！');
+    }
+
     public function import(Request $request)
     {
         $a = User::all();
         if(count($a) > 1){
-            //echo '已禁止导入<br>';exit;
-            echo '清空数据表<br>';//exit;
-            DB::table('users')->truncate();
+            echo '已禁止导入<br>';exit;
+            //echo '清空数据表<br>';//exit;
+            //DB::table('users')->truncate();
             echo '导入最新数据<br>';
         }
 
