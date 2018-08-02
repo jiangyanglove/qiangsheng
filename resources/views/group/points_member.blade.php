@@ -25,7 +25,7 @@
      </div>
 
     <div class="group_cards group_mans">
-      <div class="group_man" style="background-color: #c3c3c3;">
+      <div class="group_man">
         <div class="l">
           <img src="/{{ $user->icon }}" alt="">
           <div class="l_r">
@@ -36,11 +36,11 @@
         <div class="r">
           {{ __('积分') }}：{{ $user->points }}
         </div>
-      </div>
+      </div><hr>
       @foreach ($other_users as $u)
       <div class="group_man">
         <div class="l">
-          <img src="/{{ $user->icon }}" alt="">
+          <img src="/{{ $u->icon }}" alt="">
           <div class="l_r">
             <div>{{ $u->name }}</div>
             <div>{{ __('城市') }}：{{ __($u->city) }}</div>
