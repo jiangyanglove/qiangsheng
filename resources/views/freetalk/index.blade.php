@@ -130,10 +130,12 @@
     </header>
     <section>
         <div class="recommendTop">
+        <a href="/freetalk/photo/add">
             <div class="blacktitle">
                 {{ __('发布') }}
                 <!-- 发布照片的url /freetalk/photo/add -->
             </div>
+        </a>
         </div>
         <div class="recommendContent">
             @if(count($freetalks) > 0)

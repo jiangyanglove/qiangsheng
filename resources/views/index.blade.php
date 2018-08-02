@@ -23,7 +23,7 @@
     <div class="swiper-container">
       <div class="swiper-wrapper">
         <div class="swiper-slide banner"><img src="/dist/static/img/banner.png" alt=""></div>
-        <div class="swiper-slide banner"><img src="/dist/static/img/banner.png" alt=""></div>
+        <div class="swiper-slide banner"><img src="/dist/static/img/banner1.png" alt=""></div>
         <div class="swiper-slide banner"><img src="/dist/static/img/banner.png" alt=""></div>
       </div>
     </div>
@@ -73,15 +73,15 @@
         </div>
       </div>
       </a>
-      <a href="/freetalk">
+      <!-- <a href="/freetalk"> -->
       <div class="active_card">
-        <img src="/dist/static/img/thumb_l.png" alt="">
+        <img src="/dist/static/img/m4.png" alt="">
         <div class="card_r">
           <h3>{{ __('自由讨论') }}</h3>
           <p>{{ __('发起与职业发展主题相关话题，自由交流、相互探讨。') }}</p>
         </div>
       </div>
-      </a>
+      <!-- </a> -->
       <a href="">
       <div class="active_card">
         <img src="/dist/static/img/thumb_l.png" alt="">
@@ -135,14 +135,16 @@
                 <h4>{{ __('分值参考') }}:</h4>
                 <p>［{{ __('线上互动') }}］</p>
                 <p>
-                  1.  {{ __('持续登录，每人每天＋1分') }}<br>
-                  2.  {{ __('8月3日前完成建组，每人+3分') }}<br>
-                  3.  {{ __('参加性格测试，每人+5分') }}<br>
-                  4.  {{ __('在活动预览区提问，每人+2分') }}<br>
-                  5.  {{ __('上传职业照和生活照，每人+5分') }}<br>
-                  6.  {{ __('推荐书籍，每人+5分') }}<br>
-                  7.  {{ __('在自由讨论区发布话题，每人+3分') }}<br>
-                  8.  {{ __('将未来邮局的内容转发到自由讨论区，+5分') }}
+                  1.  {{ __('"每日签到每天将获得1分。') }}<br>
+                  2.  {{ __('8月3日下午6点前完成建组， 每人+3 分。"') }}<br>
+                  3.  {{ __('参加性格测试，每人+5分。') }}<br>
+                  4.  {{ __('参与线下活动扫码打卡将获得每活动每次2分。') }}<br>
+                  5.  {{ __('精彩预告”板块，对每个线下活动的第一条提问可获得2分（至多：活动数x2分），之后发布不获得积分。') }}<br>
+                  6.  {{ __('读书的力量”板块，发布图书推荐前三本将每个获得5分（至多15分），之后发布不获得积分。') }}<br>
+                  7.  {{ __('我的职场范儿”板块，第一次发布照片将获得5分（至多5分），之后发布不获得积分。') }}<br>
+                  8.  {{ __('将“未来邮局”板块内容第一次转发至“自由讨论区”将获得5分（至多5分），之后发布不获得积分。') }}<br>
+                  9.  {{ __('自由讨论区”板块发布的前三条话题每条将获得3分（至多9分），之后发布不获得积分。')}}<br>
+                  10.  {{ __('职业发展月结束后，“读书的力量”板块图书获得点赞前三名分别获得，30/20/10分。')}}
                 </p>
                 <p>［{{ __('线下互动') }}］</p>
                 <p>{{ __('参与线下活动，扫描二维码进行签到打卡，每人+2分（可关注活动预览区内容，及时了解活动信息）') }}</p>
