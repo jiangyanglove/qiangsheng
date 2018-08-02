@@ -43,7 +43,6 @@ class HomeController extends Controller
             return redirect()->route('home')->withCookie(cookie("user", null));
         }
 
-
         $user = '';
         $id = isauth();
         if(!$id){
@@ -223,10 +222,7 @@ class HomeController extends Controller
         $ac = array_count_values($results);
         $hero_type = array_search(max($ac), $ac);
 
-        if(!$sex){
-            $sex = 1;
-        }
-
+        $sex = rand(1,2);
         $match_hero = Hero::where('type', $hero_type)->where('sex', $sex)->first();
 
         $hero_id = $match_hero->id;

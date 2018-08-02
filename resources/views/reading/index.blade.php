@@ -204,7 +204,7 @@
           @endforeach
           @endif
     </section>
-@include('include.sidebar', ['user' => $user])
+@include('include.sidebar')
 
 
 <script src="/dist/static/vendor/jquery-3.1.1.min.js"></script>

@@ -180,7 +180,7 @@
         </div>
       </div>
 
-      @include('include.sidebar', ['user' => $user])
+      @include('include.sidebar')
   </div>
 
     <script src="/dist/static/vendor/jquery-3.1.1.min.js"></script>
