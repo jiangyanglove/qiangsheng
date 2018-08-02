@@ -43,18 +43,18 @@
        </div>
       @endif
 
-      @if(count($other_groups) > 0)
-      @foreach ($other_groups as $group)
+      @if(count($others) > 0)
+      @foreach ($others as $other)
       <div class="group_card">
          <div class="df item">
-           <div class="red">{{ __('小组名称') }}：{{ $group->name }}</div>
-           <div class="black">{{ __('积分') }}：{{ $group->points }}</div>
+           <div class="red">{{ __('小组名称') }}：{{ $other->group->name }}</div>
+           <div class="black">{{ __('积分') }}：{{ $other->total_points }}</div>
          </div>
          <div class="item member">
-           <span class="fw">{{ $group->leader->name }}({{ __('组长') }})</span>
-            @if(count($group->members) > 0)
-            @foreach ($group->members as $member)
-           <span>john</span>
+           <span class="fw">{{ $other->group->leader->name }}({{ __('组长') }})</span>
+            @if(count($other->group->members) > 0)
+            @foreach ($other->group->members as $member)
+           <span>{{ $member->name }}</span>
             @endforeach
             @endif
          </div>

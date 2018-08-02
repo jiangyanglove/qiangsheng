@@ -133,16 +133,25 @@ class GroupController extends Controller
             }
         }
 
-        $other_groups = Group::where('id', '<>', $user->group_id)->get();
-        if($other_groups){
-            foreach($other_groups as $group){
-                $group->points = User::where('group_id', $group->id)->sum('points');
-                $group->leader = User::where('id', $group->leader_user_id)->first();
-                $group->members = GroupUser::where('group_id', $group->id)->where('quit', 0)->get();
+        $others = User::select('group_id', DB::raw('SUM(points) as total_points'))
+                     ->where('group_id', '<>', 0)
+                     ->where('group_id', '<>', $my_group->id)
+                     ->groupBy('group_id')
+                     ->having('total_points', '<>', 0)
+                     ->orderBy('total_points', 'desc')
+                     ->get();
+
+        if(count($others)>0){
+            foreach($others as &$other){
+                $group = Group::find($other->group_id);
+                $group->leader = User::find($group->leader_user_id);
+                $members = GroupUser::where('group_id', $group->id)->where('quit', 0)->get();
+                $group->members = $members;
+                $other->group = $group;
             }
         }
         $lang = getLang();
-        return view('group.points_group', compact(['user', 'lang', 'my_group', 'other_groups']));
+        return view('group.points_group', compact(['user', 'lang', 'my_group', 'others']));
     }
 
     public function memberPointsList(){
@@ -157,7 +166,7 @@ class GroupController extends Controller
             $user->icon = 'images/user_icon_default' . $user->sex . '.png';
         }
 
-        $other_users = User::where('id', '<>', $id)->get();
+        $other_users = User::where('id', '<>', $id)->where('points', '>', 0)->get();
         foreach($other_users as $u){
             $u->icon = 'images/user_icon_default' . $u->sex . '.png';
         }
