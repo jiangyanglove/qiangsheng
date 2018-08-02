@@ -19,7 +19,7 @@
     "请大家组队参与小组积分赛，每组需要8名成员，累计积分排名前三的小组将获得奖品。": "Please team up to participate in the group points game. Each group needs 8 members and the teams with the accumulated points ranked top three will receive prizes.",
     "在8月3日前完成小组组建的用户可获得每人+3分的奖励，过此时限其它用户将被随机分组，随机分组没有加分。": "Users who complete the group before August 3 will receive a reward of +3 points per person. After this time, other users will be randomly grouped, and there will be no points for random grouping.",
     "分组操作": "Grouping operation",
-    "用户可登陆分组页面，在所属区域新建小组，建组完成后可发送邀请链接邀请其他用户进组，创建者为组长。": "The users can log in to the grouping page and create a new group in their area , The creator is the group leader.",
+    "用户可登陆分组页面，在所属区域新建小组，创建者为组长。": "The users can log in to the grouping page and create a new group in their area , The creator is the group leader.",
     "用户也可在分组页面选择已有小组并点击加入，小组满8人后加入功能将关闭。": "The users can also select the existing group on the group page and click to join. After the group is over 8 people, the function will be closed.",
     "网站积分规则": "Website Rules of Cumulating Points",
     "积分分类": "Points classification",
@@ -186,6 +186,8 @@
     "工作时": "When At Work",
     "DISC测评": "DISC Test",
     "匹配英雄": "Match the hero",
-    "提交": "Submit"
+    "提交": "Submit",
+
+    "发布": "Publish",
 
 }

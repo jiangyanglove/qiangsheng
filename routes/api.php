@@ -60,3 +60,12 @@ Route::get('/api/reading/comment/add', 'UserController@ReadingCommentAdd');
 
 //disctest
 Route::get('/api/disc/answer', 'HomeController@ApiDiscTestProcess');
+
+//发布自由讨论
+Route::get('/api/freetalk/add', 'FreetalkController@add');
+
+//自由讨论点赞
+Route::get('/api/freetalk/like/add', 'FreetalkController@likeAdd');
+
+//自由讨论评论
+Route::get('/api/freetalk/comment/add', 'FreetalkController@commentAdd');
