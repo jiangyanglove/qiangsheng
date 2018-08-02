@@ -169,10 +169,12 @@ class GroupController extends Controller
         $other_users = User::where('points', '>', 0)->orderBy('points', 'desc')->get();
 
         foreach($other_users as $u){
-            $u->icon = 'images/user_icon_default' . $u->sex . '.png';
+            if(!$u->icon){
+                $u->icon = 'images/user_icon_default' . $u->sex . '.png';
+            }
         }
 
-                $lang = getLang();
+        $lang = getLang();
         return view('group.points_member', compact(['user', 'lang', 'other_users']));
     }
 
