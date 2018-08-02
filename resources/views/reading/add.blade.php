@@ -92,7 +92,7 @@
     </footer>
 </div>
 
-@include('include.sidebar', ['user' => $user])
+@include('include.sidebar')
 <script src="/dist/static/vendor/jquery-3.1.1.min.js"></script>
 <script>
 
@@ -120,7 +120,7 @@
               $('.dense_r, .modal').addClass('active')
               $('.index-container').addClass('hide')
             })
-            
+
             var img_url = ''
             $('#back').on('click', function() {window.history.back()})
             $('#file').on('change', function (e) {

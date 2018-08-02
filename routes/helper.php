@@ -95,7 +95,7 @@ function getFullUrl($img, $more = false){
 //     App::setLocale($lang);
 // }
 function getLang(){
-    $lang = 'en';
+    $lang = 'zh_cn';
     if(request()->session()->has('lang')){
         $lang = request()->session()->get('lang');
     }
