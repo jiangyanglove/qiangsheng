@@ -95,7 +95,7 @@ class UserController extends Controller
         $this->validate($request, [
             'city' => 'required',
             'name' => 'required',
-            'wwid' => 'required',
+            'wwid' => 'required|unique:users',
         ]);
 
         $city = $request->input('city');
@@ -120,7 +120,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        $page_title = "精彩预告管理";
+        $page_title = "用户管理";
 
         return view('admin.user.edit', compact(['page_title', 'user']));
     }
