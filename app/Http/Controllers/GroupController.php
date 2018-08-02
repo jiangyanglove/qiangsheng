@@ -165,7 +165,9 @@ class GroupController extends Controller
             $user->icon = 'images/user_icon_default' . $user->sex . '.png';
         }
 
-        $other_users = User::where('id', '<>', $id)->where('points', '>', 0)->get();
+//where('id', '<>', $id)->
+        $other_users = User::where('points', '>', 0)->orderBy('points', 'desc')->get();
+
         foreach($other_users as $u){
             $u->icon = 'images/user_icon_default' . $u->sex . '.png';
         }
