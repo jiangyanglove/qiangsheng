@@ -36,6 +36,16 @@ class ReadingController extends Controller
      */
     public function index($type=false)
     {
+        $user = '';
+        $id = isauth();
+        if(!$id){
+            return redirect()->route('login');
+        }
+        $user = User::findOrFail($id);
+        if(!$user->icon){
+            $user->icon = 'images/user_icon_default' . $user->sex . '.png';
+        }
+
         $types = array("hot", "new");
         if(!$type || !in_array($type, $types)) {
             $type = 'new';
@@ -49,11 +59,16 @@ class ReadingController extends Controller
         }
         if(count($readings) > 0){
             foreach($readings as $reading){
-                $reading->user->icon = 'images/user_icon_default' . $reading->user->sex . '.png';
+                if(!$reading->user->icon){
+                    $reading->user->icon = 'images/user_icon_default' . $reading->user->sex . '.png';
+                }
                 $comments = ReadingComment::where('reading_id', $reading->id)->where('enabled', 1)->orderBy('id', 'desc')->get();
                 if(count($comments) > 0){
                     foreach($comments as $comment){
-                        $comment->user->icon = 'images/user_icon_default' . $comment->user->sex . '.png';
+                        if(!$comment->user->icon){
+                            $comment->user->icon = 'images/user_icon_default' . $comment->user->sex . '.png';
+                        }
+
                         $time = Carbon::parse($comment->created_at);
                         $comment->time = $time->diffForHumans();
 
@@ -70,16 +85,6 @@ class ReadingController extends Controller
                 }
                 $reading->commentsList = $comments;
             }
-        }
-
-        $user = '';
-        $id = isauth();
-        if(!$id){
-            return redirect()->route('login');
-        }
-        $user = User::findOrFail($id);
-        if(!$user->icon){
-            $user->icon = 'images/user_icon_default' . $user->sex . '.png';
         }
 
         $lang = getLang();
