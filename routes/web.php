@@ -30,7 +30,8 @@ Route::get('/preview/{week?}', 'HomeController@preview');
 Route::get('/reading/add', 'ReadingController@add');
 Route::get('/reading/{type?}', 'ReadingController@index');
 
-Route::get('/freetalk/add', 'FreetalkController@addPhotoPage');
+Route::get('/freetalk/photo/add', 'FreetalkController@addPhotoPage');
+Route::get('/freetalk/plan/add', 'FreetalkController@addPhotoPage');
 Route::get('/freetalk/{type?}', 'FreetalkController@index');
 
 Route::get('/hero/test', 'HomeController@discTest')->name('disc_test');

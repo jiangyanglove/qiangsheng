@@ -31,6 +31,7 @@
         <div class="recommendTop">
             <div class="blacktitle">
                 {{ __('发布') }}
+                <!-- 发布照片的url /freetalk/photo/add -->
             </div>
         </div>
         <div class="recommendContent">
