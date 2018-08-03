@@ -301,16 +301,22 @@ class UserController extends Controller
             if($users){
                 foreach($users as $user){
                     if($user->group_id > 0){
+                        echo $user->id;
                         $exist = PointRecord::where('user_id', $user->id)->where('type', 3)->where('enabled', 1)->first();
                         if(!$exist){
                             score($user->id, 3);//组员加分
+                            echo 'new add!';
+                        }else{
+                            echo 'have added!';
                         }
                     }
                 }
             }
+            echo '<br>';
             $records = PointRecord::where('type', 3)->get();//处理错误加分
             foreach($records as $record){
                 if($record->user->group_id < 1){
+                    echo $record->id;echo '<br>';
                     $record->user->points -= 3;
                     $record->user->save();
                     $record->enabled = 0;
