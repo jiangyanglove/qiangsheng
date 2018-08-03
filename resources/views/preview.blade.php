@@ -87,6 +87,7 @@
          <div class="city @if($week == 2) active @endif"><a href="/preview/2">{{ __('第二周') }}</a></div>
          <div class="city @if($week == 3) active @endif"><a href="/preview/3">{{ __('第三周') }}</a></div>
          <div class="city @if($week == 4) active @endif"><a href="/preview/4">{{ __('第四周') }}</a></div>
+         <div class="city @if($week == 5) active @endif"><a href="/preview/5">{{ __('第五周') }}</a></div>
        </div>
        <div class="md-toolbar-section-end">
          <div class="thumb"><img src="/{{ $user->icon }}" alt=""></div>
