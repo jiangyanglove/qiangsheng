@@ -116,7 +116,7 @@ function score($user_id, $type){
                             ),
                     3   => array(
                             'point' => 3,
-                            'description' => '8月3日前完成建组',
+                            'description' => '8月3日下午6点前完成建组',
                             ),
                     4   => array(
                             'point' => 5,
