@@ -37,7 +37,7 @@
                             <th style="text-align:center;">组长</th>
                             <th style="text-align:center;">成员</th>
                             <th style="text-align:center;">积分</th>
-                            <th style="text-align:center;">按时组建任务</th>
+                            <!-- <th style="text-align:center;">按时组建任务</th> -->
                             <!-- <th style="text-align:center;">操作</th> -->
                         </tr>
                     </thead>
@@ -56,10 +56,10 @@
                               @endif
                             </td>
                             <td style='vertical-align: middle;text-align:center;'>{{ $group->points }}</td>
-                            <td style='vertical-align: middle;text-align:center;'>
+<!--                             <td style='vertical-align: middle;text-align:center;'>
                                 @if($group->make_task_status == 1) <img src="/images/gou.png"/> @endif
                                 @if($group->make_task_status == 0) <img src="/images/cha.png"/> @endif
-                            </td>
+                            </td> -->
                             <!-- <td style='vertical-align: middle;text-align:center;'><a class="text-warning" href='/admin/group/show/{{ $group->id }}'>详情</a></td> -->
                         </tr>
                     @endforeach

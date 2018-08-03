@@ -297,15 +297,24 @@ class UserController extends Controller
             //    $group->make_task_status = 1;
             //    $group->save();
             // }
-            $group_users = GroupUser::where('quit', 1)->get();
-            if($group_users){
-                foreach($group_users as $group_user){
-                    $record = PointRecord::where('user_id', $group_user->user_id)->where('type', 3)->first();
-                    echo 'Group:' . $group_user->group_id . ' - ' . $record->id;echo '<br>';
+            $users = User::get(); //有分组的话就加分
+            if($users){
+                if($user->group_id > 0){
+                    $exist = PointRecord::where('user_id', $user->id)->where('type', 3)->where('enabled', 1)->first();
+                    if(!$exist){
+                        score($user->id, 3);//组员加分
+                    }
                 }
             }
-
-
+            $records = PointRecord::where('type', 3)->get();//处理错误加分
+            foreach($records as $record){
+                if($record->user->group_id < 1){
+                    $record->user->points -= 3;
+                    $record->user->save();
+                    $record->enabled = 0;
+                    $record->save();
+                }
+            }
         }
         echo 'done';exit;
     }
