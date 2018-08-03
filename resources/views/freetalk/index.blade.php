@@ -139,7 +139,7 @@
         </div>
         <div class="recommendContent">
             @if(count($freetalks) > 0)
-            @foreach ($freetalks as $key=>$freetalk)
+            <!-- @foreach ($freetalks as $key=>$freetalk) -->
 
             <!--
             @if($freetalk->type == 'plan')
@@ -178,8 +178,7 @@
                         </div>
                 </div>
             </div>
-            @endif
-            -->
+            @endif-->
             @if($freetalk->type == 'photo' && $freetalk->photo_number == 1)
             <div class="cont_cus">
                 <div class="martop1rem">
@@ -245,7 +244,7 @@
                         <p class="time">{{ $freetalk->time }}</p>
                     </div>
                     <div class="right">
-                        <div class="like">
+                        <div class="like" data_id="{{ $freetalk->id }}">
                             <img src="/dist/static/img/hongxin.png" alt="">
                             <span>{{ $freetalk->likes }}</span>
                         </div>
@@ -299,7 +298,7 @@
             @endforeach
             @endif
         </div>
-        <div class="recommendBottom">
+        <!-- <div class="recommendBottom">
             <div class="border1px">
                 <div class="comment">
                     <div class="left">
@@ -315,13 +314,14 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
     <footer>
-        <div class="bootmbutton">
+        <!-- <div class="bootmbutton">
             Send Message
-        </div>
+        </div> -->
     </footer>
+    @include('include.sidebar')
 </div>
 
 
@@ -368,11 +368,11 @@ $(function () {
     $('.like').on('click', function (e) {
         e.stopPropagation();
         var id = $(this).attr('data_id');
-        var num = $(this).children('.num')
+        var num = $(this).children('.num');
         $.ajax({
             url: '/api/freetalk/like/add',
             data: {
-                reading_id: id
+                freetalk_id: id
             },
             success: function (res) {
                 window.location.reload();

@@ -73,7 +73,7 @@
         </div>
       </div>
       </a>
-      <!-- <a href="/freetalk"> -->
+      <a href="/freetalk">
       <div class="active_card">
         <img src="/dist/static/img/m4.png" alt="">
         <div class="card_r">
@@ -81,7 +81,7 @@
           <p>{{ __('发起与职业发展主题相关话题，自由交流、相互探讨。') }}</p>
         </div>
       </div>
-      <!-- </a> -->
+      </a>
       <a href="">
       <div class="active_card">
         <img src="/dist/static/img/thumb_l.png" alt="">
