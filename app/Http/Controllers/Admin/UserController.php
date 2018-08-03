@@ -9,6 +9,8 @@ use Storage;
 use DB;
 use Auth;
 use App\Models\User;
+use App\Models\Group;
+use App\Models\GroupUser;
 use App\Models\PointRecord;
 use Excel;
 
@@ -272,5 +274,30 @@ class UserController extends Controller
             $record->save();
         }
         echo 'done';
+    }
+
+    public function rungrouptask()
+    {
+        $groups = Group::all();
+
+        foreach($groups as $group){
+            if(count($group->group_users) >= 7){
+                $exist = PointRecord::where('user_id', $group->leader_user_id)->where('type', 3)->first();
+                if(!$exist){
+                    score($group->leader_user_id, 3);//组长加分
+                }
+
+                foreach($group->group_users as $group_user){
+                    $exist = PointRecord::where('user_id', $group_user->user_id)->where('type', 3)->first();
+                    if(!$exist){
+                        score($group_user->user_id, 3);//组员加分
+                    }
+
+                }
+               $group->make_task_status = 1;
+               $group->save();
+            }
+        }
+        echo 'done';exit;
     }
 }

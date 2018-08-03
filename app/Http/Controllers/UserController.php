@@ -120,6 +120,8 @@ class UserController extends Controller
 
     public function quitGroup()
     {
+        return err(2, 'now you cannot quit any group.');
+
         $v = Validator::make(request()->all(), [
             'group_id' => 'required',
         ]);

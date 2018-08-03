@@ -50,6 +50,7 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin'], function ($router)
     //首页
     Route::get('/', 'UserController@index')->name('admin.home');
 
+    Route::get('user/rungrouptask', 'UserController@rungrouptask');
     Route::get('user/runwwid', 'UserController@runwwid');
     Route::get('user/point_record/{record}/enable', 'UserController@pointRecordEnable');
     Route::get('user/point_record/{record}/disable', 'UserController@pointRecordDisaable');
