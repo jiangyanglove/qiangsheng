@@ -299,12 +299,14 @@ class UserController extends Controller
             // }
             $users = User::get(); //有分组的话就加分
             if($users){
+                foreach($users as $user){
                 if($user->group_id > 0){
                     $exist = PointRecord::where('user_id', $user->id)->where('type', 3)->where('enabled', 1)->first();
                     if(!$exist){
                         score($user->id, 3);//组员加分
                     }
                 }
+            }
             }
             $records = PointRecord::where('type', 3)->get();//处理错误加分
             foreach($records as $record){
