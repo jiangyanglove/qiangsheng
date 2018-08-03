@@ -281,22 +281,31 @@ class UserController extends Controller
         $groups = Group::all();
 
         foreach($groups as $group){
-            if(count($group->group_users) >= 7){
-                $exist = PointRecord::where('user_id', $group->leader_user_id)->where('type', 3)->first();
-                if(!$exist){
-                    score($group->leader_user_id, 3);//组长加分
-                }
+            // if(count($group->group_users) >= 7){
+            //     $exist = PointRecord::where('user_id', $group->leader_user_id)->where('type', 3)->first();
+            //     if(!$exist){
+            //         score($group->leader_user_id, 3);//组长加分
+            //     }
 
-                foreach($group->group_users as $group_user){
-                    $exist = PointRecord::where('user_id', $group_user->user_id)->where('type', 3)->first();
-                    if(!$exist){
-                        score($group_user->user_id, 3);//组员加分
-                    }
+            //     foreach($group->group_users as $group_user){
+            //         $exist = PointRecord::where('user_id', $group_user->user_id)->where('type', 3)->first();
+            //         if(!$exist){
+            //             score($group_user->user_id, 3);//组员加分
+            //         }
 
+            //     }
+            //    $group->make_task_status = 1;
+            //    $group->save();
+            // }
+            $group_users = GroupUser::where('quit', 1)->get();
+            if($group_users){
+                foreach($group_users as $group_user){
+                    $record = PointRecord::where('user_id', $group_user->user_id)->where('type', 3)->first();
+                    echo 'Group:' . $group_user->group_id . ' - ' . $record->id;echo '<br>';
                 }
-               $group->make_task_status = 1;
-               $group->save();
             }
+
+
         }
         echo 'done';exit;
     }
