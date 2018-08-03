@@ -9,6 +9,9 @@ use Storage;
 use DB;
 use Auth;
 use App\Models\User;
+use App\Models\Group;
+use App\Models\GroupUser;
+use App\Models\PointRecord;
 use Excel;
 
 class UserController extends Controller
@@ -204,5 +207,123 @@ class UserController extends Controller
             dump($chongfu);
         });
         return redirect('admin/user');
+    }
+
+    public function pointsRecord(Request $request)
+    {
+        $q = $request->only(
+            "type",
+            "wwid"
+        );
+        $type = isset($q["type"]) ? $q["type"] : '';
+        $wwid = isset($q["wwid"]) ? $q["wwid"] : '';
+
+        $records = PointRecord::when($wwid,function ($query) use ($wwid) {
+                return $query->where('wwid', $wwid);
+            })
+            ->when($type,function ($query) use ($type) {
+                return $query->where('type', $type);
+            })
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+
+        $page_title = "积分记录管理";
+
+        return view('admin.user.points', compact(['page_title', 'records', 'type', 'wwid']));
+    }
+
+    /**
+     * 启用
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function pointRecordEnable($id)
+    {
+        $record = PointRecord::findOrFail($id);
+        $record->enabled = 1;
+        $record->save();
+        $record->user->points = $record->user->points + $record->point;
+        $record->user->save();
+
+        return redirect('/admin/user/point_record')->with('status', '操作成功');
+    }
+
+    /**
+     * 禁用
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function pointRecordDisaable($id)
+    {
+        $record = PointRecord::findOrFail($id);
+        $record->enabled = 0;
+        $record->save();
+        $record->user->points = $record->user->points - $record->point;
+        $record->user->save();
+
+        return redirect('/admin/user/point_record')->with('status', '操作成功');
+    }
+
+    public function runwwid()
+    {
+        $records = PointRecord::all();
+        foreach($records as $record){
+            $record->wwid = $record->user->wwid;
+            $record->save();
+        }
+        echo 'done';
+    }
+
+    public function rungrouptask()
+    {
+        // $groups = Group::all();
+
+        // foreach($groups as $group){
+            // if(count($group->group_users) >= 7){
+            //     $exist = PointRecord::where('user_id', $group->leader_user_id)->where('type', 3)->first();
+            //     if(!$exist){
+            //         score($group->leader_user_id, 3);//组长加分
+            //     }
+
+            //     foreach($group->group_users as $group_user){
+            //         $exist = PointRecord::where('user_id', $group_user->user_id)->where('type', 3)->first();
+            //         if(!$exist){
+            //             score($group_user->user_id, 3);//组员加分
+            //         }
+
+            //     }
+            //    $group->make_task_status = 1;
+            //    $group->save();
+            // }
+            $users = User::get(); //有分组的话就加分
+            if($users){
+                foreach($users as $user){
+                    if($user->group_id > 0){
+                        echo $user->id;
+                        $exist = PointRecord::where('user_id', $user->id)->where('type', 3)->where('enabled', 1)->first();
+                        if(!$exist){
+                            score($user->id, 3);//组员加分
+                            echo 'new add!';
+                        }else{
+                            echo 'have added!';
+                        }
+                    }
+                }
+            }
+            echo '<br>';
+            $records = PointRecord::where('type', 3)->get();//处理错误加分
+            foreach($records as $record){
+                if($record->user->group_id < 1){
+                    echo $record->id;echo '<br>';
+                    $record->user->points -= 3;
+                    $record->user->save();
+                    $record->enabled = 0;
+                    $record->save();
+                }
+            }
+        // }
+        echo 'done';exit;
     }
 }

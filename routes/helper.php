@@ -102,7 +102,7 @@ function getLang(){
     return $lang;
 }
 
-function score($user_id, $type){
+function score($user_id, $type, $weeknotice_id = 0){
     $user = User::findOrFail($user_id);
     //积分类型
     $point_type =  array(
@@ -116,7 +116,7 @@ function score($user_id, $type){
                             ),
                     3   => array(
                             'point' => 3,
-                            'description' => '8月3日前完成建组',
+                            'description' => '8月3日下午6点前完成建组',
                             ),
                     4   => array(
                             'point' => 5,
@@ -146,8 +146,12 @@ function score($user_id, $type){
     $data = [];
     $data['type'] = $type;
     $data['user_id'] = $user_id;
+    $data['wwid'] = $user->wwid;
     $data['point'] = $point_type[$type]['point'];
     $data['description'] = $point_type[$type]['description'];
+    if($weeknotice_id > 0){
+        $data['weeknotice_id'] = $weeknotice_id;
+    }
 
     if(PointRecord::create($data)){
         $user->points = $user->points + $data['point'];

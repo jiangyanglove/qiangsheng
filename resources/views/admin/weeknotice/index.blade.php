@@ -73,8 +73,11 @@
 @section('subJsFileBottom')
 
 <script>
-    $(".delete").on("submit", function(){
-        return confirm("你确定要删除该合同吗？点击确定以继续！");
+    $(".enable").on("click", function(){
+        return confirm("你确定要显示该条记录吗？点击确定以继续！");
+    });
+    $(".disable").on("click", function(){
+        return confirm("你确定要屏蔽该条记录吗？点击确定以继续！");
     });
 </script>
 
