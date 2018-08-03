@@ -9,6 +9,7 @@ use Storage;
 use DB;
 use Auth;
 use App\Models\User;
+use App\Models\PointRecord;
 use Excel;
 
 class UserController extends Controller
@@ -204,5 +205,72 @@ class UserController extends Controller
             dump($chongfu);
         });
         return redirect('admin/user');
+    }
+
+    public function pointsRecord(Request $request)
+    {
+        $q = $request->only(
+            "type",
+            "wwid"
+        );
+        $type = isset($q["type"]) ? $q["type"] : '';
+        $wwid = isset($q["wwid"]) ? $q["wwid"] : '';
+
+        $records = PointRecord::when($wwid,function ($query) use ($wwid) {
+                return $query->where('wwid', $wwid);
+            })
+            ->when($type,function ($query) use ($type) {
+                return $query->where('type', $type);
+            })
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+
+        $page_title = "积分记录管理";
+
+        return view('admin.user.points', compact(['page_title', 'records', 'type', 'wwid']));
+    }
+
+    /**
+     * 启用
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function pointRecordEnable($id)
+    {
+        $record = PointRecord::findOrFail($id);
+        $record->enabled = 1;
+        $record->save();
+        $record->user->points = $record->user->points + $record->point;
+        $record->user->save();
+
+        return redirect('/admin/user/point_record')->with('status', '操作成功');
+    }
+
+    /**
+     * 禁用
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function pointRecordDisaable($id)
+    {
+        $record = PointRecord::findOrFail($id);
+        $record->enabled = 0;
+        $record->save();
+        $record->user->points = $record->user->points - $record->point;
+        $record->user->save();
+
+        return redirect('/admin/user/point_record')->with('status', '操作成功');
+    }
+
+    public function runwwid()
+    {
+        $records = PointRecord::all();
+        foreach($records as $record){
+            $record->wwid = $record->user->wwid;
+            $record->save();
+        }
+        echo 'done';
     }
 }

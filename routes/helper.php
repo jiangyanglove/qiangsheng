@@ -146,6 +146,7 @@ function score($user_id, $type){
     $data = [];
     $data['type'] = $type;
     $data['user_id'] = $user_id;
+    $data['wwid'] = $user->wwid;
     $data['point'] = $point_type[$type]['point'];
     $data['description'] = $point_type[$type]['description'];
 

@@ -47,7 +47,7 @@
                             <td style='vertical-align: middle;text-align:center;'>{{ $group->id }}</td>
                             <td style='vertical-align: middle;text-align:center;'>{{ $group->city }}</td>
                             <td style='vertical-align: middle;text-align:center;'>{{ $group->name }}</td>
-                            <td style='vertical-align: middle;text-align:center;'>{{ $group->leader->name }}</td>
+                            <td style='vertical-align: middle;text-align:center;'><img src="/{{ $group->leader->icon}}" width="30" alt="{{ $group->leader->name }}" title="{{ $group->leader->name }}"></td>
                             <td style='vertical-align: middle;text-align:center;'>
                               @if(count($group->members) >0 )
                               @foreach($group->members as $member)

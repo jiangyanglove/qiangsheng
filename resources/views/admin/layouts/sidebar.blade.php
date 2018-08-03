@@ -17,7 +17,27 @@
 		<!-- Sidebar Menu -->
 		<ul class="sidebar-menu">
 			<li class="header"></li>
-			<li><a href="/admin/user"><i class="fa fa-users"></i> <span>用户列表</span></a></li>
+            <li class="treeview">
+                <a href="">
+                    <i class="fa fa-users"></i>
+                    <span>用户管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="/admin/user">
+                            <i class="fa fa-list-ul"></i>用户列表
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/user/point_record">
+                            <i class="fa fa-list-ul"></i>积分记录
+                        </a>
+                    </li>
+                </ul>
+            </li>
 			<li><a href="/admin/group"><i class="fa fa-users"></i> <span>分组管理</span></a></li>
 			<li><a href="/admin/weeknotice"><i class="fa fa-users"></i> <span>精彩预告</span></a></li>
 			<li><a href="/admin/hero"><i class="fa fa-users"></i> <span>DISC英雄</span></a></li>
