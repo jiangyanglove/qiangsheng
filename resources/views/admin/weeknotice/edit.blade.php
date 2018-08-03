@@ -28,6 +28,7 @@
                       <option value="2" @if ($weeknotice->week == 2)selected=selected @endif>WEEK2</option>
                       <option value="3" @if ($weeknotice->week == 3)selected=selected @endif>WEEK3</option>
                       <option value="4" @if ($weeknotice->week == 4)selected=selected @endif>WEEK4</option>
+                      <option value="5" @if ($weeknotice->week == 5)selected=selected @endif>WEEK5</option>
                     </select>
                   </div>
                 </div>
