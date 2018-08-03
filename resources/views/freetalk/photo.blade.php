@@ -23,6 +23,7 @@
     bottom: 0;
     right: 0;
     opacity: 0;
+    width: 100%;
 }
 .recommendContent .upfile {
     position: relative;
@@ -45,13 +46,19 @@
     width: 100%;
     max-height: 100%;
 }
+.file_img {
+    width: 100%;
+}
+.martop1rem .images .item img {
+    height: 5.9rem;
+}
 </style>
 <body>
 
 <div class="index-container">
     <header class="head">
         <div class="nav">
-            <div class="back"><a href="/"><img src="/dist/static/img/back.png" alt=""></a></div>
+            <div class="back" id="back"><img src="/dist/static/img/back.png" alt=""></div>
             <div class="citys">
                 <div class="city><a style="color: #ffffff;" href="/freetalk/new">{{ __('最新') }}</a></div>
                 <div class="city><a style="color: #ffffff;" href="/freetalk/hot">{{ __('热门') }}</a></div>
@@ -63,26 +70,24 @@
     </header>
     <section>
         <div class="recommendTop">
+            <a href="/freetalk">
             <div class="blacktitle">
                 {{ __('取消') }}
             </div>
+            </a>
         </div>
         <div class="recommendContent">
             <div class="martop1rem">
                 <form action="" id="uploadForm" method="post" enctype="multipart/form-data">
-                    <div class="images">
+                    <div class="images" id="up_imgs">
                         <div class="item upfile">
+                            <img class="file_img" src="/dist/static/img/add-b.png">
+                            <input class="file" type="file" name="file"/>
                         </div>
-                        <div class="item upfile">
-                            <img src="/static/img/add-b.png" width="100%">
-                        </div>
-                        <input class="file" type="file" name="file"/>
-                        <img class="icon cama" width="100%" src="/dist/static/img/xiangji.png" alt="">
-                        <img id="file_img" src="" alt="">
                     </div>
                 </form>
                 <div class="textContent">
-                    <textarea>|{{ __('这一刻的想法') }}...</textarea>
+                    <textarea id="up_cont" placeholder="|{{ __('这一刻的想法') }}..."></textarea>
                 </div>
             </div>
         </div>
@@ -92,6 +97,7 @@
             {{ __('发布') }}
         </div>
     </footer>
+    @include('include.sidebar')
 </div>
 
 
@@ -122,10 +128,19 @@
               $('.index-container').addClass('hide')
             })
 
-            var img_url = ''
+            $('#back').on('click', function () {
+                window.history.back();
+            })
+
+            var img_arr = []
             var formData = new FormData();
             $('#back').on('click', function() {window.history.back()})
             $('.file').on('change', function (e) {
+                var _this = $(this);
+                var is_last = false;
+                if ($('.upfile').length === 9) {
+                    is_last = true
+                }
                 var file = e.currentTarget.files[0];
                 formData.append("image", file);
                 $.ajax({
@@ -137,23 +152,40 @@
                     processData: false,
                     cache: false,
                     success: function (res) {
-                        img_url = res.data.path;
-                        $('#file_img').attr('src', img_url)
-                        $('.cama').hide()
+                        img_arr.push(res.data.path);
+                        if (is_last) {
+                            _this.siblings('.file_img').attr('src', res.data.path)
+                            _this.remove()
+                            return false
+                        }
+                        var img_div = "<div class='item upfile'>" + 
+                            "<img class='file_img'" + "src=" + res.data.path + ">" + 
+                            "<input class='file' type='file' name='file'/></div>"
+                        $('#up_imgs').append(img_div)
                     }
                 })
             })
 
-            $('.bootmbutton').on('click', function () {
+            $('.bootmbuttonSmall').on('click', function () {
+                if (img_arr.length === 0) {
+                    alert('请上传图片')
+                    return false
+                }
+                if (!$("#up_cont").val()) {
+                    alert('请发表您的想法')
+                    return false
+                }
+                let img_str = img_arr.join(',')
+                console.log(img_str)
                 $.ajax({
-                    url: '/api/reading/add?icon=uploads/5b5ca47754f01.jpg&name=hello&description=wocaonima',
+                    url: '/api/freetalk/add',
                     data: {
-                        icon: img_url,
-                        name: bookname,
-                        description: desc
+                        type: 'photo',
+                        content: $("#up_cont").val(),
+                        photos: img_str
                     },
                     success: function(res) {
-                        window.location.href = '/reading';
+                        window.location.href = '/freetalk';
                     }
                 })
             })
