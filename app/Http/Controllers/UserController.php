@@ -19,6 +19,7 @@ use App\Models\Weekfaq;
 use App\Models\Reading;
 use App\Models\ReadingLike;
 use App\Models\ReadingComment;
+use App\Models\PointRecord;
 
 use Carbon\Carbon;
 
@@ -305,8 +306,13 @@ class UserController extends Controller
         $new_weekfaq->content = $data['content'];
         $new_weekfaq->save();
 
+
         //加积分
-        score($user->id, 5);
+        $record = PointRecord::where('user_id', $user->id)->where('type', 5)->where('weeknotice_id', $data['weeknotice_id'])->where('enabled', 1)->first();
+        if(!$record){
+            score($user->id, 5, $data['weeknotice_id']);
+        }
+
         return ok($new_weekfaq);
     }
 
@@ -346,7 +352,10 @@ class UserController extends Controller
         $reading = Reading::find($new_Reading->id);
 
         //加积分
-        score($user->id, 7);
+        $record_count = PointRecord::where('user_id', $user->id)->where('type', 7)->where('enabled', 1)->count();
+        if($record_count < 3){
+            score($user->id, 7);
+        }
         return ok($reading);
     }
 

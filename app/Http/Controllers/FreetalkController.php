@@ -14,6 +14,7 @@ use App\Models\FreetalkComment;
 use App\Models\FreetalkLike;
 use App\Models\Letter;
 use App\Models\Letterplan;
+use App\Models\PointRecord;
 use Lang;
 use Carbon\Carbon;
 class FreetalkController extends Controller
@@ -161,8 +162,12 @@ class FreetalkController extends Controller
         }
         $new_freetalk->save();
         $freetalk = Freetalk::find($new_freetalk->id);
+
         //加积分
-        score($user->id, 8);
+        $record_count = PointRecord::where('user_id', $user->id)->where('type', 8)->where('enabled', 1)->count();
+        if($record_count < 3){
+            score($user->id, 8);
+        }
         return ok($freetalk);
     }
     public function likeAdd(){

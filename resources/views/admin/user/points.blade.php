@@ -43,6 +43,8 @@
                             <th style="text-align:center;">积分</th>
                             <th style="text-align:center;">描述</th>
                             <th style="text-align:center;">状态</th>
+                            <th style="text-align:center;">创建时间</th>
+                            <th style="text-align:center;">更新时间</th>
                             <th style="text-align:center;">操作</th>
                         </tr>
                     </thead>
@@ -70,6 +72,8 @@
                             @if($record->enabled == 1) <span class="text-green">有效</span> @endif
                             @if($record->enabled == 0) <span class="text-yellow">已作废</span> @endif
                             </td>
+                            <td style='vertical-align: middle;text-align:center;'>{{ $record->created_at }}</td>
+                            <td style='vertical-align: middle;text-align:center;'>{{ $record->updated_at }}</td>
                             <td style='vertical-align: middle;text-align:center;'>
                                 @if($record->enabled == 1) <a class="btn btn-warning disable" href='/admin/user/point_record/{{ $record->id }}/disable'>作废</a> @endif
                                 @if($record->enabled == 0) <a class="btn btn-success enable" href='/admin/user/point_record/{{ $record->id }}/enable'>从新生效</a> @endif
