@@ -278,9 +278,9 @@ class UserController extends Controller
 
     public function rungrouptask()
     {
-        $groups = Group::all();
+        // $groups = Group::all();
 
-        foreach($groups as $group){
+        // foreach($groups as $group){
             // if(count($group->group_users) >= 7){
             //     $exist = PointRecord::where('user_id', $group->leader_user_id)->where('type', 3)->first();
             //     if(!$exist){
@@ -300,13 +300,13 @@ class UserController extends Controller
             $users = User::get(); //有分组的话就加分
             if($users){
                 foreach($users as $user){
-                if($user->group_id > 0){
-                    $exist = PointRecord::where('user_id', $user->id)->where('type', 3)->where('enabled', 1)->first();
-                    if(!$exist){
-                        score($user->id, 3);//组员加分
+                    if($user->group_id > 0){
+                        $exist = PointRecord::where('user_id', $user->id)->where('type', 3)->where('enabled', 1)->first();
+                        if(!$exist){
+                            score($user->id, 3);//组员加分
+                        }
                     }
                 }
-            }
             }
             $records = PointRecord::where('type', 3)->get();//处理错误加分
             foreach($records as $record){
@@ -317,7 +317,7 @@ class UserController extends Controller
                     $record->save();
                 }
             }
-        }
+        // }
         echo 'done';exit;
     }
 }
