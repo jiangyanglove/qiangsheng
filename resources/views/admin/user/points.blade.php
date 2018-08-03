@@ -50,7 +50,7 @@
                     @foreach ($records as $key=>$record)
                         <tr>
                             <td style='vertical-align: middle;text-align:center;'>{{ $record->id }}</td>
-                            <td style='vertical-align: middle;text-align:center;'>@if($record->user->icon)<img src="/{{ $record->user->icon }}" class="img-circle" width='30' height='30'>@else <img src="/images/user_icon_default{{ @$record->user->sex}}.png" class="img-circle" width='30' height='30'>@endif
+                            <td style='vertical-align: middle;text-align:left;'>@if($record->user->icon)<img src="/{{ $record->user->icon }}" class="img-circle" width='30' height='30'>@else <img src="/images/user_icon_default{{ @$record->user->sex}}.png" class="img-circle" width='30' height='30'>@endif
                                {{ @$record->user->name }}-{{ @$record->wwid }}-<span style="color:red;">{{ @$record->user->points }}分</span></td>
                             <td style='vertical-align: middle;text-align:center;'>
                                 @if($record->type == 1) 线下扫码 @endif
