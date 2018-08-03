@@ -58,11 +58,11 @@
 <div class="index-container">
     <header class="head">
         <div class="nav">
-            <div class="back" id="back"><img src="/dist/static/img/back.png" alt=""></div>
-            <div class="citys">
+            <a href="/freetalk"><div class="back"><img src="/dist/static/img/back.png" alt=""></div></a>
+            <!-- <div class="citys">
                 <div class="city><a style="color: #ffffff;" href="/freetalk/new">{{ __('最新') }}</a></div>
                 <div class="city><a style="color: #ffffff;" href="/freetalk/hot">{{ __('热门') }}</a></div>
-            </div>
+            </div> -->
             <div class="md-toolbar-section-end">
                 <div class="thumb"><img src="/{{ $user->icon }}" alt=""></div>
             </div>
@@ -104,7 +104,7 @@
 <script src="/dist/static/vendor/jquery-3.1.1.min.js"></script>
 <script>
     $(function () {
-        $('.sex_item').on('click', function() {
+            $('.sex_item').on('click', function() {
                 $(this).addClass('active').siblings('.sex_item').removeClass('active')
             })
             $('.lang_item').on('click', function() {
@@ -126,10 +126,6 @@
             $('.thumb').on('click', function() {
               $('.dense_r, .modal').addClass('active')
               $('.index-container').addClass('hide')
-            })
-
-            $('#back').on('click', function () {
-                window.history.back();
             })
 
             var img_arr = []

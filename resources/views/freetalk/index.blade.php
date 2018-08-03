@@ -112,6 +112,43 @@
 .recommendContent .borderhas {
     margin-top: 0;
 }
+.link_where {
+    background: #fff;
+    color: #000;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition:-webkit-transform .6s cubic-bezier(.55,0,.1,1);
+    transition:transform .6s cubic-bezier(.55,0,.1,1);
+    transition:transform .6s cubic-bezier(.55,0,.1,1),-webkit-transform .6s cubic-bezier(.55,0,.1,1);
+    -webkit-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    -o-transform: translateY(100%);
+    transform: translateY(100%);
+    z-index: 1001;
+    text-align: center;
+}
+.close_btn {
+    border-top: 1px solid #ccc;
+}
+.link_where div {
+    font-size: 14px;
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+}
+.link_where a {
+    display: block;
+}
+.link_where.active {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+}
+.martop1rem .images .item img {
+    height: auto;
+}
 </style>
 <body>
 
@@ -130,18 +167,18 @@
     </header>
     <section>
         <div class="recommendTop">
-        <a href="/freetalk/photo/add">
-            <div class="blacktitle">
+        <!-- <a href="/freetalk/photo/add"> -->
+            <div class="blacktitle" id="pub">
                 {{ __('发布') }}
                 <!-- 发布照片的url /freetalk/photo/add -->
             </div>
-        </a>
+        <!-- </a> -->
         </div>
         <div class="recommendContent">
             @if(count($freetalks) > 0)
-            <!-- @foreach ($freetalks as $key=>$freetalk) -->
+            @foreach ($freetalks as $key=>$freetalk)
 
-            <!--
+            
             @if($freetalk->type == 'plan')
             <div class="martop1rem">
                  <div class="borderhas">
@@ -178,7 +215,7 @@
                         </div>
                 </div>
             </div>
-            @endif-->
+            @endif
             @if($freetalk->type == 'photo' && $freetalk->photo_number == 1)
             <div class="cont_cus">
                 <div class="martop1rem">
@@ -190,7 +227,7 @@
                             </div>
                         </div>
                         <div>
-                            <img src="{{ $freetalk->real_photos}}" alt="" width="100%" style="height: 12rem;">
+                            <img src="{{ $freetalk->real_photos}}" alt="" width="100%">
                         </div>
                         <p class="biaoti"></p>
                         <p class="desc">{{ $freetalk->content }}</p>
@@ -199,7 +236,7 @@
                                 <p class="time">{{ $freetalk->time }}</p>
                             </div>
                             <div class="right">
-                                <div class="like">
+                                <div class="like" data_id="{{ $freetalk->id }}">
                                     <img src="/dist/static/img/hongxin.png" alt="">
                                     <span>{{ $freetalk->likes }}</span>
                                 </div>
@@ -298,6 +335,11 @@
             @endforeach
             @endif
         </div>
+        <div class="link_where">
+            <div><a href="/freetalk/photo/add">照片</a></div>
+            <div><a href="">行动计划</a></div>
+            <div class="close_btn">取消</div>
+        </div>
         <!-- <div class="recommendBottom">
             <div class="border1px">
                 <div class="comment">
@@ -328,6 +370,32 @@
 <script src="/dist/static/vendor/jquery-3.1.1.min.js"></script>
 <script>
 $(function () {
+    $('#pub').on('click',function () {
+        $('.link_where, .modal').addClass('active')
+    })
+    $('.sex_item').on('click', function() {
+        $(this).addClass('active').siblings('.sex_item').removeClass('active')
+    })
+    $('.lang_item').on('click', function() {
+        $(this).addClass('active').siblings('.lang_item').removeClass('active')
+    })
+
+    $('.menu_icon').on('click', function() {
+        $('.drawer_l, .modal').addClass('active')
+        $('.index-container').addClass('hide')
+    })
+    $('.modal, .close_btn').on('click', function() {
+        $('.drawer_l, .dense_r, .modal, .link_where').removeClass('active')
+        $('.index-container').removeClass('hide')
+    })
+    $('.drawer_item').on('click', function() {
+        $(this).children('.md-inset').toggleClass('active');
+        $(this).siblings('.drawer_item').children('.md-inset').removeClass('active')
+    })
+    $('.thumb').on('click', function() {
+        $('.dense_r, .modal').addClass('active')
+        $('.index-container').addClass('hide')
+    })
     function addComment(reading_id, content, parent_id) {
         $.ajax({
             url: 'api/freetalk/comment/add',
