@@ -224,6 +224,7 @@ class UserController extends Controller
             ->when($type,function ($query) use ($type) {
                 return $query->where('type', $type);
             })
+            ->where('enabled', 1)
             ->orderBy('id', 'desc')
             ->paginate(10);
 
@@ -255,7 +256,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function pointRecordDisaable($id)
+    public function pointRecordDisable($id)
     {
         $record = PointRecord::findOrFail($id);
         $record->enabled = 0;

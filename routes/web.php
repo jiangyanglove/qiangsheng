@@ -53,7 +53,7 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin'], function ($router)
     Route::get('user/rungrouptask', 'UserController@rungrouptask');
     Route::get('user/runwwid', 'UserController@runwwid');
     Route::get('user/point_record/{record}/enable', 'UserController@pointRecordEnable');
-    Route::get('user/point_record/{record}/disable', 'UserController@pointRecordDisaable');
+    Route::get('user/point_record/{record}/disable', 'UserController@pointRecordDisable');
     Route::get('user/point_record', 'UserController@pointsRecord');
     Route::get('user/import', 'UserController@import');
     Route::resource('user', 'UserController');
