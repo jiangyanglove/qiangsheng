@@ -134,11 +134,13 @@ class FreetalkController extends Controller
             return redirect()->route('login');
         }
         $user = User::findOrFail($id);
+        $letter  = Letter::where('user_id', $id)->where('enabled', 1)->first();
+        $plans  = LetterPlan::where('user_id', $id)->where('enabled', 1)->get();
         if(!$user->icon){
             $user->icon = 'images/user_icon_default' . $user->sex . '.png';
         }
         $lang = getLang();
-        return view('freetalk/plan', ['lang' => $lang, 'user' => $user]);
+        return view('freetalk/plan', ['lang' => $lang, 'user' => $user, 'letter' => $letter, 'plans' => $plans]);
     }
    public function add()
     {
@@ -151,12 +153,12 @@ class FreetalkController extends Controller
             'type' => 'required',
             'photos' => 'sometimes',
             'content' => 'required',
-            'letter_plan_ids' => 'sometimes',
+            'letter_id' => 'sometimes',
         ]);
         if($v->fails()){
             return err(1, $v->messages()->first());
         }
-        $data = request()->only('type', 'photos', 'content', 'letter_plan_ids');
+        $data = request()->only('type', 'photos', 'content', 'letter_id');
         $type = $data['type'];
         $content = $data['content'];
         $user = User::findOrFail($id);
@@ -164,8 +166,8 @@ class FreetalkController extends Controller
         if(!in_array($type, $types)) {
             return err(2, 'the type parameter value error');
         }
-        if(!isset($data['photos']) && !isset($data['letter_plan_ids'])){
-            return err(2, 'the photos or letter_plan_ids parameter is must');
+        if(!isset($data['photos']) && !isset($data['letter_id'])){
+            return err(2, 'the photos or letter_id parameter is must.');
         }
         $new_freetalk = new Freetalk();
         $new_freetalk->user_id = $id;
@@ -174,17 +176,26 @@ class FreetalkController extends Controller
         if(isset($data['photos']) && $data['photos']){
             $new_freetalk->photos = $data['photos'];
         }
-        if(isset($data['letter_plan_ids']) && $data['letter_plan_ids']){
-            $new_freetalk->letter_plan_ids = $data['letter_plan_ids'];
+        if(isset($data['letter_id']) && $data['letter_id']){
+            $new_freetalk->letter_id = $data['letter_id'];
         }
         $new_freetalk->save();
         $freetalk = Freetalk::find($new_freetalk->id);
 
         //加积分
-        $record_count = PointRecord::where('user_id', $user->id)->where('type', 8)->where('enabled', 1)->count();
-        if($record_count < 3){
-            score($user->id, 8);
+        if($type == 'plan'){
+            $exist = PointRecord::where('user_id', $user->id)->where('type', 9)->where('enabled', 1)->first();
+            if(!$exist){
+                score($user->id, 9);
+            }
         }
+        else{
+            $record_count = PointRecord::where('user_id', $user->id)->where('type', 8)->where('enabled', 1)->count();
+            if($record_count < 3){
+                score($user->id, 8);
+            }
+        }
+
         return ok($freetalk);
     }
     public function likeAdd(){
@@ -220,7 +231,7 @@ class FreetalkController extends Controller
             $freetalk->type,
             $freetalk->photos,
             $freetalk->content,
-            $freetalk->letter_plan_ids,
+            $freetalk->letter_id,
             $freetalk->comments,
             $freetalk->enabled,
             $freetalk->created_at,
@@ -265,7 +276,7 @@ class FreetalkController extends Controller
             $freetalk->type,
             $freetalk->photos,
             $freetalk->content,
-            $freetalk->letter_plan_ids,
+            $freetalk->letter_id,
             $freetalk->likes,
             $freetalk->enabled,
             $freetalk->created_at,

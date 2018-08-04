@@ -60,8 +60,8 @@
         <div class="nav">
             <a href="/freetalk"><div class="back"><img src="/dist/static/img/back.png" alt=""></div></a>
             <!-- <div class="citys">
-                <div class="city><a style="color: #ffffff;" href="/freetalk/new">{{ __('最新') }}</a></div>
-                <div class="city><a style="color: #ffffff;" href="/freetalk/hot">{{ __('热门') }}</a></div>
+                <div class="city"><a style="color: #ffffff;" href="/freetalk/new">{{ __('最新') }}</a></div>
+                <div class="city"><a style="color: #ffffff;" href="/freetalk/hot">{{ __('热门') }}</a></div>
             </div> -->
             <div class="md-toolbar-section-end">
                 <div class="thumb"><img src="/{{ $user->icon }}" alt=""></div>
@@ -154,7 +154,7 @@
                             // $('.remove_input').siblings('input').remove()
                             return false
                         }
-                        var img_div = "<div class='item upfile'>" + 
+                        var img_div = "<div class='item upfile'>" +
                             "<img class='file_img remove_input'" + "src=" + res.data.path + ">"
                             // "<input class='file' type='file' name='file'/></div>"
                         $('#up_imgs').append(img_div)

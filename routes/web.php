@@ -32,7 +32,7 @@ Route::get('/reading/{type?}', 'ReadingController@index');
 
 Route::get('/post/letter/add', 'FreetalkController@addLetterPage');
 Route::get('/freetalk/photo/add', 'FreetalkController@addPhotoPage');
-Route::get('/freetalk/plan/add', 'FreetalkController@addPhotoPage');
+Route::get('/freetalk/plan/add', 'FreetalkController@addPlanPage');
 Route::get('/freetalk/{type?}', 'FreetalkController@index');
 
 Route::get('/hero/test', 'HomeController@discTest')->name('disc_test');
