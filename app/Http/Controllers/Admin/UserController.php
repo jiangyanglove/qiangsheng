@@ -278,6 +278,39 @@ class UserController extends Controller
 
     public function rungrouptask()
     {
+        $type = request()->input('type');
+        $score = request()->input('score');
+        if(!$type){
+            return 'no type';
+        }
+        if(!$score){
+            return 'no score';
+        }
+        $records = DB::table('point_records')
+                             ->select(DB::raw('count(*) as user_count, user_id'))
+                             ->where('type', 3)
+                             ->where('enabled', 1)
+                             ->groupBy('user_id')
+                             ->having('user_count', '>', 1)
+                             ->get();
+                             dump($records);
+
+        foreach ($records as $key => $record) {
+
+            $user = User::find($record->user_id);
+            echo '开始处理用户wwid：'. $user->wwid.'<br>';
+            $records = PointRecord::where('user_id', $user->id)->where('type', $type)->where('enabled', 1)->orderBy('id', 'asc')->get();
+            foreach($records as $key=>$record){
+                if($key >2){
+                     echo "处理加分记录ID:".$record->id.',-'.$score;echo '<br>';
+                     $record->user->points -= $score;
+                     $record->user->save();
+                     $record->enabled = 0;
+                     $record->save();
+                     echo '-----------------------------------------------------------';echo '<br>';
+                }
+            }
+        }
         // $groups = Group::all();
 
         // foreach($groups as $group){
@@ -297,33 +330,33 @@ class UserController extends Controller
             //    $group->make_task_status = 1;
             //    $group->save();
             // }
-            $users = User::get(); //有分组的话就加分
-            if($users){
-                foreach($users as $user){
-                    if($user->group_id > 0){
-                        echo $user->id;
-                        $exist = PointRecord::where('user_id', $user->id)->where('type', 3)->where('enabled', 1)->first();
-                        if(!$exist){
-                            score($user->id, 3);//组员加分
-                            echo 'new add!';
-                        }else{
-                            echo 'have added!';
-                        }
-                    }
-                }
-            }
-            echo '<br>';
-            $records = PointRecord::where('type', 3)->get();//处理错误加分
-            foreach($records as $record){
-                if($record->user->group_id < 1){
-                    echo $record->id;echo '<br>';
-                    $record->user->points -= 3;
-                    $record->user->save();
-                    $record->enabled = 0;
-                    $record->save();
-                }
-            }
-        // }
-        echo 'done';exit;
+        //     $users = User::get(); //有分组的话就加分
+        //     if($users){
+        //         foreach($users as $user){
+        //             if($user->group_id > 0){
+        //                 echo $user->id;
+        //                 $exist = PointRecord::where('user_id', $user->id)->where('type', 3)->where('enabled', 1)->first();
+        //                 if(!$exist){
+        //                     score($user->id, 3);//组员加分
+        //                     echo 'new add!';
+        //                 }else{
+        //                     echo 'have added!';
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     echo '<br>';
+        //     $records = PointRecord::where('type', 3)->get();//处理错误加分
+        //     foreach($records as $record){
+        //         if($record->user->group_id < 1){
+        //             echo $record->id;echo '<br>';
+        //             $record->user->points -= 3;
+        //             $record->user->save();
+        //             $record->enabled = 0;
+        //             $record->save();
+        //         }
+        //     }
+        // // }
+        // echo 'done';exit;
     }
 }
