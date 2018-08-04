@@ -74,6 +74,12 @@
       .preview_cont .c p {
         margin: 0;
       }
+      .preview_card .btn {
+        padding: 10px 20px;
+      }
+      .preview_conts {
+        display: none;
+      }
     </style>
 </head>
 <body>
@@ -98,13 +104,14 @@
     <div class="preview_cards">
       @if(count($weeknotices)>0)
       @foreach ($weeknotices as $o)
-      <div class="pre_card"  data_id="{{ $o->id }}">
+      <div class="pre_card_triger_comment">
+      <div class="pre_card" data_id="{{ $o->id }}">
       <div class="preview_card">
         <img src="{{ $o->icon }}" alt="">
         <div class="preview_txt">
           <h4>{{ $o->name }}</h4>
           <p>{{$o->start_date}}</p>
-          <div class="btn" id="work_btn" data_id="{{ $o->id }}">{{ __('我要提问') }}</div>
+          <div class="btn comment_btn" data_id="{{ $o->id }}">{{ __('我要提问') }}</div>
         </div>
       </div>
         <div class="preview_textarea_wrap" style="display: none">
@@ -135,6 +142,7 @@
         </div>
       </div>
       @endforeach
+      </div>
       @endif
     </div>
 
@@ -166,10 +174,19 @@
               $('.index-container').addClass('hide')
             })
 
+            $('.pre_card_triger_comment').on('click', function () {
+              $(this).children('.preview_conts').fadeToggle()
+            })
+
             var weeknotice_id;
-            $('.pre_card').on('click', function () {
+            // $('.pre_card').on('click', function () {
+            //   weeknotice_id = $(this).attr('data_id');
+            //   $(this).children('.preview_textarea_wrap').fadeToggle().children('.preview_textarea').focus();
+            // })
+            $('.comment_btn').on('click', function () {
               weeknotice_id = $(this).attr('data_id');
-              $(this).children('.preview_textarea_wrap').fadeToggle().children('.preview_textarea').focus();
+              let parent = $(this).parents('.pre_card')
+              parent.children('.preview_textarea_wrap').fadeToggle().children('.preview_textarea').focus();
             })
             $('.preview_textarea').on('click', function (event) {
                 event.stopPropagation();
