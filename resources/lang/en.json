@@ -29,14 +29,17 @@
     "分值参考": "Points value reference",
 
     "线上互动": "Online interaction",
-    "持续登录，每人每天＋1分": "To continuous login, +1 per person per day",
-    "8月3日前完成建组，每人+3分": "To complete the establishment of group before August 3, +3 points per person",
-    "参加性格测试，每人+5分": "To participate in the personality test, +5 points per person",
-    "在活动预览区提问，每人+2分": "To ask questions in the activity preview area, +2 points per person",
-    "上传职业照和生活照，每人+5分": "To upload professional photos and life photos, +5 points per person",
-    "推荐书籍，每人+5分": "To recommended books, +5 points per person",
-    "在自由讨论区发布话题，每人+3分": "To post topics in the free discussion forum, +3 points per person",
-    "将未来邮局的内容转发到自由讨论区，+5分": "To forward the contents of the future post office to the free discussion forum, +5 points",
+    "每日签到每天将获得1分。": "Daily sign-in will earn you 1 point per day.",
+    "8月3日下午6点前完成建组， 每人+3 分。": "Completion of the team by August 3, 6 p.m. will earn 3 points each.",
+    "参加性格测试，每人+5分。": "Participation in the Character Test will earn 5 points each.",
+    "参与线下活动扫码打卡将获得每活动每次2分。": "Code scanning and card punching in offline activities will earn 2 points in each activity.",
+    "精彩预告板块，对每个线下活动的第一条提问可获得2分（至多：活动数x2分），之后发布不获得积分。": "For attractive announcement sections, each can get 2 points (the number of activities x 2 points at most) for the first question of each offline activity, and there is no point for the subsequent release.",
+    "读书的力量板块，发布图书推荐前三本将每个获得5分（至多15分），之后发布不获得积分。": "For the Power of Reading section, the first three books recommended for publication will earn 5 points each (15 points at most), and there is no point for the subsequent release.",
+    "我的职场范儿板块，第一次发布照片将获得5分（至多5分），之后发布不获得积分。": "For the My Career section, the publication for the first time will earn 5 points each (5 points at most), and there is no point for the subsequent release.",
+    "将未来邮局板块内容第一次转发至自由讨论区将获得5分（至多5分），之后发布不获得积分。": "Forwarding the content of the Future Post Office section to the Free Discussion area for the first time will earn you 5 points (5 points at most), and there is no point for the subsequent release.",
+    "自由讨论区板块发布的前三条话题每条将获得3分（至多9分），之后发布不获得积分。": "Forwarding the content of the Future Post Office section to the Free Discussion area for the first time will earn you 5 points (5 points at most), and there is no point for the subsequent release.",
+    "职业发展月结束后，读书的力量板块图书获得点赞前三名分别获得，30/20/10分。": "After the Career Development Month, the top three books with the most praises in the Power of Reading section will earn you 30/20/10 points respectively.",
+    "活动结束后如出现平分，将按照建立小组时间早晚/发布内容获得点赞数量多少/初次签到早晚来额外评判。":"If there is a draw after the activity, additional judgment will be made according to: when the team was established; how many praises there are for what has been published; and who signed in earlier first.",
 
     "线下互动": "Offline interaction",
     "参与线下活动，扫描二维码进行签到打卡，每人+2分（可关注活动预览区内容，及时了解活动信息）": "To participate in offline activities, and scan the QR code for sign-in, +2 points per person (pay attention to the content of the event preview area, and learn about the event information in time)",
@@ -192,17 +195,5 @@
     "发布": "Publish",
     "这一刻的想法": "The thought of this moment",
     "照片": "Publish",
-    "行动计划": "Action plan",
-
-    "每日签到每天将获得1分。": "每日签到每天将获得1分。",
-    "8月3日下午6点前完成建组， 每人+3 分。": "8月3日下午6点前完成建组， 每人+3 分。",
-    "参加性格测试，每人+5分。": "参加性格测试，每人+5分。",
-    "参与线下活动扫码打卡将获得每活动每次2分。": "参与线下活动扫码打卡将获得每活动每次2分。",
-    "“精彩预告”板块，对每个线下活动的第一条提问可获得2分（至多：活动数x2分），之后发布不获得积分。": "“精彩预告”板块，对每个线下活动的第一条提问可获得2分（至多：活动数x2分），之后发布不获得积分。",
-    "“读书的力量”板块，发布图书推荐前三本将每个获得5分（至多15分），之后发布不获得积分。": "“读书的力量”板块，发布图书推荐前三本将每个获得5分（至多15分），之后发布不获得积分。",
-    "“我的职场范儿”板块，第一次发布照片将获得5分（至多5分），之后发布不获得积分。": "“我的职场范儿”板块，第一次发布照片将获得5分（至多5分），之后发布不获得积分。",
-    "将“未来邮局”板块内容第一次转发至“自由讨论区”将获得5分（至多5分），之后发布不获得积分。": "将“未来邮局”板块内容第一次转发至“自由讨论区”将获得5分（至多5分），之后发布不获得积分。",
-    "“自由讨论区”板块发布的前三条话题每条将获得3分（至多9分），之后发布不获得积分。": "“自由讨论区”板块发布的前三条话题每条将获得3分（至多9分），之后发布不获得积分。",
-    "职业发展月结束后，“读书的力量”板块图书获得点赞前三名分别获得，30/20/10分。": "职业发展月结束后，“读书的力量”板块图书获得点赞前三名分别获得，30/20/10分。"
-
+    "行动计划": "Action plan"
 }
