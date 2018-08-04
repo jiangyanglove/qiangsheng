@@ -59,6 +59,30 @@
     width: 50px;
     text-align: center;
   }
+  .plan_title_wrap {
+    position: relative;
+  }
+  .swiper-pagination {
+    right: 10px;
+    top: 50%;
+    margin-top: -9px;
+  }
+  .swiper-pagination-bullet-active {
+    background: #ef3d42;
+  }
+  .swiper-pagination-bullet {
+      margin: 0 5px;
+  }
+  .plan_pre_pd {
+      min-height: 60px;
+      padding: 10px 0 20px;
+  }
+  .plan_prewview_div {
+      padding: 30px 0 60px;
+  }
+  .plan_input_div {
+      padding: 0 0 60px;
+  }
 </style>
 <body>
 
@@ -75,17 +99,18 @@
             </div>
         </div>
     </header>
-    <section>
-        <div class="recommendTop">
-            <a href="javascript:history.back()">
-            <div class="blacktitle">
-                {{ __('取消') }}
+    <div class="plan_input_div">
+        <section>
+            <div class="recommendTop">
+                <a href="javascript:history.back()">
+                <div class="blacktitle">
+                    {{ __('取消') }}
+                </div>
+                </a>
             </div>
-            </a>
-        </div>
-        <div class="recommendContent">
-            <div class="martop1rem">
-                <div class="plan">
+            <div class="recommendContent">
+                <div class="martop1rem">
+                    <div class="plan">
                         <div class="planContent">
                             <h4 class="pc_t">TO<input type="number" class="years_input">年后的自己</h4>
                             <textarea class="letter" placeholder="{{ __('年后的自己') }}做什么..."></textarea>
@@ -107,19 +132,74 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="bootmbuttonSmall">
+                发布
+            </div>
+        </footer>
+    </div>
+
+    <div class="plan_prewview_div">
+        <div class="recommendContent">
+            <div class="martop1rem">
+                <div class="plan">
+                    <div class="planContent">
+                        <h4 class="pc_t">TO<input type="number" class="years_input">年后的自己</h4>
+                        <div>{{ __('年后的自己') }}做什么...</div>
+                    </div>
+                    <div class="plan_list">
+                        <div class="plan_item">
+                            <div class="plan_title_wrap">
+                                <div class="title">{{ __('我的计划') }} # 1</div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="planContent">
+                                            <div class="plan_pre_pd">{{ __('做什么') }}...</div>
+                                        </div>
+                                        <div class="planContent">
+                                            <div class="plan_pre_pd">{{ __('如何做') }}...</div>
+                                        </div>
+                                        <div class="planContent">
+                                            <div class="plan_pre_pd">{{ __('开始/结束') }}...</div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="planContent">
+                                            <div class="plan_pre_pd">{{ __('做什么') }}...</div>
+                                        </div>
+                                        <div class="planContent">
+                                            <div class="plan_pre_pd">{{ __('如何做') }}...</div>
+                                        </div>
+                                        <div class="planContent">
+                                            <div class="plan_pre_pd">{{ __('开始/结束') }}...</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
-    <footer>
-        <div class="bootmbuttonSmall">
-            发布
-        </div>
-    </footer>
+    </div>
+
 </div>
 
 
 <script src="/dist/static/vendor/jquery-3.1.1.min.js"></script>
+<script src="/dist/static/vendor/swiper-3.4.0.jquery.min.js"></script>
 <script>
+var mySwiper = new Swiper ('.swiper-container', {
+    loop: true,
+    pagination : '.swiper-pagination',
+})
+
 var plan_num = 1
 $(function () {
     $('.bootmbuttonSmall').on('click', function () {
@@ -150,6 +230,14 @@ $(function () {
             traditional: true,
             success: function (res) {
                 console.log(res)
+                if (res.code === 2) {
+                    alert(res.error_msg)
+                    return false
+                }
+                if (res.code === 0) {
+                    alert('提交成功')
+                    window.location.href = "/"
+                }
             }
         })
     })
