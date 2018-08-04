@@ -64,8 +64,16 @@ Route::get('/api/disc/answer', 'HomeController@ApiDiscTestProcess');
 //发布自由讨论
 Route::get('/api/freetalk/add', 'FreetalkController@add');
 
+//获取行动计划
+Route::get('/api/freetalk/get/letters', 'FreetalkController@getLetters');
+
 //自由讨论点赞
 Route::get('/api/freetalk/like/add', 'FreetalkController@likeAdd');
 
 //自由讨论评论
 Route::get('/api/freetalk/comment/add', 'FreetalkController@commentAdd');
+
+//发布未来邮局n年行动计划
+Route::get('/api/post/letter/add', 'FreetalkController@postLetterAdd');
+
+

@@ -110,6 +110,23 @@ class FreetalkController extends Controller
         $lang = getLang();
         return view('freetalk/photo', ['lang' => $lang, 'user' => $user]);
     }
+
+    public function addLetterPage(){
+        $user = '';
+        $id = isauth();
+        if(!$id){
+            return redirect()->route('login');
+        }
+        $count = Letter::where('user_id', $id)->where('enabled', 1)->count();
+
+        $user = User::findOrFail($id);
+        if(!$user->icon){
+            $user->icon = 'images/user_icon_default' . $user->sex . '.png';
+        }
+        $lang = getLang();
+        return view('freetalk/letter', ['lang' => $lang, 'user' => $user, 'count' => $count]);
+    }
+
     public function addPlanPage(){
         $user = '';
         $id = isauth();
@@ -257,5 +274,57 @@ class FreetalkController extends Controller
         return ok([
             'freetalk' => $freetalk
         ]);
+    }
+
+    public function getLetters(){
+        $id = isauth();
+        if(!$id){
+            $msg = Lang::get('tips.no_login');
+            return err(2, $msg);
+        }
+
+        $user = User::findOrFail($id);
+
+        $plans = LetterPlan::where('user_id', $id)->where('enabled', 1)->get();
+
+        return ok($plans);
+
+
+    }
+    public function postLetterAdd()
+    {
+        //$jsona = '[{"what":"gou","how":"ri","when":"de"},{"what":"gou","how":"ri","when":"de"},{"what":"gou","how":"ri","when":"de"}]';
+        $id = isauth();
+        if(!$id){
+            $msg = Lang::get('tips.no_login');
+            return err(2, $msg);
+        }
+
+        $exist = Letter::where('user_id', $id)->where('enabled', 1)->first();
+        if($exist){
+           return err(2, 'you already have a letter.');
+        }
+        $v = Validator::make(request()->all(), [
+            'years' => 'required',
+            'contents' => 'required',
+            'plans' => 'required',
+        ]);
+        if($v->fails()){
+            return err(1, $v->messages()->first());
+        }
+        $plans = json_decode(request()->input('plans'), true);//多个计划
+        $data = request()->only('years', 'contents');
+        $data['user_id'] = $id;
+        $letter = Letter::create($data);//letter
+
+        if($plans){
+            foreach($plans as $plan){
+                $plan['letter_id'] = $letter->id;
+                $plan['user_id'] = $id;
+                LetterPlan::create($plan);
+            }
+        }
+        unset($letter->created_at,$letter->updated_at);
+        return ok($letter);
     }
 }
