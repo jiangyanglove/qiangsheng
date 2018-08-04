@@ -151,12 +151,12 @@
                         img_arr.push(res.data.path);
                         if (is_last) {
                             _this.siblings('.file_img').attr('src', res.data.path)
-                            _this.remove()
+                            // $('.remove_input').siblings('input').remove()
                             return false
                         }
                         var img_div = "<div class='item upfile'>" + 
-                            "<img class='file_img'" + "src=" + res.data.path + ">" + 
-                            "<input class='file' type='file' name='file'/></div>"
+                            "<img class='file_img remove_input'" + "src=" + res.data.path + ">"
+                            // "<input class='file' type='file' name='file'/></div>"
                         $('#up_imgs').append(img_div)
                     }
                 })

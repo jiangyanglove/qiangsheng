@@ -147,11 +147,64 @@
     transform: translateY(0);
 }
 .martop1rem .images .item img {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    width: 100%;
     height: auto;
+}
+.martop1rem .images {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 0.5rem;
+    overflow: hidden;
+    -webkit-column-count: initial;
+    -moz-column-count: initial;
+    column-count: initial;
+}
+.martop1rem .images .item {
+    padding-bottom: 0;
+    width: 5.5rem;
+    height: 5.5rem;
+    overflow: hidden;
+    margin-right: 0.5rem;
+    margin-bottom: 0.4rem;
+    position: relative;
+}
+.martop1rem .images .item:nth-child(3n) {
+    margin-right: 0;
+}
+.img_view {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    opacity: 0;
+    background: rgba(0,0,0,.8);
+    overflow-y: scroll;
+    transition:all .6s cubic-bezier(.55,0,.1,1);
+}
+.img_view.active {
+    z-index: 1004;
+    opacity: 1;
+}
+.img_view img {
+    max-width: 96%;
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    left: 50%;
 }
 </style>
 <body>
-
 <div class="index-container">
     <header class="head">
         <div class="nav">
@@ -165,6 +218,9 @@
             </div>
         </div>
     </header>
+    <div class="img_view">
+        <img src="" alt="">
+    </div>
     <section>
         <div class="recommendTop">
         <!-- <a href="/freetalk/photo/add"> -->
@@ -226,7 +282,7 @@
                                 <p>{{ @$freetalk->user->name }}</p>
                             </div>
                         </div>
-                        <div>
+                        <div class="img_triger">
                             <img src="{{ $freetalk->real_photos}}" alt="" width="100%">
                         </div>
                         <p class="biaoti"></p>
@@ -269,7 +325,7 @@
                     </div>
                 <div class="images">
                    @foreach ($freetalk->real_photos as $photo)
-                    <div class="item">
+                    <div class="item img_triger">
                         <img src="{{ $photo }}" width="100%">
                     </div>
                   @endforeach
@@ -365,11 +421,22 @@
     </footer>
     @include('include.sidebar')
 </div>
-
+<!-- <div style="padding-bottom: 80px"></div> -->
 
 <script src="/dist/static/vendor/jquery-3.1.1.min.js"></script>
 <script>
 $(function () {
+    $('.img_triger').on('click', function (e) {
+        e.stopPropagation();
+        // $('.index-container').addClass('hide')
+        var img_preview = $(this).children('img').attr('src')
+        $('.img_view').addClass('active').children('img').attr('src',img_preview)
+    })
+    $('.img_view').on('click', function (e) {
+        e.stopPropagation();
+        $(this).removeClass('active')
+        // $('.index-container').removeClass('hide')
+    })
     $('#pub').on('click',function () {
         $('.link_where, .modal').addClass('active')
     })
