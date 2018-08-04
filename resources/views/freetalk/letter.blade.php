@@ -77,9 +77,11 @@
     </header>
     <section>
         <div class="recommendTop">
+            <a href="javascript:history.back()">
             <div class="blacktitle">
                 {{ __('取消') }}
             </div>
+            </a>
         </div>
         <div class="recommendContent">
             <div class="martop1rem">
@@ -137,15 +139,13 @@ $(function () {
             }
             plans.push(plan_item)
         })
-        // console.log(years)
-        console.log(plans)
-        // console.log(letter)
+        var plans_str = JSON.stringify(plans)
         $.ajax({
             url: '/api/post/letter/add',
             data: {
                 "years": years,
                 "contents": letter,
-                "plans": plans
+                "plans": plans_str
             },
             traditional: true,
             success: function (res) {
