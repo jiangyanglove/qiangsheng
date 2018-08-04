@@ -288,17 +288,17 @@ class UserController extends Controller
         }
         $records = DB::table('point_records')
                              ->select(DB::raw('count(*) as user_count, user_id'))
-                             ->where('type', 3)
+                             ->where('type', $type)
                              ->where('enabled', 1)
                              ->groupBy('user_id')
-                             ->having('user_count', '>', 1)
+                             ->having('user_count', '>', 3)
                              ->get();
-                             dump($records);
+
 
         foreach ($records as $key => $record) {
 
             $user = User::find($record->user_id);
-            echo '开始处理用户wwid：'. $user->wwid.'<br>';
+            echo '开始处理用户wwid：'. $user->wwid.',姓名：' . $user->name . '<br>';
             $records = PointRecord::where('user_id', $user->id)->where('type', $type)->where('enabled', 1)->orderBy('id', 'asc')->get();
             foreach($records as $key=>$record){
                 if($key >2){
