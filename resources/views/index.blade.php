@@ -22,9 +22,9 @@
     </div>
     <div class="swiper-container">
       <div class="swiper-wrapper">
-        <div class="swiper-slide banner"><img src="/dist/static/img/banner1.png" alt=""></div>
+        <div class="swiper-slide banner">@if($lang == 'en')<img src="/dist/static/img/banner1_en.png" alt="">@else<img src="/dist/static/img/banner1.png" alt="">@endif</div>
         <div class="swiper-slide banner"><img src="/dist/static/img/banner.png" alt=""></div>
-        <div class="swiper-slide banner"><img src="/dist/static/img/banner.png" alt=""></div>
+        <!-- <div class="swiper-slide banner"><img src="/dist/static/img/banner.png" alt=""></div> -->
       </div>
     </div>
       <a href="/group/{{ $user->city }}">
