@@ -91,7 +91,7 @@
         </div>
       </div>
       </a>
-      <a href="">
+      <a href="/post/letter/add">
       <div class="active_card">
         <img src="/dist/static/img/thumb_l.png" alt="">
         <div class="card_r">
