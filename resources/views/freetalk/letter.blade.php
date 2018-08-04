@@ -48,6 +48,17 @@
     font-weight: 400;
     font-size: 0.7rem;
   }
+  .years_input {
+    border-bottom: 1px solid #000;
+    outline: none;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 50px;
+    text-align: center;
+  }
 </style>
 <body>
 
@@ -74,15 +85,25 @@
             <div class="martop1rem">
                 <div class="plan">
                         <div class="planContent">
-                            <h4 class="pc_t">TO_年后的自己</h4>
-                            <textarea>{{ __('年后的自己') }}做什么...</textarea>
+                            <h4 class="pc_t">TO<input type="number" class="years_input">年后的自己</h4>
+                            <textarea class="letter" placeholder="{{ __('年后的自己') }}做什么..."></textarea>
                         </div>
-                        <div class="title">{{ __('我的计划') }} # 1
-                            <span class="add_plan">{{ __('添加计划') }}+</span>
+                        <div class="plan_list">
+                            <div class="plan_item">
+                                <div class="title">{{ __('我的计划') }} # 1
+                                    <span class="add_plan" onclick='addPlan(this)'>{{ __('添加计划') }}+</span>
+                                </div>
+                                <div class="planContent">
+                                    <textarea class="plan_what" placeholder="{{ __('做什么') }}..."></textarea>
+                                </div>
+                                <div class="planContent">
+                                    <textarea class="plan_how" placeholder="{{ __('如何做') }}..."></textarea>
+                                </div>
+                                <div class="planContent">
+                                    <textarea class="plan_when" placeholder="{{ __('开始/结束') }}..."></textarea>
+                                </div>
+                            </div>
                         </div>
-                        <div class="planContent"><textarea>{{ __('做什么') }}...</textarea></div>
-                        <div class="planContent"><textarea>{{ __('如何做') }}...</textarea></div>
-                        <div class="planContent"><textarea>{{ __('开始/结束') }}...</textarea></div>
                     </div>
             </div>
         </div>
@@ -97,7 +118,64 @@
 
 <script src="/dist/static/vendor/jquery-3.1.1.min.js"></script>
 <script>
-
+var plan_num = 1
+$(function () {
+    $('.bootmbuttonSmall').on('click', function () {
+        var years = $('.years_input').val();
+        var letter = $('.letter').val();
+        var plans = [];
+        var plan_list = $('.plan_list');
+        $('.plan_item').each(function (i) {
+            var _this = $(this);
+            var what = _this.find('.plan_what').val();
+            var how = _this.find('.plan_how').val();
+            var when = _this.find('.plan_when').val();
+            var plan_item = {
+                what: what,
+                how: how,
+                when: when
+            }
+            plans.push(plan_item)
+        })
+        // console.log(years)
+        console.log(plans)
+        // console.log(letter)
+        $.ajax({
+            url: '/api/post/letter/add',
+            data: {
+                "years": years,
+                "contents": letter,
+                "plans": plans
+            },
+            traditional: true,
+            success: function (res) {
+                console.log(res)
+            }
+        })
+    })
+})
+function addPlan () {
+        if (plan_num === 5) {
+            alert('最多可添加5条计划');
+            return false;
+        }
+        plan_num ++
+        var plan_str = "<div class='plan_item'>" + 
+                            "<div class='title'>" + '我的计划' + '#' + plan_num +
+                                "<span class='add_plan' onclick='addPlan(this)'>" + '添加计划+' + "</span>" +
+                            "</div>" +
+                            "<div class='planContent'>" +
+                                "<textarea class='plan_what' placeholder=" + '做什么' + "..." + "></textarea>" +
+                            "</div>" +
+                            "<div class='planContent'>" +
+                                "<textarea class='plan_how' placeholder=" + '如何做' + "..." + "></textarea>" +
+                            "</div>" +
+                            "<div class='planContent'>" +
+                                "<textarea class='plan_when' placeholder=" + '开始/结束' + "..." + "></textarea>" + 
+                            "</div>" + 
+                        "</div>"
+        $('.plan_list').append(plan_str)
+    }
 </script>
 </body>
 </html>
