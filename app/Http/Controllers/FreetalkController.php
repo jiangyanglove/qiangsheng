@@ -117,14 +117,15 @@ class FreetalkController extends Controller
         if(!$id){
             return redirect()->route('login');
         }
-        $count = Letter::where('user_id', $id)->where('enabled', 1)->count();
+        $letter  = Letter::where('user_id', $id)->where('enabled', 1)->first();
+        $plans  = LetterPlan::where('user_id', $id)->where('enabled', 1)->get();
 
         $user = User::findOrFail($id);
         if(!$user->icon){
             $user->icon = 'images/user_icon_default' . $user->sex . '.png';
         }
         $lang = getLang();
-        return view('freetalk/letter', ['lang' => $lang, 'user' => $user, 'count' => $count]);
+        return view('freetalk/letter', ['lang' => $lang, 'user' => $user, 'letter' => $letter, 'plans' => $plans]);
     }
 
     public function addPlanPage(){

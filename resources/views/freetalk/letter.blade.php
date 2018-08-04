@@ -99,6 +99,7 @@
             </div>
         </div>
     </header>
+    @if(!$letter)
     <div class="plan_input_div">
         <section>
             <div class="recommendTop">
@@ -112,8 +113,11 @@
                 <div class="martop1rem">
                     <div class="plan">
                         <div class="planContent">
-                            <h4 class="pc_t">TO<input type="number" class="years_input">年后的自己</h4>
-                            <textarea class="letter" placeholder="{{ __('年后的自己') }}做什么..."></textarea>
+                            <h4 class="pc_t">
+                                @if($lang == 'zh_cn')TO<input type="number" class="years_input">年后的自己@endif
+                                @if($lang == 'en')To myself after <input type="number" class="years_input"> years</span>@endif
+                            </h4>
+                            <textarea class="letter" placeholder="{{ __('做什么') }}..."></textarea>
                         </div>
                         <div class="plan_list">
                             <div class="plan_item">
@@ -137,18 +141,23 @@
         </section>
         <footer>
             <div class="bootmbuttonSmall">
-                发布
+                {{ __('发布') }}
             </div>
         </footer>
     </div>
-
+    @endif
+    @if($letter)
     <div class="plan_prewview_div">
         <div class="recommendContent">
             <div class="martop1rem">
                 <div class="plan">
                     <div class="planContent">
-                        <h4 class="pc_t">TO<input type="number" class="years_input">年后的自己</h4>
-                        <div>{{ __('年后的自己') }}做什么...</div>
+                        <h4 class="pc_t">
+                                @if($lang == 'zh_cn')To<span>{{ $letter->years }}</span>{{ __('年后的自己') }}@endif
+                                @if($lang == 'en')To myself after <span>{{ $letter->years }} years</span>@endif
+                        </h4>
+
+                        <div>{{ $letter->contents }}</div>
                     </div>
                     <div class="plan_list">
                         <div class="plan_item">
@@ -158,28 +167,19 @@
                             </div>
                             <div class="swiper-container">
                                 <div class="swiper-wrapper">
+                                	@foreach($plans as $key=>$plan)
                                     <div class="swiper-slide">
                                         <div class="planContent">
-                                            <div class="plan_pre_pd">{{ __('做什么') }}...</div>
+                                            <div class="plan_pre_pd">{{ $plan->what}}</div>
                                         </div>
                                         <div class="planContent">
-                                            <div class="plan_pre_pd">{{ __('如何做') }}...</div>
+                                            <div class="plan_pre_pd">{{ $plan->how}}</div>
                                         </div>
                                         <div class="planContent">
-                                            <div class="plan_pre_pd">{{ __('开始/结束') }}...</div>
+                                            <div class="plan_pre_pd">{{ $plan->when}}</div>
                                         </div>
                                     </div>
-                                    <div class="swiper-slide">
-                                        <div class="planContent">
-                                            <div class="plan_pre_pd">{{ __('做什么') }}...</div>
-                                        </div>
-                                        <div class="planContent">
-                                            <div class="plan_pre_pd">{{ __('如何做') }}...</div>
-                                        </div>
-                                        <div class="planContent">
-                                            <div class="plan_pre_pd">{{ __('开始/结束') }}...</div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -188,6 +188,7 @@
             </div>
         </div>
     </div>
+    @endif
 
 </div>
 
@@ -235,7 +236,8 @@ $(function () {
                     return false
                 }
                 if (res.code === 0) {
-                    alert('提交成功')
+                	var success_tip = '{{ __("提交成功") }}';
+                    alert(success_tip)
                     window.location.href = "/"
                 }
             }
@@ -244,23 +246,35 @@ $(function () {
 })
 function addPlan () {
         if (plan_num === 5) {
-            alert('最多可添加5条计划');
+        	 @if($lang == 'zh_cn')
+        	 var tip = '最多可添加5条计划';
+        	 @endif
+
+        	 @if($lang == 'en')
+        	 var tip = 'You can add up to 5 plans';
+        	 @endif
+            alert(tip);
             return false;
         }
         plan_num ++
-        var plan_str = "<div class='plan_item'>" + 
-                            "<div class='title'>" + '我的计划' + '#' + plan_num +
-                                "<span class='add_plan' onclick='addPlan(this)'>" + '添加计划+' + "</span>" +
+        var my_plan_lang = '{{ __("我的计划") }}';
+        var add_plan_lang = '{{ __("添加计划") }}';
+        var what_lang = '{{ __("做什么") }}';
+        var how_lang = '{{ __("如何做") }}';
+        var when_lang ='{{ __("开始/结束") }}';
+        var plan_str = "<div class='plan_item'>" +
+                            "<div class='title'>" + my_plan_lang + '#' + plan_num +
+                                "<span class='add_plan' onclick='addPlan(this)'>" + add_plan_lang + '+' + "</span>" +
                             "</div>" +
                             "<div class='planContent'>" +
-                                "<textarea class='plan_what' placeholder=" + '做什么' + "..." + "></textarea>" +
+                                "<textarea class='plan_what' placeholder=" + what_lang + "..." + "></textarea>" +
                             "</div>" +
                             "<div class='planContent'>" +
-                                "<textarea class='plan_how' placeholder=" + '如何做' + "..." + "></textarea>" +
+                                "<textarea class='plan_how' placeholder=" + how_lang + "..." + "></textarea>" +
                             "</div>" +
                             "<div class='planContent'>" +
-                                "<textarea class='plan_when' placeholder=" + '开始/结束' + "..." + "></textarea>" + 
-                            "</div>" + 
+                                "<textarea class='plan_when' placeholder=" + when_lang + "..." + "></textarea>" +
+                            "</div>" +
                         "</div>"
         $('.plan_list').append(plan_str)
     }

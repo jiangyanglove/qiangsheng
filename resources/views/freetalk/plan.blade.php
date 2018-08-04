@@ -41,8 +41,9 @@
                 <div class="plan">
                         <div class="planContent">
                             <h4 style="margin-bottom: 10px">
-                                @if($lang == 'zh_cn')To<span>{{ $letter->years }}</span>{{ __('年后的自己') }}</h4>@endif
-                                @if($lang == 'en')To myself after <span>{{ $letter->years }} years</span></h4>@endif
+                                @if($lang == 'zh_cn')To<span>{{ $letter->years }}</span>{{ __('年后的自己') }}@endif
+                                @if($lang == 'en')To myself after <span>{{ $letter->years }} years</span>@endif
+                            </h4>
 
                             <textarea>{{ $letter->contents }}</textarea>
                         </div>
@@ -62,7 +63,7 @@
                 </div>
             </div>
             @else
-            还没有行动计划
+            {{ __('还没有行动计划') }}
             @endif
         </div>
     </section>
