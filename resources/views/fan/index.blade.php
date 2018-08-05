@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ __('每周回顾') }} - {{ __('中国强生财务职业发展月') }}</title>
+    <title>{{ __('我的职场范儿') }} - {{ __('中国强生财务职业发展月') }}</title>
     <link rel="stylesheet" href="/dist/static/style/index.css">
 </head>
 <style>
