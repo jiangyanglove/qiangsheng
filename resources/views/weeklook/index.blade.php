@@ -47,9 +47,8 @@
       <div class="week">
         <div class="img"><a href="/weeklook/detail"><img src="/dist/static/img/m2.png" alt=""></a></div>
         <div class="r">
-          <h4><a href="/weeklook/detail">Best Places Where to Go for
-              Snowboarding and Skiing</a></h4>
-              <p>BBC NEWS</p>
+          <h4><a href="/weeklook/detail">{{ __('首期全程回顾') }} | {{ __('强生财务职业发展月第一期顺利开展') }}</a></h4>
+              <!-- <p>BBC NEWS</p> -->
         </div>
       </div>
     </div>
