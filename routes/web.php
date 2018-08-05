@@ -41,6 +41,8 @@ Route::get('/hero/result', 'HomeController@discResult')->name('disc_result');
 Route::get('/weeklook', 'HomeController@weeklook');
 Route::get('/weeklook/detail', 'HomeController@weeklookDetail');
 
+Route::get('/fan', 'HomeController@fan');
+
 
 //Auth::routes();
 

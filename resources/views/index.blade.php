@@ -64,7 +64,7 @@
         </div>
       </div>
       </a>
-      <a href="">
+      <a href="/fan">
       <div class="active_card">
         <img src="/dist/static/img/fan.png" alt="">
         <div class="card_r">
