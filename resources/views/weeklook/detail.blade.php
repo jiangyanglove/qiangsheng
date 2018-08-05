@@ -5,9 +5,18 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ __('首页') }} - {{ __('中国强生财务职业发展月') }}</title>
+    <title>{{ __('每周回顾') }} - {{ __('中国强生财务职业发展月') }}</title>
     <link rel="stylesheet" href="/dist/static/style/index.css">
 </head>
+<style>
+  .weeks {
+    padding: 20px;
+    line-height: 1.5;
+  }
+  .weeks img {
+    max-width: 100%;
+  }
+</style>
 <body>
 
   <div class="index-container">
@@ -20,86 +29,36 @@
         </div>
       </div>
     </div>
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide banner">@if($lang == 'en')<img src="/dist/static/img/banner1_en.png" alt="">@else<img src="/dist/static/img/banner1.png" alt="">@endif</div>
-        <div class="swiper-slide banner"><img src="/dist/static/img/banner.png" alt=""></div>
-        <!-- <div class="swiper-slide banner"><img src="/dist/static/img/banner.png" alt=""></div> -->
-      </div>
-    </div>
-      <a href="/group/{{ $user->city }}">
-      <div class="active_card">
-          <img src="/dist/static/img/Photo.png" alt="">
-          <div class="card_r">
-            <h3>{{ __('活动分组') }}</h3>
-            <p>{{ __('请大家组队参与小组积分赛，每组需要8名成员，累计积分排名前三的小组将获得奖品。') }}</p>
-          </div>
-      </div>
-      </a>
 
-      <a href="/preview">
-      <div class="active_card">
-        <img src="/dist/static/img/m2.png" alt="">
-        <div class="card_r">
-          <h3>{{ __('精彩预告') }}</h3>
-          <p>{{ __('这里有全部的活动资讯，欢迎关注查看。活动问题收集：请提交与活动分享主题相关的提问，现场由讲师进行回答。') }}</p>
-        </div>
-      </div>
-      </a>
-      <a href="/hero/test">
-      <div class="active_card">
-        <img src="/dist/static/img/m4.png" alt="">
-        <div class="card_r">
-          <h3>{{ __('DISC测试') }}</h3>
-          <p>{{ __('完成DISC性格测试，揭秘你是超级英雄里的哪一位。') }}</p>
-        </div>
-      </div>
-      </a>
-      <a href="/reading">
-      <div class="active_card">
-        <img src="/dist/static/img/book.png" alt="">
-        <div class="card_r">
-          <h3>{{ __('读书的力量') }}</h3>
-          <p>{{ __('推荐共享好书，交流阅读心得，助力职业成长。') }}</p>
-        </div>
-      </div>
-      </a>
-      <a href="">
-      <div class="active_card">
-        <img src="/dist/static/img/fan.png" alt="">
-        <div class="card_r">
-          <h3>{{ __('我的职场范儿') }}</h3>
-          <p>{{ __('发布职业、生活的对比照。拍完职业照， 才知道我有多职业。') }}</p>
-        </div>
-      </div>
-      </a>
-      <a href="/freetalk">
-      <div class="active_card">
-        <img src="/dist/static/img/freetalk.png" alt="">
-        <div class="card_r">
-          <h3>{{ __('自由讨论') }}</h3>
-          <p>{{ __('发起与职业发展主题相关话题，自由交流、相互探讨。') }}</p>
-        </div>
-      </div>
-      </a>
-      <a href="/weeklook">
-      <div class="active_card">
-        <img src="/dist/static/img/week.png" alt="">
-        <div class="card_r">
-          <h3>{{ __('每周回顾') }}</h3>
-          <p>{{ __('每周一篇新闻速递，带你回顾当周亮点。') }}</p>
-        </div>
-      </div>
-      </a>
-      <a href="/post/letter">
-      <div class="active_card">
-        <img src="/dist/static/img/post.png" alt="">
-        <div class="card_r">
-          <h3>{{ __('未来邮局') }}</h3>
-          <p>{{ __('写下自己的感悟和计划，在未来通过行动让改变发生。') }}</p>
-        </div>
-      </div>
-      </a>
+    <div class="weeks">
+      <h3>{{ __('首期全程回顾') }} | {{ __('强生财务职业发展月第一期顺利开展') }}</h3>
+      <p>{{ __('2018年8月1日，筹备多时的中国强生财务职业发展月终于在万众期待中拉开了帷幕。') }}
+        </p>
+      <img src="/dist/static/img/week1.jpg" alt="">
+      <p>{{ __('本次活动将分为四期进行，于北京、上海、广州、杭州、苏州、西安同步举行。于8月1日举办的kick off meeting（启动会议）的成功举办亦为之开了个好头。') }}
+        </p>
+        <img src="/dist/static/img/week2.jpg" alt="">
+        <p>{{ __('首日的启动会议中最令人期待的，当属Regional CFO 的分享演讲了，不少同仁对于第一次与CFO的“近距离接触”兴奋不已。以“Leadership，Aglity，Innovatiom”为主题的演讲持续了30分钟，参会者纷纷表示收获良多、干货满满。') }}
+          </p>
+        <img src="/dist/static/img/week3.jpg" alt="">
+        <p>{{ __('第二部分是外部环境分享，从宏观层面剖析了现如今全球的经济财政环境，以帮助成员们以更高的角度来审视和看待自己的工作与职业发展。') }}
+          </p>
+        <img src="/dist/static/img/week4.jpg" alt="">
+        <p>{{ __('第三部分是“中国业务团队最新业绩分享&财务团队介绍“环节，包括医疗器材、杨森制药以及消费品在内的团队为大家带来最新业绩分析以及财务团队介绍。') }}
+          </p>
+        <img src="/dist/static/img/week5.jpg" alt="">
+        <img src="/dist/static/img/week6.png" alt="">
+        <small>{{ __('团队与团队之间成功”破冰“，亦为之后三周的活动打下基础。') }}
+          </small>
+        <p>{{ __('第四部分BS COE团队，Tax团队和GS团队的分享更让我们走近彼此。') }}
+          </p>
+        <img src="/dist/static/img/week7.jpg" alt="">
+        <p>{{ __('最后是由中国区财务高层主持的问答环节，成员们当然不会错过难得的机会，现场讨论氛围十分热烈。') }}
+          </p>
+        <img src="/dist/static/img/week8.jpg" alt="">
+        <p>{{ __('本次财务发展月第一期活动圆满结束，希望大家在接下去三周丰富的活动中能得到更多收获。') }}</p>
+
+    </div>
 
       <div class="modal"></div>
       <div class="drawer drawer_l md-dense">
@@ -190,16 +149,12 @@
     <script src="/dist/static/vendor/swiper-3.4.0.jquery.min.js"></script>
     <script>
         $(function () {
-           var mySwiper = new Swiper ('.swiper-container', {
-             loop: true
-           })
             $('.sex_item').on('click', function() {
                 $(this).addClass('active').siblings('.sex_item').removeClass('active')
             })
             $('.lang_item').on('click', function() {
                 $(this).addClass('active').siblings('.lang_item').removeClass('active')
             })
-
             $('.menu_icon').on('click', function() {
               $('.drawer_l, .modal').addClass('active')
               $('.index-container').addClass('hide')

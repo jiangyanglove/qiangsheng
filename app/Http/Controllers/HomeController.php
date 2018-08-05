@@ -239,4 +239,36 @@ class HomeController extends Controller
         score($user->id, 4);
         return ok();
     }
+
+    public function weeklook(){
+        $id = isauth();
+        if(!$id){
+            $msg = Lang::get('tips.no_login');
+            return err(2, $msg);
+        }
+        $user = User::findOrFail($id);
+        if(!$user->icon){
+            $user->icon = 'images/user_icon_default' . $user->sex . '.png';
+        }
+
+        $lang = getLang();
+        return view('weeklook/index', ['lang' => $lang, 'user' => $user]);
+
+    }
+
+    public function weeklookDetail(){
+        $id = isauth();
+        if(!$id){
+            $msg = Lang::get('tips.no_login');
+            return err(2, $msg);
+        }
+        $user = User::findOrFail($id);
+        if(!$user->icon){
+            $user->icon = 'images/user_icon_default' . $user->sex . '.png';
+        }
+
+        $lang = getLang();
+        return view('weeklook/detail', ['lang' => $lang, 'user' => $user]);
+
+    }
 }

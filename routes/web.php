@@ -38,6 +38,8 @@ Route::get('/freetalk/{type?}', 'FreetalkController@index');
 Route::get('/hero/test', 'HomeController@discTest')->name('disc_test');
 Route::get('/hero/result', 'HomeController@discResult')->name('disc_result');
 
+Route::get('/weeklook', 'HomeController@weeklook');
+Route::get('/weeklook/detail', 'HomeController@weeklookDetail');
 
 
 //Auth::routes();

@@ -5,9 +5,31 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ __('首页') }} - {{ __('中国强生财务职业发展月') }}</title>
+    <title>{{ __('每周回顾') }} - {{ __('中国强生财务职业发展月') }}</title>
     <link rel="stylesheet" href="/dist/static/style/index.css">
 </head>
+<style>
+  .week {
+    display: flex;
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+  }
+  .week .img {
+    width: 110px;
+    flex-shrink: 0;
+    height: auto;
+    display: block;
+  }
+  .week .img img {
+    width: 100%;
+  }
+  .week .r {
+    margin-left: 20px;
+  }
+  .week .r p {
+    color: #009fe7;
+  }
+</style>
 <body>
 
   <div class="index-container">
@@ -16,90 +38,21 @@
         <div class="menu_icon"></div>
         <img class="logo_img" src="/dist/static/img/logo_white.png" alt="">
         <div class="md-toolbar-section-end">
-          <div class="thumb"><img src="/{{ $user->icon }}" alt=""></div>
+                <div class="thumb"><img src="/{{ $user->icon }}" alt=""></div>
         </div>
       </div>
     </div>
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide banner">@if($lang == 'en')<img src="/dist/static/img/banner1_en.png" alt="">@else<img src="/dist/static/img/banner1.png" alt="">@endif</div>
-        <div class="swiper-slide banner"><img src="/dist/static/img/banner.png" alt=""></div>
-        <!-- <div class="swiper-slide banner"><img src="/dist/static/img/banner.png" alt=""></div> -->
-      </div>
-    </div>
-      <a href="/group/{{ $user->city }}">
-      <div class="active_card">
-          <img src="/dist/static/img/Photo.png" alt="">
-          <div class="card_r">
-            <h3>{{ __('活动分组') }}</h3>
-            <p>{{ __('请大家组队参与小组积分赛，每组需要8名成员，累计积分排名前三的小组将获得奖品。') }}</p>
-          </div>
-      </div>
-      </a>
 
-      <a href="/preview">
-      <div class="active_card">
-        <img src="/dist/static/img/m2.png" alt="">
-        <div class="card_r">
-          <h3>{{ __('精彩预告') }}</h3>
-          <p>{{ __('这里有全部的活动资讯，欢迎关注查看。活动问题收集：请提交与活动分享主题相关的提问，现场由讲师进行回答。') }}</p>
+    <div class="weeks">
+      <div class="week">
+        <div class="img"><a href="/weeklook/detail"><img src="/dist/static/img/m2.png" alt=""></a></div>
+        <div class="r">
+          <h4><a href="/weeklook/detail">Best Places Where to Go for
+              Snowboarding and Skiing</a></h4>
+              <p>BBC NEWS</p>
         </div>
       </div>
-      </a>
-      <a href="/hero/test">
-      <div class="active_card">
-        <img src="/dist/static/img/m4.png" alt="">
-        <div class="card_r">
-          <h3>{{ __('DISC测试') }}</h3>
-          <p>{{ __('完成DISC性格测试，揭秘你是超级英雄里的哪一位。') }}</p>
-        </div>
-      </div>
-      </a>
-      <a href="/reading">
-      <div class="active_card">
-        <img src="/dist/static/img/book.png" alt="">
-        <div class="card_r">
-          <h3>{{ __('读书的力量') }}</h3>
-          <p>{{ __('推荐共享好书，交流阅读心得，助力职业成长。') }}</p>
-        </div>
-      </div>
-      </a>
-      <a href="">
-      <div class="active_card">
-        <img src="/dist/static/img/fan.png" alt="">
-        <div class="card_r">
-          <h3>{{ __('我的职场范儿') }}</h3>
-          <p>{{ __('发布职业、生活的对比照。拍完职业照， 才知道我有多职业。') }}</p>
-        </div>
-      </div>
-      </a>
-      <a href="/freetalk">
-      <div class="active_card">
-        <img src="/dist/static/img/freetalk.png" alt="">
-        <div class="card_r">
-          <h3>{{ __('自由讨论') }}</h3>
-          <p>{{ __('发起与职业发展主题相关话题，自由交流、相互探讨。') }}</p>
-        </div>
-      </div>
-      </a>
-      <a href="/weeklook">
-      <div class="active_card">
-        <img src="/dist/static/img/week.png" alt="">
-        <div class="card_r">
-          <h3>{{ __('每周回顾') }}</h3>
-          <p>{{ __('每周一篇新闻速递，带你回顾当周亮点。') }}</p>
-        </div>
-      </div>
-      </a>
-      <a href="/post/letter">
-      <div class="active_card">
-        <img src="/dist/static/img/post.png" alt="">
-        <div class="card_r">
-          <h3>{{ __('未来邮局') }}</h3>
-          <p>{{ __('写下自己的感悟和计划，在未来通过行动让改变发生。') }}</p>
-        </div>
-      </div>
-      </a>
+    </div>
 
       <div class="modal"></div>
       <div class="drawer drawer_l md-dense">
@@ -199,7 +152,6 @@
             $('.lang_item').on('click', function() {
                 $(this).addClass('active').siblings('.lang_item').removeClass('active')
             })
-
             $('.menu_icon').on('click', function() {
               $('.drawer_l, .modal').addClass('active')
               $('.index-container').addClass('hide')
