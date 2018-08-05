@@ -89,7 +89,7 @@
 <div class="index-container">
     <header class="head">
         <div class="nav">
-            <a href="/freetalk"><div class="back"><img src="/dist/static/img/back.png" alt=""></div></a>
+            <a href="javascript:history.back()"><div class="back"><img src="/dist/static/img/back.png" alt=""></div></a>
             <div class="citys">
                 <div class="city"><a style="color: #ffffff;" href="/freetalk/new">{{ __('最新') }}</a></div>
                 <div class="city"><a style="color: #ffffff;" href="/freetalk/hot">{{ __('热门') }}</a></div>
@@ -162,7 +162,7 @@
                     <div class="plan_list">
                         <div class="plan_item">
                             <div class="plan_title_wrap">
-                                <div class="title">{{ __('我的计划') }} # 1</div>
+                                <div class="title">{{ __('我的计划') }} # <span class="plan_preview_num">1</span></div>
                                 <div class="swiper-pagination"></div>
                             </div>
                             <div class="swiper-container">
@@ -197,8 +197,12 @@
 <script src="/dist/static/vendor/swiper-3.4.0.jquery.min.js"></script>
 <script>
 var mySwiper = new Swiper ('.swiper-container', {
-    loop: true,
+    loop: false,
     pagination : '.swiper-pagination',
+    onSlideChangeStart: function (swiper) {
+        var plan_preview_num = swiper.activeIndex +1;
+        $('.plan_preview_num').text(plan_preview_num)
+    }
 })
 
 var plan_num = 1
