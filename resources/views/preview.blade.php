@@ -183,7 +183,8 @@
             //   weeknotice_id = $(this).attr('data_id');
             //   $(this).children('.preview_textarea_wrap').fadeToggle().children('.preview_textarea').focus();
             // })
-            $('.comment_btn').on('click', function () {
+            $('.comment_btn').on('click', function (event) {
+              event.stopPropagation();
               weeknotice_id = $(this).attr('data_id');
               let parent = $(this).parents('.pre_card')
               parent.children('.preview_textarea_wrap').fadeToggle().children('.preview_textarea').focus();

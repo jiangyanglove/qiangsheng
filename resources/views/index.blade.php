@@ -66,7 +66,7 @@
       </a>
       <a href="">
       <div class="active_card">
-        <img src="/dist/static/img/thumb_l.png" alt="">
+        <img src="/dist/static/img/fan.png" alt="">
         <div class="card_r">
           <h3>{{ __('我的职场范儿') }}</h3>
           <p>{{ __('发布职业、生活的对比照。拍完职业照， 才知道我有多职业。') }}</p>
@@ -75,7 +75,7 @@
       </a>
       <a href="/freetalk">
       <div class="active_card">
-        <img src="/dist/static/img/m4.png" alt="">
+        <img src="/dist/static/img/freetalk.png" alt="">
         <div class="card_r">
           <h3>{{ __('自由讨论') }}</h3>
           <p>{{ __('发起与职业发展主题相关话题，自由交流、相互探讨。') }}</p>
@@ -84,7 +84,7 @@
       </a>
       <a href="">
       <div class="active_card">
-        <img src="/dist/static/img/thumb_l.png" alt="">
+        <img src="/dist/static/img/week.png" alt="">
         <div class="card_r">
           <h3>{{ __('每周回顾') }}</h3>
           <p>{{ __('每周一篇新闻速递，带你回顾当周亮点。') }}</p>
@@ -93,7 +93,7 @@
       </a>
       <a href="/post/letter">
       <div class="active_card">
-        <img src="/dist/static/img/thumb_l.png" alt="">
+        <img src="/dist/static/img/post.png" alt="">
         <div class="card_r">
           <h3>{{ __('未来邮局') }}</h3>
           <p>{{ __('写下自己的感悟和计划，在未来通过行动让改变发生。') }}</p>
