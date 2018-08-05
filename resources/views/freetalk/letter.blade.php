@@ -83,6 +83,9 @@
   .plan_input_div {
       padding: 0 0 60px;
   }
+  .del_plan {
+      margin-right: 10px;
+  }
 </style>
 <body>
 
@@ -121,7 +124,7 @@
                         </div>
                         <div class="plan_list">
                             <div class="plan_item">
-                                <div class="title">{{ __('我的计划') }} # 1
+                                <div class="title">{{ __('我的计划') }} # <span class="plan_num">1</span>
                                     <span class="add_plan" onclick='addPlan(this)'>{{ __('添加计划') }}+</span>
                                 </div>
                                 <div class="planContent">
@@ -205,26 +208,16 @@ var mySwiper = new Swiper ('.swiper-container', {
     }
 })
 
-var plan_num = 1
+var plan_length = $('.plan_item').length;
 $(function () {
     $('.bootmbuttonSmall').on('click', function () {
         var years = $('.years_input').val();
         var letter = $('.letter').val();
-        var plans = [];
-        var plan_list = $('.plan_list');
-        $('.plan_item').each(function (i) {
-            var _this = $(this);
-            var what = _this.find('.plan_what').val();
-            var how = _this.find('.plan_how').val();
-            var when = _this.find('.plan_when').val();
-            var plan_item = {
-                what: what,
-                how: how,
-                when: when
-            }
-            plans.push(plan_item)
-        })
-        var plans_str = JSON.stringify(plans)
+        var plans = checkPlans();
+        if (!plans) {
+            return false
+        }
+        var plans_str = JSON.stringify(plans);
         $.ajax({
             url: '/api/post/letter/add',
             data: {
@@ -247,9 +240,46 @@ $(function () {
             }
         })
     })
-})
+});
+function removePlan(e) {
+    $(e).parents('.plan_item').remove();
+    $('.plan_item').each(function (i) {
+        $(this).find('.plan_num').text(i+1)
+    });
+    plan_length = $('.plan_item').length;
+}
+function checkPlans() {
+    var plans = [];
+    var status;
+    $('.plan_item').each(function (i) {
+        var _this = $(this);
+        var what = _this.find('.plan_what').val();
+        var how = _this.find('.plan_how').val();
+        var when = _this.find('.plan_when').val();
+        if (!what || !how || !when) {
+            alert('请完善您的计划表');
+            status = false;
+            return false;
+        }
+        var plan_item = {
+            what: what,
+            how: how,
+            when: when
+        }
+        plans.push(plan_item);
+        status = plans;
+    })
+    return status
+}
 function addPlan () {
-        if (plan_num === 5) {
+        var bindClick = "onclick='addPlan(this)'";
+        var my_plan_lang = '{{ __("我的计划") }}';
+        var add_plan_lang = '{{ __("添加计划") }}+';
+        var what_lang = '{{ __("做什么") }}';
+        var how_lang = '{{ __("如何做") }}';
+        var when_lang ='{{ __("开始/结束") }}';
+        console.log('plan_item',plan_length)
+        if (plan_length === 5) {
         	 @if($lang == 'zh_cn')
         	 var tip = '最多可添加5条计划';
         	 @endif
@@ -260,15 +290,9 @@ function addPlan () {
             alert(tip);
             return false;
         }
-        plan_num ++
-        var my_plan_lang = '{{ __("我的计划") }}';
-        var add_plan_lang = '{{ __("添加计划") }}';
-        var what_lang = '{{ __("做什么") }}';
-        var how_lang = '{{ __("如何做") }}';
-        var when_lang ='{{ __("开始/结束") }}';
         var plan_str = "<div class='plan_item'>" +
-                            "<div class='title'>" + my_plan_lang + '#' + plan_num +
-                                "<span class='add_plan' onclick='addPlan(this)'>" + add_plan_lang + '+' + "</span>" +
+                            "<div class='title'>" + my_plan_lang + '#' + "<span class='plan_num'></span>" +
+                                "<span class='add_plan'" + bindClick + ">" + add_plan_lang + "</span>" + "<span class='add_plan del_plan' onclick='removePlan(this)'>删除计划</span>" +
                             "</div>" +
                             "<div class='planContent'>" +
                                 "<textarea class='plan_what' placeholder=" + what_lang + "..." + "></textarea>" +
@@ -281,6 +305,10 @@ function addPlan () {
                             "</div>" +
                         "</div>"
         $('.plan_list').append(plan_str)
+        plan_length = $('.plan_item').length;
+        $('.plan_item').each(function (i) {
+            $(this).find('.plan_num').text(i+1)
+        })
     }
 </script>
 </body>
