@@ -47,7 +47,7 @@
         <p>{{ __('第三部分是“中国业务团队最新业绩分享&财务团队介绍“环节，包括医疗器材、杨森制药以及消费品在内的团队为大家带来最新业绩分析以及财务团队介绍。') }}
           </p>
         <img src="/dist/static/img/week5.jpg" alt="">
-        <img src="/dist/static/img/week6.png" alt="">
+        <img src="/dist/static/img/week6.jpg" alt="">
         <small>{{ __('团队与团队之间成功”破冰“，亦为之后三周的活动打下基础。') }}
           </small>
         <p>{{ __('第四部分BS COE团队，Tax团队和GS团队的分享更让我们走近彼此。') }}
