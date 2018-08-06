@@ -163,10 +163,10 @@
             })
 
             $('.bootmbuttonSmall').on('click', function () {
-                if (img_arr.length === 0) {
-                    alert('请上传图片')
-                    return false
-                }
+                // if (img_arr.length === 0) {
+                //     alert('请上传图片')
+                //     return false
+                // }
                 if (!$("#up_cont").val()) {
                     alert('请发表您的想法')
                     return false
@@ -181,7 +181,11 @@
                         photos: img_str
                     },
                     success: function(res) {
-                        window.location.href = '/freetalk';
+                        if (res.code === 0) {
+                            window.location.href = '/freetalk';
+                        } else {
+                            alert(res.error_msg)
+                        }
                     }
                 })
             })

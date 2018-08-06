@@ -14,10 +14,7 @@
 </head>
 <style>
   .martop1rem .plan .planContent, .martop1rem .plan .title {
-    border-bottom: 1px solid red;
-    border-top: 1px solid red;
-    border-left: 0;
-    border-right: 0;
+    border: 0;
   }
   .martop1rem .plan .title {
     margin: 0 1px;
@@ -31,7 +28,7 @@
     border-bottom: 0;
   }
   .plan {
-    background: url(/dist/static/img/post_bnd.png) no-repeat center center / 100% 100%;
+    border: 0;
   }
   .pc_t {
     font-size: 0.8rem;
@@ -86,6 +83,36 @@
   .del_plan {
       margin-right: 10px;
   }
+  .swiper-container {
+      border: 1px solid red;
+      border-top: 0;
+  }
+  .plan_title_wrap {
+      border: 1px solid red;
+  }
+  .martop1rem .plan .planContent, .martop1rem .plan .title {
+      border-bottom: 1px solid red;
+  }
+  .input_idea {
+      padding: 20px;
+      border: 1px solid #666;
+      margin-top: 10px;
+  }
+  .input_idea_in textarea {
+      width: 100%;
+      display: block;
+      border: 0;
+      font-size: 14px;
+      outline: none;
+      resize: none;
+      line-height: 1.5;
+  }
+  footer {
+      padding-bottom: 50px;
+  }
+  .bootmbuttonSmall {
+      margin-top: -20px;
+  }
 </style>
 <body>
 
@@ -108,10 +135,10 @@
                 {{ __('取消') }}
             </div>
         </div>
-        <div class="recommendContent">
+        <!-- <div class="recommendContent"> -->
             <input type="hidden" id="letter_id" value="{{ $letter->id }}" />
-            <input type="hidden" id="type" value="plan" />
-            @if($letter)
+            <!-- <input type="hidden" id="type" value="plan" /> -->
+            <!-- @if($letter)
             <div class="martop1rem">
                 <div class="plan">
                         <div class="planContent">
@@ -139,7 +166,8 @@
             </div>
             @else
             {{ __('发布') }}
-            @endif
+            @endif -->
+            <!-- <div class="plan">
             <div class="plan_list">
                 <div class="plan_item">
                     <div class="plan_title_wrap">
@@ -165,7 +193,46 @@
                     </div>
                 </div>
             </div>
+            </div>
+        </div> -->
+        <div class="plan_prewview_div">
+        <div class="recommendContent">
+            <div class="martop1rem">
+                <div class="plan">
+                    <div class="plan_list">
+                        <div class="plan_item">
+                            <div class="plan_title_wrap">
+                                <div class="title">{{ __('我的计划') }} # <span class="plan_preview_num">1</span></div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                	@foreach($plans as $key=>$plan)
+                                    <div class="swiper-slide">
+                                        <div class="planContent">
+                                            <div class="plan_pre_pd">{{ $plan->what}}</div>
+                                        </div>
+                                        <div class="planContent">
+                                            <div class="plan_pre_pd">{{ $plan->how}}</div>
+                                        </div>
+                                        <div class="planContent">
+                                            <div class="plan_pre_pd">{{ $plan->when}}</div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input_idea">
+                        <div class="input_idea_in">
+                            <textarea rows="6" id="idea_cont" placeholder="这一刻的想法"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
     </section>
     <footer>
         <div class="bootmbuttonSmall">
@@ -186,6 +253,25 @@ var mySwiper = new Swiper ('.swiper-container', {
         var plan_preview_num = swiper.activeIndex +1;
         $('.plan_preview_num').text(plan_preview_num)
     }
+})
+$('.bootmbuttonSmall').on('click', function () {
+    var letter_id = $('#letter_id').val();
+    var content = $('#idea_cont').val();
+    $.ajax({
+        url: '/api/freetalk/add',
+        data: {
+            type: 'plan',
+            content: content,
+            letter_id: letter_id
+        },
+        success: function(res) {
+            if (res.code === 0) {
+                window.location.href = '/freetalk';
+            } else {
+                alert(res.error_msg)
+            }
+        }
+    })
 })
 </script>
 </body>
