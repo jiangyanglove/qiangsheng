@@ -295,6 +295,13 @@
   .recommendContent .borderhas .desc {
       color: #666;
   }
+  .martop1rem .images.col-2 .item {
+    width: 9rem;
+    height: 12rem;
+  }
+  .martop1rem .images.col-2 .item:nth-child(2) {
+      margin-right: 0;
+  }
 </style>
 <body>
 <div class="index-container">
@@ -478,7 +485,7 @@
                             <p>{{ @$freetalk->user->name }}</p>
                         </div>
                     </div>
-                <div class="images">
+                <div class="images col-2">
                    @foreach ($freetalk->real_photos as $photo)
                     <div class="item img_triger">
                         <img src="{{ $photo }}" width="100%">
