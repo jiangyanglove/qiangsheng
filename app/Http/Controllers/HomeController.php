@@ -84,7 +84,7 @@ class HomeController extends Controller
         //如果是线下扫码，增加相应积分
 
 
-        $exist = PointRecord::where('user_id', $user->id)->where('type', 1)->first();
+        $exist = PointRecord::where('user_id', $user->id)->where('type', 10)->first();
         if($exist){
             $msg = Lang::get('tips.has_got_this_type_point');
             return err(2, $msg);
