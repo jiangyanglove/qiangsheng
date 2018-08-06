@@ -388,6 +388,7 @@
                 </div>
             </div>
             @endif
+
             @if($freetalk->type == 'photo' && $freetalk->photo_number == 1)
             <div class="cont_cus">
                 <div class="martop1rem">
@@ -400,6 +401,44 @@
                         </div>
                         <div class="img_triger">
                             <img src="{{ $freetalk->real_photos}}" alt="" width="100%">
+                        </div>
+                        <p class="biaoti"></p>
+                        <p class="desc">{{ $freetalk->content }}</p>
+                        <div class="appreciate">
+                            <div class="left">
+                                <p class="time">{{ $freetalk->time }}</p>
+                            </div>
+                            <div class="right">
+                                <div class="like" data_id="{{ $freetalk->id }}">
+                                    <img src="/dist/static/img/hongxin.png" alt="">
+                                    <span>{{ $freetalk->likes }}</span>
+                                </div>
+                                <div class="news">
+                                    <img src="/dist/static/img/xiaoxi.png" alt="">
+                                    <span>{{ $freetalk->comments }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview_textarea_wrap" style="display: none">
+                    <textarea class="preview_textarea" name="" cols="5"></textarea>
+                    <div class="send_btn" data_id="{{ $freetalk->id }}">
+                        <img class="send_btn_img" src="/dist/static/img/send_btn.png" alt="">
+                    </div>
+                </div>
+            </div>
+            @endif
+
+            @if($freetalk->type == 'photo' && $freetalk->photo_number == 0)
+            <div class="cont_cus">
+                <div class="martop1rem">
+                    <div class="borderhas">
+                        <div class="appreciate">
+                            <div class="left">
+                                <img src="/{{ @$freetalk->user->icon }}" alt="">
+                                <p>{{ @$freetalk->user->name }}</p>
+                            </div>
                         </div>
                         <p class="biaoti"></p>
                         <p class="desc">{{ $freetalk->content }}</p>

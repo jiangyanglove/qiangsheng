@@ -161,7 +161,7 @@ class UserController extends Controller
     {
         $a = User::all();
         if(count($a) > 1){
-            //echo '已禁止导入<br>';exit;
+            echo '已禁止导入<br>';exit;
             //echo '清空数据表<br>';//exit;
             //DB::table('users')->truncate();
             echo '导入最新数据<br>';
