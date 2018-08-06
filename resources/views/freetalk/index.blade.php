@@ -244,31 +244,48 @@
                             <p>Jason<br/>Moderik</p>
                         </div>
                     </div>
-                    <div class="plan">
-                        <div class="title">我的计划 # 1
-                            <p class="dot"><span class="red"></span><span></span><span></span><span></span></p>
+                    <div class="plan_list">
+                        <div class="plan_item">
+                            <div class="plan_title_wrap">
+                                <div class="title">{{ __('我的计划') }} # <span class="plan_preview_num">1</span></div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                	@foreach($plans as $key=>$plan)
+                                    <div class="swiper-slide">
+                                        <div class="planContent">
+                                            <div class="plan_pre_pd">{{ $plan->what}}</div>
+                                        </div>
+                                        <div class="planContent">
+                                            <div class="plan_pre_pd">{{ $plan->how}}</div>
+                                        </div>
+                                        <div class="planContent">
+                                            <div class="plan_pre_pd">{{ $plan->when}}</div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
-                        <div class="planContent">做什么...</div>
-                        <div class="planContent">如何做...</div>
-                        <div class="planContent">开始/结束...</div>
                     </div>
-                        <p class="biaoti"></p>
-                        <p class="desc">We need everyone's opinion about the form, color and describe the details that you like.</p>
-                        <div class="appreciate">
-                            <div class="left">
-                                <p class="time">1 HOUR AGO</p>
+                    <p class="biaoti"></p>
+                    <p class="desc">We need everyone's opinion about the form, color and describe the details that you like.</p>
+                    <div class="appreciate">
+                        <div class="left">
+                            <p class="time">1 HOUR AGO</p>
+                        </div>
+                        <div class="right">
+                            <div class="like">
+                                <img src="/dist/static/img/hongxin.png" alt="">
+                                <span>12</span>
                             </div>
-                            <div class="right">
-                                <div class="like">
-                                    <img src="/dist/static/img/hongxin.png" alt="">
-                                    <span>12</span>
-                                </div>
-                                <div class="news">
-                                    <img src="/dist/static/img/xiaoxi.png" alt="">
-                                    <span>12</span>
-                                </div>
+                            <div class="news">
+                                <img src="/dist/static/img/xiaoxi.png" alt="">
+                                <span>12</span>
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
             @endif
@@ -426,6 +443,14 @@
 <script src="/dist/static/vendor/jquery-3.1.1.min.js"></script>
 <script>
 $(function () {
+    var mySwiper = new Swiper ('.swiper-container', {
+        loop: false,
+        pagination : '.swiper-pagination',
+        onSlideChangeStart: function (swiper) {
+            var plan_preview_num = swiper.activeIndex +1;
+            $('.plan_preview_num').text(plan_preview_num)
+        }
+    })
     $('.img_triger').on('click', function (e) {
         e.stopPropagation();
         // $('.index-container').addClass('hide')
