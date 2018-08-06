@@ -62,6 +62,14 @@
     resize: none;
     outline: none;
 }
+.martop1rem .images.col-2 {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+}
+.martop1rem .images.col-2  .item img {
+    height: auto;
+}
 </style>
 <body>
 
@@ -89,7 +97,7 @@
         <div class="recommendContent">
             <div class="martop1rem">
                 <form action="" id="uploadForm" method="post" enctype="multipart/form-data">
-                    <div class="images" id="up_imgs">
+                    <div class="images col-2" id="up_imgs">
                         <div class="item upfile">
                             <img class="file_img" src="/dist/static/img/add-b.png">
                             <input class="file" type="file" name="file"/>
