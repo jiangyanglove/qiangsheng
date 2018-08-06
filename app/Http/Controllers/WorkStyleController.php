@@ -57,6 +57,7 @@ class WorkStyleController extends Controller
                 if(!$work_style->user->icon){
                     $work_style->user->icon = 'images/user_icon_default' . $work_style->user->sex . '.png';
                 }
+
                 $photo_number = 0;
                 $real_photos = [];
                 if($work_style->photos){
