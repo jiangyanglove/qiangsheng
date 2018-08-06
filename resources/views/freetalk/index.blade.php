@@ -203,6 +203,80 @@
     transform: translate(-50%,-50%);
     left: 50%;
 }
+
+  .martop1rem .plan .planContent, .martop1rem .plan .title {
+    border-bottom: 1px solid red;
+    border-top: 1px solid red;
+    border-left: 0;
+    border-right: 0;
+  }
+  .martop1rem .plan .title {
+    margin: 0 1px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  .martop1rem .plan .planContent:first-child {
+    border-top: 0;
+  }
+  .martop1rem .plan .planContent:last-child {
+    border-bottom: 0;
+  }
+  .plan {
+    background: url(/dist/static/img/post_bnd.png) no-repeat center center / 100% 100%;
+  }
+  .pc_t {
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+  .martop1rem .plan .planContent textarea, .martop1rem .plan .title textarea {
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+  }
+  .add_plan {
+    float: right;
+    font-weight: 400;
+    font-size: 0.7rem;
+  }
+  .years_input {
+    border-bottom: 1px solid #000;
+    outline: none;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 50px;
+    text-align: center;
+  }
+  .plan_title_wrap {
+    position: relative;
+  }
+  .swiper-pagination {
+    right: 10px;
+    top: 50%;
+    margin-top: -9px;
+  }
+  .swiper-pagination-bullet-active {
+    background: #ef3d42;
+  }
+  .swiper-pagination-bullet {
+      margin: 0 5px;
+  }
+  .plan_pre_pd {
+      min-height: 60px;
+      padding: 10px 0 20px;
+  }
+  .plan_prewview_div {
+      padding: 30px 0 60px;
+  }
+  .plan_input_div {
+      padding: 0 0 60px;
+  }
+  .del_plan {
+      margin-right: 10px;
+  }
 </style>
 <body>
 <div class="index-container">
@@ -234,14 +308,13 @@
             @if(count($freetalks) > 0)
             @foreach ($freetalks as $key=>$freetalk)
 
-            
             @if($freetalk->type == 'plan')
             <div class="martop1rem">
                  <div class="borderhas">
                     <div class="appreciate">
                         <div class="left">
-                            <img src="/dist/static/img/thumb.png" alt="">
-                            <p>Jason<br/>Moderik</p>
+                            <img src="/{{ @$freetalk->user->icon }}" alt="">
+                            <p>{{ @$freetalk->user->name }}</p>
                         </div>
                     </div>
                     <div class="plan_list">
@@ -252,7 +325,7 @@
                             </div>
                             <div class="swiper-container">
                                 <div class="swiper-wrapper">
-                                	@foreach($plans as $key=>$plan)
+                                	@foreach($freetalk->letter->letter_plans as $key=>$plan)
                                     <div class="swiper-slide">
                                         <div class="planContent">
                                             <div class="plan_pre_pd">{{ $plan->what}}</div>
@@ -270,19 +343,19 @@
                         </div>
                     </div>
                     <p class="biaoti"></p>
-                    <p class="desc">We need everyone's opinion about the form, color and describe the details that you like.</p>
+                    <p class="desc">{{ $freetalk->content }}</p>
                     <div class="appreciate">
                         <div class="left">
-                            <p class="time">1 HOUR AGO</p>
+                            <p class="time">{{ $freetalk->time }}</p>
                         </div>
                         <div class="right">
                             <div class="like">
                                 <img src="/dist/static/img/hongxin.png" alt="">
-                                <span>12</span>
+                                <span>{{ $freetalk->likes }}</span>
                             </div>
                             <div class="news">
                                 <img src="/dist/static/img/xiaoxi.png" alt="">
-                                <span>12</span>
+                                <span>{{ $freetalk->comments }}</span>
                             </div>
                         </div>
                     </div>
@@ -441,6 +514,7 @@
 <!-- <div style="padding-bottom: 80px"></div> -->
 
 <script src="/dist/static/vendor/jquery-3.1.1.min.js"></script>
+<script src="/dist/static/vendor/swiper-3.4.0.jquery.min.js"></script>
 <script>
 $(function () {
     var mySwiper = new Swiper ('.swiper-container', {

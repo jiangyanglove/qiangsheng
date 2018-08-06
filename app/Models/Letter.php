@@ -11,6 +11,7 @@ class Letter extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
     public function letter_plans()
     {
         return $this->hasMany('App\Models\LetterPlan');

@@ -22,6 +22,7 @@
                             <option @if(@$type == 7) selected @endif value="7">推荐书籍</option>
                             <option @if(@$type == 8) selected @endif value="8">在自由讨论区发布话题</option>
                             <option @if(@$type == 9) selected @endif value="9">将未来邮局的内容转发到自由讨论区</option>
+                            <option @if(@$type == 10) selected @endif value="10">6号线下扫码</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-default">搜索</button>
@@ -64,6 +65,7 @@
                                 @if($record->type == 7) 推荐书籍 @endif
                                 @if($record->type == 8) 在自由讨论区发布话题 @endif
                                 @if($record->type == 9) 将未来邮局的内容转发到自由讨论区 @endif
+                                @if($record->type == 10) 6号线下扫码 @endif
 
                             </td>
                             <td style='vertical-align: middle;text-align:center;'>{{ $record->point }}</td>
