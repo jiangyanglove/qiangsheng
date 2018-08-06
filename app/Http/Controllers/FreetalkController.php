@@ -98,7 +98,7 @@ class FreetalkController extends Controller
                 }
                 $freetalk->commentsList = $comments;
                 $time2 = Carbon::parse($freetalk->created_at);
-                $freetalk->time2 = $time->diffForHumans();
+                $freetalk->time2 = $time2->diffForHumans();
             }
         }
 
