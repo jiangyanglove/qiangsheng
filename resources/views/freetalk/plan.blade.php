@@ -239,13 +239,38 @@
             {{ __('发布') }}
         </div>
     </footer>
-
+    @include('include.sidebar')
 </div>
 
 
 <script src="/dist/static/vendor/jquery-3.1.1.min.js"></script>
 <script src="/dist/static/vendor/swiper-3.4.0.jquery.min.js"></script>
 <script>
+$(function () {
+    $('.sex_item').on('click', function() {
+                $(this).addClass('active').siblings('.sex_item').removeClass('active')
+            })
+            $('.lang_item').on('click', function() {
+                $(this).addClass('active').siblings('.lang_item').removeClass('active')
+            })
+
+            $('.menu_icon').on('click', function() {
+              $('.drawer_l, .modal').addClass('active')
+              $('.index-container').addClass('hide')
+            })
+            $('.modal, .close_btn').on('click', function() {
+              $('.drawer_l, .dense_r, .modal').removeClass('active')
+              $('.index-container').removeClass('hide')
+            })
+            $('.drawer_item').on('click', function() {
+              $(this).children('.md-inset').toggleClass('active');
+              $(this).siblings('.drawer_item').children('.md-inset').removeClass('active')
+            })
+            $('.thumb').on('click', function() {
+              $('.dense_r, .modal').addClass('active')
+              $('.index-container').addClass('hide')
+            })
+})
 var mySwiper = new Swiper ('.swiper-container', {
     loop: false,
     pagination : '.swiper-pagination',

@@ -52,6 +52,16 @@
 .martop1rem .images .item img {
     height: 5.9rem;
 }
+.martop1rem .textContent {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 20px;
+}
+.martop1rem .textContent textarea {
+    border: 0;
+    resize: none;
+    outline: none;
+}
 </style>
 <body>
 
