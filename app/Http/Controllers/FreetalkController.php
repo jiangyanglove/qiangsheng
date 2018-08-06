@@ -98,10 +98,10 @@ class FreetalkController extends Controller
                 }
                 $freetalk->commentsList = $comments;
                 $time2 = Carbon::parse($freetalk->created_at);
-                $freetalk->time = $time->diffForHumans();
+                $freetalk->time2 = $time->diffForHumans();
             }
         }
- //dump($freetalks);exit;
+
         $lang = getLang();
         return view('freetalk/index', ['lang' => $lang, 'type' => $type, 'user' => $user, 'freetalks' => $freetalks]);
     }
