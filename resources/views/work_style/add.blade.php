@@ -76,7 +76,7 @@
 <div class="index-container">
     <header class="head">
         <div class="nav">
-            <a href="/freetalk"><div class="back"><img src="/dist/static/img/back.png" alt=""></div></a>
+            <a href="/workstyle"><div class="back"><img src="/dist/static/img/back.png" alt=""></div></a>
             <div class="md-toolbar-section-end">
                 <div class="thumb"><img src="/{{ $user->icon }}" alt=""></div>
             </div>
@@ -84,7 +84,7 @@
     </header>
     <section>
         <div class="recommendTop">
-            <a href="/freetalk">
+            <a href="/workstyle">
             <div class="blacktitle">
                 {{ __('取消') }}
             </div>
@@ -148,7 +148,7 @@
             $('.file').on('change', function (e) {
                 var _this = $(this);
                 var is_last = false;
-                if ($('.upfile').length === 9) {
+                if ($('.upfile').length === 2) {
                     is_last = true
                 }
                 var file = e.currentTarget.files[0];
@@ -177,10 +177,10 @@
             })
 
             $('.bootmbuttonSmall').on('click', function () {
-                // if (img_arr.length === 0) {
-                //     alert('请上传图片')
-                //     return false
-                // }
+                if (img_arr.length === 0) {
+                    alert('请上传图片')
+                    return false
+                }
                 if (!$("#up_cont").val()) {
                     alert('请发表您的想法')
                     return false
@@ -188,15 +188,14 @@
                 let img_str = img_arr.join(',')
                 console.log(img_str)
                 $.ajax({
-                    url: '/api/freetalk/add',
+                    url: '/api/workstyle/add',
                     data: {
-                        type: 'photo',
                         content: $("#up_cont").val(),
                         photos: img_str
                     },
                     success: function(res) {
                         if (res.code === 0) {
-                            window.location.href = '/freetalk';
+                            window.location.href = '/workstyle';
                         } else {
                             alert(res.error_msg)
                         }

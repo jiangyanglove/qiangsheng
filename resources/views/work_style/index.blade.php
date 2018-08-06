@@ -466,7 +466,7 @@ $(function () {
     })
     function addComment(reading_id, content, parent_id) {
         $.ajax({
-            url: '/api/work_style/comment/add',
+            url: '/api/workstyle/comment/add',
             data: {
                 work_style_id: reading_id,
                 content: content,
@@ -506,7 +506,7 @@ $(function () {
         var id = $(this).attr('data_id');
         var num = $(this).children('.num');
         $.ajax({
-            url: '/api/work_style/like/add',
+            url: '/api/workstyle/like/add',
             data: {
                 work_style_id: id
             },
