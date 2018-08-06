@@ -483,7 +483,7 @@
         </div>
         <div class="link_where">
             <div><a href="/freetalk/photo/add">照片</a></div>
-            <div><a href="">行动计划</a></div>
+            <div><a href="/freetalk/plan/add">行动计划</a></div>
             <div class="close_btn">取消</div>
         </div>
         <!-- <div class="recommendBottom">
