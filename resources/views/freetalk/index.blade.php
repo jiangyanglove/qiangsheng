@@ -251,7 +251,17 @@
     text-align: center;
   }
   .plan_title_wrap {
-    position: relative;
+      position: relative;
+      border-bottom: 1px solid red;
+        background: #eee;
+        padding: 20px;
+        font-size: 14px;
+  }
+  .plan_list {
+    border: 1px solid red;
+  }
+  .plan_item {
+      /* padding: 0 20px; */
   }
   .swiper-pagination {
     right: 10px;
@@ -265,8 +275,10 @@
       margin: 0 5px;
   }
   .plan_pre_pd {
-      min-height: 60px;
-      padding: 10px 0 20px;
+    min-height: 60px;
+    padding: 10px 20px;
+    border-bottom: 1px solid red;
+    font-size: 14px;
   }
   .plan_prewview_div {
       padding: 30px 0 60px;
@@ -276,6 +288,9 @@
   }
   .del_plan {
       margin-right: 10px;
+  }
+  .recommendContent .borderhas .desc {
+      color: #666;
   }
 </style>
 <body>
@@ -349,7 +364,7 @@
                             <p class="time">{{ $freetalk->time }}</p>
                         </div>
                         <div class="right">
-                            <div class="like">
+                            <div class="like" data_id="{{ $freetalk->id }}">
                                 <img src="/dist/static/img/hongxin.png" alt="">
                                 <span>{{ $freetalk->likes }}</span>
                             </div>
