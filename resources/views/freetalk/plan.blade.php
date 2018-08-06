@@ -12,6 +12,81 @@
         　　document.documentElement.style.fontSize = document.documentElement.clientWidth / 23.3 + 'px';
     </script>
 </head>
+<style>
+  .martop1rem .plan .planContent, .martop1rem .plan .title {
+    border-bottom: 1px solid red;
+    border-top: 1px solid red;
+    border-left: 0;
+    border-right: 0;
+  }
+  .martop1rem .plan .title {
+    margin: 0 1px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  .martop1rem .plan .planContent:first-child {
+    border-top: 0;
+  }
+  .martop1rem .plan .planContent:last-child {
+    border-bottom: 0;
+  }
+  .plan {
+    background: url(/dist/static/img/post_bnd.png) no-repeat center center / 100% 100%;
+  }
+  .pc_t {
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+  .martop1rem .plan .planContent textarea, .martop1rem .plan .title textarea {
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+  }
+  .add_plan {
+    float: right;
+    font-weight: 400;
+    font-size: 0.7rem;
+  }
+  .years_input {
+    border-bottom: 1px solid #000;
+    outline: none;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 50px;
+    text-align: center;
+  }
+  .plan_title_wrap {
+    position: relative;
+  }
+  .swiper-pagination {
+    right: 10px;
+    top: 50%;
+    margin-top: -9px;
+  }
+  .swiper-pagination-bullet-active {
+    background: #ef3d42;
+  }
+  .swiper-pagination-bullet {
+      margin: 0 5px;
+  }
+  .plan_pre_pd {
+      min-height: 60px;
+      padding: 10px 0 20px;
+  }
+  .plan_prewview_div {
+      padding: 30px 0 60px;
+  }
+  .plan_input_div {
+      padding: 0 0 60px;
+  }
+  .del_plan {
+      margin-right: 10px;
+  }
+</style>
 <body>
 
 <div class="index-container">
@@ -65,6 +140,31 @@
             @else
             {{ __('发布') }}
             @endif
+            <div class="plan_list">
+                <div class="plan_item">
+                    <div class="plan_title_wrap">
+                        <div class="title">{{ __('我的计划') }} # <span class="plan_preview_num">1</span></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            @foreach($plans as $key=>$plan)
+                            <div class="swiper-slide">
+                                <div class="planContent">
+                                    <div class="plan_pre_pd">{{ $plan->what}}</div>
+                                </div>
+                                <div class="planContent">
+                                    <div class="plan_pre_pd">{{ $plan->how}}</div>
+                                </div>
+                                <div class="planContent">
+                                    <div class="plan_pre_pd">{{ $plan->when}}</div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <footer>
@@ -77,8 +177,16 @@
 
 
 <script src="/dist/static/vendor/jquery-3.1.1.min.js"></script>
+<script src="/dist/static/vendor/swiper-3.4.0.jquery.min.js"></script>
 <script>
-
+var mySwiper = new Swiper ('.swiper-container', {
+    loop: false,
+    pagination : '.swiper-pagination',
+    onSlideChangeStart: function (swiper) {
+        var plan_preview_num = swiper.activeIndex +1;
+        $('.plan_preview_num').text(plan_preview_num)
+    }
+})
 </script>
 </body>
 </html>
