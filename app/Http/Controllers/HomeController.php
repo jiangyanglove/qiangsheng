@@ -89,7 +89,7 @@ class HomeController extends Controller
             $msg = Lang::get('tips.has_got_this_type_point');
             return err(2, $msg);
         }
-        score($user->id, 1);
+        score($user->id, 10);
         return ok();
     }
 

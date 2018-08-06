@@ -142,6 +142,10 @@ function score($user_id, $type, $weeknotice_id = 0){
                             'point' => 5,
                             'description' => '将未来邮局的内容转发到自由讨论区',
                             ),
+                    10   => array(
+                            'point' => 2,
+                            'description' => '6号线下扫码',
+                            ),
     );
     $data = [];
     $data['type'] = $type;
