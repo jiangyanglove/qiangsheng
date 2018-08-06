@@ -104,6 +104,9 @@
 .trigger_comment:first-child .recommendBottom .border1px {
     border-top: 0;
 }
+.recommendContent {
+    padding-bottom: 50px;
+}
 .recommendContent .borderhas .appreciate .right div img {
     width: .7rem;
     height: .6rem;
@@ -324,6 +327,7 @@
             @foreach ($freetalks as $key=>$freetalk)
 
             @if($freetalk->type == 'plan')
+            <div class="cont_cus">
             <div class="martop1rem">
                  <div class="borderhas">
                     <div class="appreciate">
@@ -373,6 +377,13 @@
                                 <span>{{ $freetalk->comments }}</span>
                             </div>
                         </div>
+                    </div>
+                </div>
+                </div>
+                <div class="preview_textarea_wrap" style="display: none">
+                    <textarea class="preview_textarea" name="" cols="5"></textarea>
+                    <div class="send_btn" data_id="{{ $freetalk->id }}">
+                        <img class="send_btn_img" src="/dist/static/img/send_btn.png" alt="">
                     </div>
                 </div>
             </div>
@@ -579,7 +590,7 @@ $(function () {
     })
     function addComment(reading_id, content, parent_id) {
         $.ajax({
-            url: 'api/freetalk/comment/add',
+            url: '/api/freetalk/comment/add',
             data: {
                 freetalk_id: reading_id,
                 content: content,
