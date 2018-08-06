@@ -222,7 +222,7 @@ $(function () {
             url: '/api/post/letter/add',
             data: {
                 "years": years,
-                "contents": letter,
+                "content": letter,
                 "plans": plans_str
             },
             traditional: true,

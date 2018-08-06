@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ __('自由讨论') }} - {{ __('中国强生财务职业发展月') }}</title>
+    <title>{{ __('我的职场范儿') }} - {{ __('中国强生财务职业发展月') }}</title>
     <link rel="stylesheet" href="/dist/static/style/index.css">
     <link rel="stylesheet" href="/dist/static/style/recommend.css">
     <script type="text/javascript">
@@ -309,8 +309,8 @@
         <div class="nav">
             <div class="back"><a href="/"><img src="/dist/static/img/back.png" alt=""></a></div>
             <div class="citys">
-                <div class="city @if($type == 'new')active @endif"><a style="color: #ffffff;" href="/freetalk/new">{{ __('最新') }}</a></div>
-                <div class="city @if($type == 'hot')active @endif"><a style="color: #ffffff;" href="/freetalk/hot">{{ __('热门') }}</a></div>
+                <div class="city @if($type == 'new')active @endif"><a style="color: #ffffff;" href="/work_styles/new">{{ __('最新') }}</a></div>
+                <div class="city @if($type == 'hot')active @endif"><a style="color: #ffffff;" href="/work_styles/hot">{{ __('热门') }}</a></div>
             </div>
             <div class="md-toolbar-section-end">
                 <div class="thumb"><img src="/{{ $user->icon }}" alt=""></div>
@@ -322,190 +322,46 @@
     </div>
     <section>
         <div class="recommendTop">
-        <!-- <a href="/freetalk/photo/add"> -->
-            <div class="blacktitle" id="pub">
+        <a href="/workstyle/add">
+            <div class="blacktitle">
                 {{ __('发布') }}
-                <!-- 发布照片的url /freetalk/photo/add -->
             </div>
-        <!-- </a> -->
+        </a>
         </div>
         <div class="recommendContent">
-            @if(count($freetalks) > 0)
-            @foreach ($freetalks as $key=>$freetalk)
-
-            @if($freetalk->type == 'plan')
+            @if(count($work_styles) > 0)
+            @foreach ($work_styles as $key=>$work_style)
+            @if($work_style->photo_number > 1)
             <div class="cont_cus">
             <div class="martop1rem">
                  <div class="borderhas">
                     <div class="appreciate">
                         <div class="left">
-                            <img src="/{{ @$freetalk->user->icon }}" alt="">
-                            <p>{{ @$freetalk->user->name }}</p>
-                        </div>
-                    </div>
-                    <div class="plan_list">
-                        <div class="plan_item">
-                            <div class="plan_title_wrap">
-                                <div class="title">{{ __('我的计划') }} # <span class="plan_preview_num">1</span></div>
-                                <div class="swiper-pagination"></div>
-                            </div>
-                            <div class="swiper-container">
-                                <div class="swiper-wrapper">
-                                	@foreach($freetalk->letter->letter_plans as $key=>$plan)
-                                    <div class="swiper-slide">
-                                        <div class="planContent">
-                                            <div class="plan_pre_pd">{{ $plan->what}}</div>
-                                        </div>
-                                        <div class="planContent">
-                                            <div class="plan_pre_pd">{{ $plan->how}}</div>
-                                        </div>
-                                        <div class="planContent">
-                                            <div class="plan_pre_pd">{{ $plan->when}}</div>
-                                        </div>
-                                    </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="biaoti"></p>
-                    <p class="desc">{{ $freetalk->content }}</p>
-                    <div class="appreciate">
-                        <div class="left">
-                            <p class="time">{{ $freetalk->time }}</p>
-                        </div>
-                        <div class="right">
-                            <div class="like" data_id="{{ $freetalk->id }}">
-                                <img src="/dist/static/img/hongxin.png" alt="">
-                                <span>{{ $freetalk->likes }}</span>
-                            </div>
-                            <div class="news">
-                                <img src="/dist/static/img/xiaoxi.png" alt="">
-                                <span>{{ $freetalk->comments }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <div class="preview_textarea_wrap" style="display: none">
-                    <textarea class="preview_textarea" name="" cols="5"></textarea>
-                    <div class="send_btn" data_id="{{ $freetalk->id }}">
-                        <img class="send_btn_img" src="/dist/static/img/send_btn.png" alt="">
-                    </div>
-                </div>
-            </div>
-            @endif
-
-            @if($freetalk->type == 'photo' && $freetalk->photo_number == 1)
-            <div class="cont_cus">
-                <div class="martop1rem">
-                    <div class="borderhas">
-                        <div class="appreciate">
-                            <div class="left">
-                                <img src="/{{ @$freetalk->user->icon }}" alt="">
-                                <p>{{ @$freetalk->user->name }}</p>
-                            </div>
-                        </div>
-                        <div class="img_triger">
-                            <img src="{{ $freetalk->real_photos}}" alt="" width="100%">
-                        </div>
-                        <p class="biaoti"></p>
-                        <p class="desc">{{ $freetalk->content }}</p>
-                        <div class="appreciate">
-                            <div class="left">
-                                <p class="time">{{ $freetalk->time }}</p>
-                            </div>
-                            <div class="right">
-                                <div class="like" data_id="{{ $freetalk->id }}">
-                                    <img src="/dist/static/img/hongxin.png" alt="">
-                                    <span>{{ $freetalk->likes }}</span>
-                                </div>
-                                <div class="news">
-                                    <img src="/dist/static/img/xiaoxi.png" alt="">
-                                    <span>{{ $freetalk->comments }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="preview_textarea_wrap" style="display: none">
-                    <textarea class="preview_textarea" name="" cols="5"></textarea>
-                    <div class="send_btn" data_id="{{ $freetalk->id }}">
-                        <img class="send_btn_img" src="/dist/static/img/send_btn.png" alt="">
-                    </div>
-                </div>
-            </div>
-            @endif
-
-            @if($freetalk->type == 'photo' && $freetalk->photo_number == 0)
-            <div class="cont_cus">
-                <div class="martop1rem">
-                    <div class="borderhas">
-                        <div class="appreciate">
-                            <div class="left">
-                                <img src="/{{ @$freetalk->user->icon }}" alt="">
-                                <p>{{ @$freetalk->user->name }}</p>
-                            </div>
-                        </div>
-                        <p class="biaoti"></p>
-                        <p class="desc">{{ $freetalk->content }}</p>
-                        <div class="appreciate">
-                            <div class="left">
-                                <p class="time">{{ $freetalk->time }}</p>
-                            </div>
-                            <div class="right">
-                                <div class="like" data_id="{{ $freetalk->id }}">
-                                    <img src="/dist/static/img/hongxin.png" alt="">
-                                    <span>{{ $freetalk->likes }}</span>
-                                </div>
-                                <div class="news">
-                                    <img src="/dist/static/img/xiaoxi.png" alt="">
-                                    <span>{{ $freetalk->comments }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="preview_textarea_wrap" style="display: none">
-                    <textarea class="preview_textarea" name="" cols="5"></textarea>
-                    <div class="send_btn" data_id="{{ $freetalk->id }}">
-                        <img class="send_btn_img" src="/dist/static/img/send_btn.png" alt="">
-                    </div>
-                </div>
-            </div>
-            @endif
-
-            @if($freetalk->type == 'photo' && $freetalk->photo_number > 1)
-            <div class="cont_cus">
-            <div class="martop1rem">
-                 <div class="borderhas">
-                    <div class="appreciate">
-                        <div class="left">
-                            <img src="/{{ @$freetalk->user->icon }}" alt="">
-                            <p>{{ @$freetalk->user->name }}</p>
+                            <img src="/{{ @$work_style->user->icon }}" alt="">
+                            <p>{{ @$work_style->user->name }}</p>
                         </div>
                     </div>
                 <div class="images col-2">
-                   @foreach ($freetalk->real_photos as $photo)
+                   @foreach ($work_style->real_photos as $photo)
                     <div class="item img_triger">
                         <img src="{{ $photo }}" width="100%">
                     </div>
                   @endforeach
                 </div>
                 <p class="biaoti"></p>
-                <p class="desc">{{ $freetalk->content }}</p>
+                <p class="desc">{{ $work_style->content }}</p>
                 <div class="appreciate">
                     <div class="left">
-                        <p class="time">{{ $freetalk->time }}</p>
+                        <p class="time">{{ $work_style->time }}</p>
                     </div>
                     <div class="right">
-                        <div class="like" data_id="{{ $freetalk->id }}">
+                        <div class="like" data_id="{{ $work_style->id }}">
                             <img src="/dist/static/img/hongxin.png" alt="">
-                            <span>{{ $freetalk->likes }}</span>
+                            <span>{{ $work_style->likes }}</span>
                         </div>
                         <div class="news">
                             <img src="/dist/static/img/xiaoxi.png" alt="">
-                            <span>{{ $freetalk->comments }}</span>
+                            <span>{{ $work_style->comments }}</span>
                         </div>
                     </div>
                 </div>
@@ -513,15 +369,15 @@
             </div>
             <div class="preview_textarea_wrap" style="display: none">
                     <textarea class="preview_textarea" name="" cols="5"></textarea>
-                    <div class="send_btn" data_id="{{ $freetalk->id }}">
+                    <div class="send_btn" data_id="{{ $work_style->id }}">
                         <img class="send_btn_img" src="/dist/static/img/send_btn.png" alt="">
                     </div>
                 </div>
             </div>
             @endif
-            @if(count(@$freetalk->comments)>0)
+            @if(count(@$work_style->comments)>0)
             <div>
-            @foreach ($freetalk->commentsList as $comment)
+            @foreach ($work_style->commentsList as $comment)
             <div class="trigger_comment">
                 <div class="recommendBottom">
                     <div class="border1px">
@@ -542,7 +398,7 @@
                 </div>
                 <div class="preview_textarea_wrap" style="display: none">
                     <textarea class="preview_textarea" name="" cols="5"></textarea>
-                    <div class="send_btn" data_id="{{ $freetalk->id }}" parent_id="{{ $comment->id }}">
+                    <div class="send_btn" data_id="{{ $work_style->id }}" parent_id="{{ $comment->id }}">
                         <img class="send_btn_img" src="/dist/static/img/send_btn.png" alt="">
                     </div>
                 </div>
@@ -553,37 +409,11 @@
             @endforeach
             @endif
         </div>
-        <div class="link_where">
-            <div><a href="/freetalk/photo/add">照片</a></div>
-            <div><a href="/freetalk/plan/add">行动计划</a></div>
-            <div class="close_btn">取消</div>
-        </div>
-        <!-- <div class="recommendBottom">
-            <div class="border1px">
-                <div class="comment">
-                    <div class="left">
-                        <img src="/dist/static/img/thumb.png" alt="">
-                    </div>
-                    <div class="right">
-                        <p class="information">
-                            <span class="name">STACY MARTIN</span>
-                            <span class="time">17 MIN AGO</span>
-                        </p>
-                        <p class="one">Commented on <span class="three">Stop Wars Tree.</span></p>
-                        <p class="two">”I hope this isn’t avaible in Germany”</p>
-                    </div>
-                </div>
-            </div>
-        </div> -->
     </section>
     <footer>
-        <!-- <div class="bootmbutton">
-            Send Message
-        </div> -->
     </footer>
     @include('include.sidebar')
 </div>
-<!-- <div style="padding-bottom: 80px"></div> -->
 
 <script src="/dist/static/vendor/jquery-3.1.1.min.js"></script>
 <script src="/dist/static/vendor/swiper-3.4.0.jquery.min.js"></script>
@@ -636,9 +466,9 @@ $(function () {
     })
     function addComment(reading_id, content, parent_id) {
         $.ajax({
-            url: '/api/freetalk/comment/add',
+            url: '/api/workstyle/comment/add',
             data: {
-                freetalk_id: reading_id,
+                work_style_id: reading_id,
                 content: content,
                 parent: parent_id
             },
@@ -676,9 +506,9 @@ $(function () {
         var id = $(this).attr('data_id');
         var num = $(this).children('.num');
         $.ajax({
-            url: '/api/freetalk/like/add',
+            url: '/api/workstyle/like/add',
             data: {
-                freetalk_id: id
+                work_style_id: id
             },
             success: function (res) {
                 window.location.reload();

@@ -69,6 +69,12 @@ class FreetalkController extends Controller
                         $real_photos = $freetalk->photos;
                     }
                 }
+
+                if($freetalk->letter_id){
+                     $freetalk->letter = Letter::find($freetalk->letter_id);
+
+                }
+
                 $freetalk->photo_number = $photo_number;
                 $freetalk->real_photos = $real_photos;
                 $comments = FreetalkComment::where('freetalk_id', $freetalk->id)->where('enabled', 1)->orderBy('id', 'desc')->get();
@@ -91,9 +97,11 @@ class FreetalkController extends Controller
                     }
                 }
                 $freetalk->commentsList = $comments;
+                $time2 = Carbon::parse($freetalk->created_at);
+                $freetalk->time = $time2->diffForHumans();
             }
         }
- //dump($freetalks);exit;
+
         $lang = getLang();
         return view('freetalk/index', ['lang' => $lang, 'type' => $type, 'user' => $user, 'freetalks' => $freetalks]);
     }
@@ -318,14 +326,14 @@ class FreetalkController extends Controller
         }
         $v = Validator::make(request()->all(), [
             'years' => 'required',
-            'contents' => 'required',
+            'content' => 'required',
             'plans' => 'required',
         ]);
         if($v->fails()){
             return err(1, $v->messages()->first());
         }
         $plans = json_decode(request()->input('plans'), true);//多个计划
-        $data = request()->only('years', 'contents');
+        $data = request()->only('years', 'content');
         $data['user_id'] = $id;
         $letter = Letter::create($data);//letter
 

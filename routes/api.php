@@ -76,4 +76,13 @@ Route::get('/api/freetalk/comment/add', 'FreetalkController@commentAdd');
 //发布未来邮局n年行动计划
 Route::get('/api/post/letter/add', 'FreetalkController@postLetterAdd');
 
+//发布我的职场范
+Route::get('/api/workstyle/add', 'WorkStyleController@add');
+
+//我的职场范点赞
+Route::get('/api/workstyle/like/add', 'WorkStyleController@likeAdd');
+
+//我的职场范评论
+Route::get('/api/workstyle/comment/add', 'WorkStyleController@commentAdd');
+
 

@@ -4,16 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Letter extends Model
+class WorkStyleComment extends Model
 {
-	protected $guarded = [];
     public function user()
     {
         return $this->belongsTo('App\Models\User');
     }
-
-    public function letter_plans()
+    public function work_style()
     {
-        return $this->hasMany('App\Models\LetterPlan');
+        return $this->belongsTo('App\Models\WorkStyle');
     }
 }
