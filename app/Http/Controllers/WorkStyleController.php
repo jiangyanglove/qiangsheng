@@ -89,7 +89,7 @@ class WorkStyleController extends Controller
                 }
                 $work_style->commentsList = $comments;
                 $time2 = Carbon::parse($work_style->created_at);
-                $work_style->time = $time->diffForHumans();
+                $work_style->time = $time2->diffForHumans();
             }
         }
         $lang = getLang();
