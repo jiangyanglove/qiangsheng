@@ -360,4 +360,80 @@ class UserController extends Controller
         // // }
         // echo 'done';exit;
     }
+
+    public function fenzu()
+    {
+        $city = request()->input('city');
+        if(!$city){
+            return 'no city';
+        }
+
+        if($city == '上海'){
+            $number = 13;
+        }
+        if($city == '杭州'){
+            $number = 1;
+        }
+        if($city == '北京'){
+            $number = 2;
+        }
+        if($city == '广州'){
+            $number = 1;
+        }
+        if($city == '苏州'){
+            $number = 6;
+        }
+        if($city == '西安'){
+            $number = 1;
+        }
+
+        for($i = 1; $i <= $number; $i++){
+            //选择一个未分组的人创建新分组并设置组长
+            if($city == '广州'){
+                $user = User::where('city', $city)->where('group_id', 0)->where('wwid', '<>', '7758522')->where('wwid', '<>', '7758521')->first();
+            }
+            else{
+                $user = User::where('city', $city)->where('group_id', 0)->first();
+            }
+
+            if(!$user){
+                break;
+            }
+            $group_name = $city."随机组".$i;
+            echo $group_name.':<br>';
+            echo '组长：'. $user->name.'<br>';
+            $new_group = new Group();
+            $new_group->name = $group_name;
+            $new_group->city = $city;
+            $new_group->leader_user_id = $user->id;
+            $new_group->save();
+
+            $user->group_id = $new_group->id;
+            $user->save();
+
+            //选择七个人成组员
+            if($city == '广州'){
+                $members = User::where('city', $city)->where('group_id', 0)->where('wwid', '<>', '7758522')->where('wwid', '<>', '7758521')->take(7)->get();
+            }
+            else{
+                $members = User::where('city', $city)->where('group_id', 0)->take(7)->get();
+            }
+            if($members){
+                echo '组员：';
+                foreach($members as $member){
+                    echo ' --- '. $member->name;
+                    $newGroupUser = new GroupUser();
+                    $newGroupUser->group_id = $new_group->id;
+                    $newGroupUser->user_id = $member->id;
+                    $newGroupUser->user_name = $member->name;
+                    $newGroupUser->save();
+
+                    $member->group_id = $new_group->id;
+                    $member->save();
+                }
+                echo '<br>--------------------<br>';
+            }
+
+        }
+    }
 }
