@@ -146,6 +146,10 @@ function score($user_id, $type, $weeknotice_id = 0){
                             'point' => 2,
                             'description' => '6号线下扫码',
                             ),
+                    11   => array(
+                            'point' => 2,
+                            'description' => '9号线下扫码',
+                            ),
     );
     $data = [];
     $data['type'] = $type;
