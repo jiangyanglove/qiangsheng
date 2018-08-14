@@ -70,6 +70,21 @@
 .martop1rem .images.col-2  .item img {
     height: auto;
 }
+.loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 9999;
+    display: none;
+}
+.loading.active {
+    display: block;
+}
+.loading img {
+    width: 50px;
+    height: 50px;
+}
 </style>
 <body>
 
@@ -90,12 +105,16 @@
             </div>
             </a>
         </div>
+        <div class="modal"></div>
+        <div class="loading"><img src="/dist/static/img/loading.gif" alt=""></div>
         <div class="recommendContent">
             <div class="martop1rem">
                 <form action="" id="uploadForm" method="post" enctype="multipart/form-data">
                     <div class="images col-2" id="up_imgs">
-                        <div class="item upfile">
-                            <img class="file_img" src="/dist/static/img/add-b.png">
+                        <div class="item upfile upfile_input_first">
+                            <div class="file_img_up">
+                                <img class="file_img" src="/dist/static/img/add-b.png">
+                            </div>
                             <input class="file" type="file" name="file"/>
                         </div>
                     </div>
@@ -148,8 +167,9 @@
             $('.file').on('change', function (e) {
                 var _this = $(this);
                 var is_last = false;
-                if ($('.upfile').length === 2) {
+                if ($('.remove_input').length === 1) {
                     is_last = true
+                    $('.upfile_input_first').hide()
                 }
                 var file = e.currentTarget.files[0];
                 formData.append("image", file);
@@ -163,15 +183,18 @@
                     cache: false,
                     success: function (res) {
                         img_arr.push(res.data.path);
-                        if (is_last) {
-                            _this.siblings('.file_img').attr('src', res.data.path)
-                            // $('.remove_input').siblings('input').remove()
-                            return false
-                        }
+                        // if (is_last) {
+                        //     _this.siblings('.file_img').attr('src', res.data.path)
+                        //     return false
+                        // }
                         var img_div = "<div class='item upfile'>" +
-                            "<img class='file_img remove_input'" + "src=" + res.data.path + ">"
-                            // "<input class='file' type='file' name='file'/></div>"
+                            "<img class='file_img remove_input'" + "src=" +  res.data.path +
+                            ">"
                         $('#up_imgs').append(img_div)
+                        $('.loading, .modal').addClass('active')
+                        $('.remove_input').on('load', function () {
+                            $('.loading, .modal').removeClass('active')
+                        })
                     }
                 })
             })

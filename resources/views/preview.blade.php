@@ -80,6 +80,13 @@
       .preview_conts {
         display: none;
       }
+      .preview_card .preview_txt {
+        padding: 5px 20px 54px;
+      }
+      .preview_card .btn.expand {
+        left: 20px;
+        right: auto;
+      }
     </style>
 </head>
 <body>
@@ -111,6 +118,7 @@
         <div class="preview_txt">
           <h4>{{ $o->name }}</h4>
           <p>{{$o->start_date}}</p>
+          <div class="btn expand" data_id="{{ $o->id }}">{{ __('展开留言') }}</div>
           <div class="btn comment_btn" data_id="{{ $o->id }}">{{ __('我要提问') }}</div>
         </div>
       </div>
