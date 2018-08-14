@@ -169,7 +169,6 @@
                 var is_last = false;
                 if ($('.remove_input').length === 1) {
                     is_last = true
-                    $('.upfile_input_first').hide()
                 }
                 var file = e.currentTarget.files[0];
                 formData.append("image", file);
@@ -182,17 +181,17 @@
                     processData: false,
                     cache: false,
                     success: function (res) {
+                        $('.loading, .modal').addClass('active')
                         img_arr.push(res.data.path);
-                        // if (is_last) {
-                        //     _this.siblings('.file_img').attr('src', res.data.path)
-                        //     return false
-                        // }
-                        var img_div = "<div class='item upfile'>" +
+                        if (is_last) {
+                            _this.siblings('.file_img_up').children('.file_img').attr('src', res.data.path)
+                        } else {
+                            var img_div = "<div class='item upfile'>" +
                             "<img class='file_img remove_input'" + "src=" +  res.data.path +
                             ">"
-                        $('#up_imgs').append(img_div)
-                        $('.loading, .modal').addClass('active')
-                        $('.remove_input').on('load', function () {
+                            $('#up_imgs').append(img_div)
+                        }
+                        $('.file_img').on('load', function () {
                             $('.loading, .modal').removeClass('active')
                         })
                     }
